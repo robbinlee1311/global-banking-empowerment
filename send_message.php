@@ -1,1 +1,0 @@
-<?php $f='chat_storage.txt';$r=$_POST['role']??'customer';$m=trim($_POST['message']??'');if($m!==''){ $fp=fopen($f,'a');flock($fp,LOCK_EX);fwrite($fp,"[$r] ".htmlspecialchars($m)."\n");flock($fp,LOCK_UN);fclose($fp);}?>
