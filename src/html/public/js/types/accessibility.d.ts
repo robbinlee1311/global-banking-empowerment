@@ -1,5 +1,5 @@
 /**
- * Global Banking Employment Accessibility Module
+ * Global Banking Empowerment Accessibility Module
  * WCAG 2.1 AA Compliance Features
  */
 export interface AccessibilityConfig {
@@ -44,3 +44,4 @@ export declare const accessibilityUtils: {
     generateId: (prefix?: string) => string;
     isFocusable: (element: HTMLElement) => boolean;
 };
+

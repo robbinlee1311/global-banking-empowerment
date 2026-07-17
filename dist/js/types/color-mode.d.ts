@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------
- * @file Global Banking Employment color-mode.ts
- * @description Color mode (light/dark/auto) switcher for Global Banking Employment.
+ * @file Global Banking Empowerment color-mode.ts
+ * @description Color mode (light/dark/auto) switcher for Global Banking Empowerment.
  * Persists the choice in localStorage, follows the OS preference in
  * "auto" mode, and keeps [data-bs-theme-value] toggles and
  * [data-lte-theme-icon] indicator icons in sync.
@@ -54,3 +54,4 @@ declare class ColorMode {
     init(): void;
 }
 export default ColorMode;
+

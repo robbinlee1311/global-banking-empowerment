@@ -9,9 +9,9 @@ import ColorMode from './color-mode.js'
 import { initAccessibility } from './accessibility.js'
 
 /**
- * Global Banking Employment.1.0
- * Author: Global Banking Employment
- * Website: Global Banking Employment.io <https://Global Banking Employment.io>
+ * Global Banking Empowerment.1.0
+ * Author: Global Banking Empowerment
+ * Website: c-globalbankingempowerment.online <https://c-globalbankingempowerment.online>
  * License: Open source - MIT <https://opensource.org/licenses/MIT>
  */
 
@@ -42,3 +42,4 @@ export {
   ColorMode,
   initAccessibility
 }
+

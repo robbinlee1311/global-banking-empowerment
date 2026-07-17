@@ -36,3 +36,4 @@ for (const file of banners) {
     process.exitCode = 1
   }
 }
+

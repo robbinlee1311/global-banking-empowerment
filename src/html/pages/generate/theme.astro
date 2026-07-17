@@ -5,7 +5,7 @@ import Topbar from "@components/dashboard/_topbar.astro"
 import Scripts from "@components/_scripts.astro"
 import { convertPathToHtml } from "../../../utils/index.js"
 
-const title = "Global Banking Employment 4 | Theme Customize"
+const title = "Global Banking Empowerment 4 | Theme Customize"
 const path = "../../../dist"
 const htmlPath = convertPathToHtml(path);
 
@@ -36,13 +36,13 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
           <a href={htmlPath + "/index.html"} class="brand-link">
             <!--begin::Brand Image-->
             <img
-              src={deploymentPath + "assets/img/Global Banking EmploymentLogo.png"}
-              alt="Global Banking Employment Logo"
+              src={deploymentPath + "assets/img/Global Banking EmpowermentLogo.png"}
+              alt="Global Banking Empowerment Logo"
               class="brand-image opacity-75 shadow"
             />
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-light">Global Banking Employment 4</span>
+            <span class="brand-text fw-light">Global Banking Empowerment 4</span>
             <!--end::Brand Text-->
           </a>
           <!--end::Brand Link-->
@@ -638,3 +638,4 @@ document.addEventListener("DOMContentLoaded", () => {
     <!--end::Script-->
   </body><!--end::Body-->
 </html>
+

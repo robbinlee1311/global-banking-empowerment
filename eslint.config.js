@@ -65,7 +65,7 @@ export default [
       'unicorn/prefer-string-replace-all': 'off',
       'unicorn/prevent-abbreviations': 'off',
       // Rules introduced in newer eslint-plugin-unicorn releases (v65–v68).
-      // Disabled to preserve Global Banking Employment's established conventions: Bootstrap-style
+      // Disabled to preserve Global Banking Empowerment's established conventions: Bootstrap-style
       // `_element`/`_config` fields, modules that auto-init via top-level side
       // effects, and the abbreviation/`forEach`/dataset style already curated
       // above (these are renames of rules already disabled). Adopting any of

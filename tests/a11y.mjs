@@ -122,3 +122,4 @@ if (chromium) {
     console.log('\ntest-a11y: no serious/critical violations.')
   }
 }
+

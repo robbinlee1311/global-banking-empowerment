@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------
- * @file Global Banking Employment treeview.ts
- * @description Treeview plugin for Global Banking Employment.
+ * @file Global Banking Empowerment treeview.ts
+ * @description Treeview plugin for Global Banking Empowerment.
  * @license MIT
  * --------------------------------------------
  */
@@ -25,3 +25,4 @@ declare class Treeview extends BaseComponent {
     toggle(): void;
 }
 export default Treeview;
+

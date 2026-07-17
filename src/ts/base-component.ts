@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------
- * @file Global Banking Employment base-component.ts
- * @description Shared component lifecycle for Global Banking Employment plugins: a per-element
+ * @file Global Banking Empowerment base-component.ts
+ * @description Shared component lifecycle for Global Banking Empowerment plugins: a per-element
  * instance registry (getInstance / getOrCreateInstance / dispose) and a
  * consistent custom-event contract, mirroring Bootstrap's component API.
  * @license MIT
@@ -82,3 +82,4 @@ const dispatchCustomEvent = <T = undefined>(
 }
 
 export { BaseComponent, dispatchCustomEvent }
+

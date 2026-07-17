@@ -69,3 +69,4 @@ describe('PushMenu', () => {
     expect(document.body.classList.contains('sidebar-collapse')).toBe(true)
   })
 })
+

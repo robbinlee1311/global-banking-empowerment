@@ -1092,9 +1092,9 @@ class AccessibilityManager {
         if (prefersReducedMotion) {
             document.body.classList.add('reduce-motion');
             document.documentElement.style.scrollBehavior = 'auto';
-            if (!document.getElementById('Global Banking Employment-reduce-motion')) {
+            if (!document.getElementById('Global Banking Empowerment-reduce-motion')) {
                 const style = document.createElement('style');
-                style.id = 'Global Banking Employment-reduce-motion';
+                style.id = 'Global Banking Empowerment-reduce-motion';
                 style.textContent = `
           *, *::before, *::after {
             animation-duration: 0.01ms !important;
@@ -1172,7 +1172,7 @@ class AccessibilityManager {
                     label.append(indicator);
                 }
             }
-            if (!htmlInput.classList.contains('disable-Global Banking Employment-validations')) {
+            if (!htmlInput.classList.contains('disable-Global Banking Empowerment-validations')) {
                 htmlInput.addEventListener('invalid', () => {
                     this.handleFormError(htmlInput);
                 });
@@ -1363,3 +1363,4 @@ onDOMContentLoaded(() => {
 
 export { CardWidget, ColorMode, DirectChat, FullScreen, Layout, PushMenu, Treeview, initAccessibility };
 //# sourceMappingURL=adminlte.esm.js.map
+

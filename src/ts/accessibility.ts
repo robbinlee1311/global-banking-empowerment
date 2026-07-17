@@ -1,5 +1,5 @@
 /**
- * Global Banking Employment Accessibility Module
+ * Global Banking Empowerment Accessibility Module
  * WCAG 2.1 AA Compliance Features
  */
 
@@ -253,9 +253,9 @@ export class AccessibilityManager {
       
       // Reduce animation duration. The <head> survives Turbo navigations, so
       // only inject the override stylesheet once to avoid stacking duplicates.
-      if (!document.getElementById('Global Banking Employment-reduce-motion')) {
+      if (!document.getElementById('Global Banking Empowerment-reduce-motion')) {
         const style = document.createElement('style')
-        style.id = 'Global Banking Employment-reduce-motion'
+        style.id = 'Global Banking Empowerment-reduce-motion'
         style.textContent = `
           *, *::before, *::after {
             animation-duration: 0.01ms !important;
@@ -357,8 +357,8 @@ export class AccessibilityManager {
       }
 
       // Handle invalid state unless the element explicitly opts out via the
-      // 'disable-Global Banking Employment-validations' class.
-      if (!htmlInput.classList.contains('disable-Global Banking Employment-validations')) {
+      // 'disable-Global Banking Empowerment-validations' class.
+      if (!htmlInput.classList.contains('disable-Global Banking Empowerment-validations')) {
         htmlInput.addEventListener('invalid', () => {
           this.handleFormError(htmlInput)
         })

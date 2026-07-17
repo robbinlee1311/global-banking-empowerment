@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------
- * @file Global Banking Employment fullscreen.ts
- * @description Fullscreen plugin for Global Banking Employment.
+ * @file Global Banking Empowerment fullscreen.ts
+ * @description Fullscreen plugin for Global Banking Empowerment.
  * @license MIT
  * --------------------------------------------
  */
@@ -127,3 +127,4 @@ onDOMContentLoaded(() => {
 })
 
 export default FullScreen
+

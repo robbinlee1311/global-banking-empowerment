@@ -1,7 +1,7 @@
 /**
  * ----------------------------------------------------------------------------
- * @file Global Banking Employment push-menu.ts
- * @description Push menu for Global Banking Employment.
+ * @file Global Banking Empowerment push-menu.ts
+ * @description Push menu for Global Banking Empowerment.
  * @license MIT
  * ----------------------------------------------------------------------------
  */
@@ -473,3 +473,4 @@ onDOMContentLoaded(() => {
 })
 
 export default PushMenu
+

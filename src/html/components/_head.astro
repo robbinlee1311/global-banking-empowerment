@@ -4,7 +4,7 @@ const cssPath = isRtl ? ".rtl" : "";
 
 // Smart path resolution: calculate relative path based on directory depth
 const pathname = Astro.url.pathname;
-// Docs/FAQ pages load the docs-only stylesheet on top of Global Banking Employment.css.
+// Docs/FAQ pages load the docs-only stylesheet on top of Global Banking Empowerment.css.
 const isDocsPage = pathname.includes("/docs/");
 // Only count directories, not the filename itself
 const pathSegments = pathname.split('/').filter(segment => segment !== '');
@@ -52,21 +52,21 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 
 <!--begin::Primary Meta Tags-->
 <meta name="title" content={title} />
-<meta name="author" content="Global Banking EmploymentHQ" />
+<meta name="author" content="robbinlee1311" />
 <meta
   name="description"
-  content="Global Banking Employment is a free Bootstrap 5 admin dashboard template with almost 50 example pages, built with vanilla JS and designed with accessibility in mind."
+  content="Global Banking Empowerment is a free Bootstrap 5 admin dashboard template with almost 50 example pages, built with vanilla JS and designed with accessibility in mind."
 />
 <meta
   name="keywords"
-  content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, Global Banking Employmenthq, Global Banking Employmenthq dashboard, Global Banking Employmenthq admin dashboard, accessible admin panel"
+  content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, robbinlee1311, robbinlee1311 dashboard, robbinlee1311 admin dashboard, accessible admin panel"
 />
 <!--end::Primary Meta Tags-->
 
 <!--begin::Accessibility Features-->
 <!-- Skip links will be dynamically added by accessibility.js -->
 <meta name="supported-color-schemes" content="light dark" />
-<link rel="preload" href={deploymentPath + "css/Global Banking Employment" + cssPath + ".css"} as="style" />
+<link rel="preload" href={deploymentPath + "css/Global Banking Empowerment" + cssPath + ".css"} as="style" />
 <!--end::Accessibility Features-->
 
 <!--begin::Fonts-->
@@ -96,9 +96,10 @@ const deploymentPath = depth === 0 ? './' : '../'.repeat(depth);
 />
 <!--end::Third Party Plugin(Bootstrap Icons)-->
 
-<!--begin::Required Plugin(Global Banking Employment)-->
-<link rel="stylesheet" href={deploymentPath + "css/Global Banking Employment" + cssPath + ".css"} />
-<!--end::Required Plugin(Global Banking Employment)-->
+<!--begin::Required Plugin(Global Banking Empowerment)-->
+<link rel="stylesheet" href={deploymentPath + "css/Global Banking Empowerment" + cssPath + ".css"} />
+<!--end::Required Plugin(Global Banking Empowerment)-->
 {isDocsPage && (
-  <link rel="stylesheet" href={deploymentPath + "css/Global Banking Employment-docs" + cssPath + ".css"} />
+  <link rel="stylesheet" href={deploymentPath + "css/Global Banking Empowerment-docs" + cssPath + ".css"} />
 )}
+

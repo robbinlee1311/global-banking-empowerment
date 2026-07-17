@@ -52,3 +52,4 @@ jobs:
             echo "$SASS_VARS_FOUND"
             exit 1
           fi
+

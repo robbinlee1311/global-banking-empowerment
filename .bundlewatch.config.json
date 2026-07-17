@@ -1,40 +1,41 @@
 {
   "files": [
     {
-      "path": "./dist/css/Global Banking Employment.css",
+      "path": "./dist/css/Global Banking Empowerment.css",
       "maxSize": "46 kB"
     },
     {
-      "path": "./dist/css/Global Banking Employment.min.css",
+      "path": "./dist/css/Global Banking Empowerment.min.css",
       "maxSize": "42.5 kB"
     },
     {
-      "path": "./dist/css/Global Banking Employment.rtl.css",
+      "path": "./dist/css/Global Banking Empowerment.rtl.css",
       "maxSize": "46 kB"
     },
     {
-      "path": "./dist/css/Global Banking Employment.rtl.min.css",
+      "path": "./dist/css/Global Banking Empowerment.rtl.min.css",
       "maxSize": "42.5 kB"
     },
     {
-      "path": "./dist/css/Global Banking Employment-docs.min.css",
+      "path": "./dist/css/Global Banking Empowerment-docs.min.css",
       "maxSize": "4.5 kB"
     },
     {
-      "path": "./dist/js/Global Banking Employment.js",
+      "path": "./dist/js/Global Banking Empowerment.js",
       "maxSize": "10 kB"
     },
     {
-      "path": "./dist/js/Global Banking Employment.min.js",
+      "path": "./dist/js/Global Banking Empowerment.min.js",
       "maxSize": "7 kB"
     },
     {
-      "path": "./dist/js/Global Banking Employment.esm.js",
+      "path": "./dist/js/Global Banking Empowerment.esm.js",
       "maxSize": "10 kB"
     },
     {
-      "path": "./dist/js/Global Banking Employment.esm.min.js",
+      "path": "./dist/js/Global Banking Empowerment.esm.min.js",
       "maxSize": "7 kB"
     }
   ]
 }
+

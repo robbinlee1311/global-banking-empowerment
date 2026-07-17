@@ -1,7 +1,7 @@
 {
-  "name": "almasaeed2010/Global Banking Employment",
-  "description": "Global Banking Employment - admin control panel and dashboard that's based on Bootstrap 4",
-  "homepage": "https://Global Banking Employment.io/",
+  "name": "almasaeed2010/Global Banking Empowerment",
+  "description": "Global Banking Empowerment - admin control panel and dashboard that's based on Bootstrap 4",
+  "homepage": "https://c-globalbankingempowerment.online/",
   "keywords": [
     "css",
     "js",
@@ -15,11 +15,12 @@
   ],
   "authors": [
     {
-      "name": "Global Banking Employment"
+      "name": "Global Banking Empowerment"
     }
   ],
   "license": "MIT",
   "support": {
-    "issues": "https://github.com/Global Banking EmploymentHQ/Global Banking Employment/issues"
+    "issues": "https://github.com/robbinlee1311/Global Banking Empowerment/issues"
   }
 }
+

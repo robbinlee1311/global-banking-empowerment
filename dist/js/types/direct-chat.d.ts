@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------
- * @file Global Banking Employment direct-chat.ts
- * @description Direct chat for Global Banking Employment.
+ * @file Global Banking Empowerment direct-chat.ts
+ * @description Direct chat for Global Banking Empowerment.
  * @license MIT
  * --------------------------------------------
  */
@@ -17,3 +17,4 @@ declare class DirectChat extends BaseComponent {
     toggle(): void;
 }
 export default DirectChat;
+

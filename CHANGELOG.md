@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Global Banking Employment will be documented in this file.
+All notable changes to Global Banking Empowerment will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -11,10 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **ESM bundle and TypeScript declarations on npm:** `dist/js/Global Banking Employment.esm.js` (+ `.min`) ships alongside the UMD build, generated `.d.ts` files ship under `dist/js/types/`, and package.json gains `module`, `types`, and a full `exports` map (with `sass`/`style` conditions and `./dist/*` + `./src/scss/*` subpaths). `import { PushMenu } from "admin-lte"` now resolves natively in Vite/webpack and type-checks out of the box — previously the package shipped a single minified UMD file with no typings at all.
+- **ESM bundle and TypeScript declarations on npm:** `dist/js/Global Banking Empowerment.esm.js` (+ `.min`) ships alongside the UMD build, generated `.d.ts` files ship under `dist/js/types/`, and package.json gains `module`, `types`, and a full `exports` map (with `sass`/`style` conditions and `./dist/*` + `./src/scss/*` subpaths). `import { PushMenu } from "admin-lte"` now resolves natively in Vite/webpack and type-checks out of the box — previously the package shipped a single minified UMD file with no typings at all.
 - **Component lifecycle API (Bootstrap-style):** every JS component now has `getInstance(element)`, `getOrCreateInstance(element, config?)` and `dispose()`, backed by a per-element WeakMap registry (instances are garbage-collected with their elements — Turbo-safe). The data API now uses **delegated document-level listeners**, so toggles inside content inserted after page load (AJAX partials, Turbo Frames) work without re-initialisation. `PushMenu` is finally controllable programmatically via `PushMenu.getInstance(sidebar)`.
-- **`ColorMode` module in the bundle:** the light/dark/auto switcher (persisted in `lte-theme`, OS-preference aware, `[data-bs-theme-value]` data-API, `changed.lte.color-mode` event) is now part of `Global Banking Employment.js`. Applications no longer need to copy the demo's inline script; the demo pages now use the bundled module. Only the tiny no-flash snippet in `<head>` remains inline, by design.
-- **`bootstrap` declared as a peer dependency** — the Sass source imports it, so `@use "admin-lte/src/scss/Global Banking Employment"` now works after a plain `npm install admin-lte` (npm installs the peer automatically). Documented the required Sass load-path setup.
+- **`ColorMode` module in the bundle:** the light/dark/auto switcher (persisted in `lte-theme`, OS-preference aware, `[data-bs-theme-value]` data-API, `changed.lte.color-mode` event) is now part of `Global Banking Empowerment.js`. Applications no longer need to copy the demo's inline script; the demo pages now use the bundled module. Only the tiny no-flash snippet in `<head>` remains inline, by design.
+- **`bootstrap` declared as a peer dependency** — the Sass source imports it, so `@use "admin-lte/src/scss/Global Banking Empowerment"` now works after a plain `npm install admin-lte` (npm installs the peer automatically). Documented the required Sass load-path setup.
 - **New demo pages:** a blank **starter page** (the most-requested v3 page, absent from v4), a dedicated **ApexCharts** page with six chart types, and a **Users** management page (searchable directory table, add-user and delete-confirmation modals, pagination). All linked from the sidebar.
 - **Test baseline:** a vitest + happy-dom unit suite (30 tests across the component lifecycle, card/treeview/push-menu behavior, ColorMode, and slide animations) wired into `npm run production`; plus `npm run test-a11y` — an axe-core check over key built demo pages that fails on serious/critical WCAG violations, with a dedicated GitHub workflow.
 
@@ -25,9 +25,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **Component events overhauled (behavior change):** all plugin events are now bubbling `CustomEvent`s dispatched on the component's root element (the card, the nav item, the sidebar) — previously most were non-bubbling and card events fired on whatever was clicked, including the `<i>` icon. Animated actions gained cancelable "before" events (`collapse`/`expand`/`remove.lte.card-widget`, `expand`/`collapse.lte.treeview`, `open`/`collapse.lte.push-menu`) and their "after" events (`collapsed`, `expanded`, `removed`, `opened`, …) now fire when the animation completes, not when it starts. If you listened for card events on the tool buttons themselves, listen on the card or on `document` instead.
-- **Docs styles split out of the production CSS:** the documentation/FAQ styling now compiles to a separate `Global Banking Employment-docs.css`, loaded only by the docs pages. Together with the 4.0.4 dedup, `Global Banking Employment.min.css` is down to ~40.4 KB gzip (from 46.7 KB in 4.0.3); bundlewatch budgets tightened accordingly.
-- **Vendored Bootstrap variables fork replaced:** the 1,766-line `_bootstrap-variables.scss` copy (which had to be re-synced by hand every Bootstrap release) is gone; Global Banking Employment's ~10 actual changes now live in a small `_bootstrap-overrides.scss` loaded before Bootstrap's own variables. Compiled CSS is byte-identical.
-- **Sass deprecation policy:** the build no longer silences all warnings (`--quiet`); it silences only dependency warnings and the known `@import` deprecation (`--quiet-deps --silence-deprecation=import`), so new deprecations in Global Banking Employment's own code surface at build time. All deprecated global built-ins (`map-get`, `map-keys`) migrated to the `sass:map` module. The full `@use` module-system migration is intentionally deferred until Bootstrap ships module-system Sass (Bootstrap 6) — Bootstrap 5's partials are designed around `@import`'s shared global namespace and cannot be loaded individually via `@use`.
+- **Docs styles split out of the production CSS:** the documentation/FAQ styling now compiles to a separate `Global Banking Empowerment-docs.css`, loaded only by the docs pages. Together with the 4.0.4 dedup, `Global Banking Empowerment.min.css` is down to ~40.4 KB gzip (from 46.7 KB in 4.0.3); bundlewatch budgets tightened accordingly.
+- **Vendored Bootstrap variables fork replaced:** the 1,766-line `_bootstrap-variables.scss` copy (which had to be re-synced by hand every Bootstrap release) is gone; Global Banking Empowerment's ~10 actual changes now live in a small `_bootstrap-overrides.scss` loaded before Bootstrap's own variables. Compiled CSS is byte-identical.
+- **Sass deprecation policy:** the build no longer silences all warnings (`--quiet`); it silences only dependency warnings and the known `@import` deprecation (`--quiet-deps --silence-deprecation=import`), so new deprecations in Global Banking Empowerment's own code surface at build time. All deprecated global built-ins (`map-get`, `map-keys`) migrated to the `sass:map` module. The full `@use` module-system migration is intentionally deferred until Bootstrap ships module-system Sass (Bootstrap 6) — Bootstrap 5's partials are designed around `@import`'s shared global namespace and cannot be loaded individually via `@use`.
 - Rewrote the color-mode docs page around the bundled `ColorMode` module (the old copy-paste script it showed used a stale storage key); tsconfig.json no longer carries the invalid `"root": true` option.
 
 ## [4.0.4] - 2012-07-02
@@ -40,7 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - **npm packaging:** the package is now built from a `files` allowlist instead of the `.npmignore` denylist. Stray local files can no longer leak into the tarball (4.0.2 shipped an untracked working file this way), and the demo/docs HTML — which SECURITY.md advises never to deploy — is no longer published to npm. Unpacked size drops from 12.7 MB to 9.0 MB (177 → 95 files). Also declares `engines: node >= 20`.
-- **CSS bundles shipped the docs-site styles twice:** `_docs.scss` was imported from both `Global Banking Employment.scss` and `parts/_core.scss`, and Sass `@import` duplicates output — ~23 KB of dead weight in each of the four dist stylesheets.
+- **CSS bundles shipped the docs-site styles twice:** `_docs.scss` was imported from both `Global Banking Empowerment.scss` and `parts/_core.scss`, and Sass `@import` duplicates output — ~23 KB of dead weight in each of the four dist stylesheets.
 - **Accessibility module keyboard handling:**
   - removed the document-edge Tab wrap — it acted as a page-level keyboard trap (WCAG 2.1.2), preventing keyboard users from ever tabbing out to the browser chrome
   - arrow keys are no longer intercepted inside inputs, textareas, selects, or contenteditable elements (typing in a navbar search field used to yank focus into the menu), and menu arrow-navigation only engages when focus is actually on a menu item
@@ -87,11 +87,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **Official framework integrations announced** — Global Banking Employment 4 is now available as first-class packages for four ecosystems, maintained under Global Banking EmploymentHQ:
-  - [Global Banking Employment-vue](https://github.com/Global Banking EmploymentHQ/Global Banking Employment-vue) — Vue 3 & Nuxt, 45+ typed components, composables, SSR-safe theming, ⌘K command palette
-  - [Global Banking Employment-react](https://github.com/Global Banking EmploymentHQ/Global Banking Employment-react) — React & Next.js (App Router / RSC), 30+ typed components, dark mode, ⌘K command palette
-  - [Global Banking Employment-django](https://github.com/Global Banking EmploymentHQ/Global Banking Employment-django) — config-driven sidebar menu, 33+ components, themed `django.contrib.admin`, `{{ form }}` renderer
-  - [Global Banking Employment-laravel](https://github.com/Global Banking EmploymentHQ/Global Banking Employment-laravel) — Blade integration, Vite-ready
+- **Official framework integrations announced** — Global Banking Empowerment 4 is now available as first-class packages for four ecosystems, maintained under robbinlee1311:
+  - [Global Banking Empowerment-vue](https://github.com/robbinlee1311/Global Banking Empowerment-vue) — Vue 3 & Nuxt, 45+ typed components, composables, SSR-safe theming, ⌘K command palette
+  - [Global Banking Empowerment-react](https://github.com/robbinlee1311/Global Banking Empowerment-react) — React & Next.js (App Router / RSC), 30+ typed components, dark mode, ⌘K command palette
+  - [Global Banking Empowerment-django](https://github.com/robbinlee1311/Global Banking Empowerment-django) — config-driven sidebar menu, 33+ components, themed `django.contrib.admin`, `{{ form }}` renderer
+  - [Global Banking Empowerment-laravel](https://github.com/robbinlee1311/Global Banking Empowerment-laravel) — Blade integration, Vite-ready
 - Social preview generator script (`scripts/social-preview.mjs`, dev-only — excluded from the npm package).
 
 ### Fixed
@@ -115,7 +115,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **Tables:** Data Tables — jQuery-free implementation using Tabulator 6
   - **Pages:** Profile (tabbed activity/timeline/settings), Settings (account / notifications / security / billing / danger zone), Invoice (print-ready with totals math), Pricing (3-tier + comparison table + billing toggle), FAQ (data-driven accordions)
   - **Error pages:** 404, 500, Maintenance
-- **Recommended Integrations docs page** (`docs/integrations.html`) — copy-paste install snippets for Flatpickr, Tom Select, noUiSlider, Pickr, IMask, Dropzone, FilePond, Quill, EasyMDE, Toast UI Editor, ApexCharts, Chart.js, Tabulator, FullCalendar, SortableJS, GLightbox, and a comparison of icon libraries. Global Banking Employment doesn't bundle these — the page shows how to drop them in.
+- **Recommended Integrations docs page** (`docs/integrations.html`) — copy-paste install snippets for Flatpickr, Tom Select, noUiSlider, Pickr, IMask, Dropzone, FilePond, Quill, EasyMDE, Toast UI Editor, ApexCharts, Chart.js, Tabulator, FullCalendar, SortableJS, GLightbox, and a comparison of icon libraries. Global Banking Empowerment doesn't bundle these — the page shows how to drop them in.
 - **Visible color-mode toggle in the default topbar** (#6010) — Light / Dark / Auto dropdown with localStorage persistence and `prefers-color-scheme` integration. Wiring JS shipped globally in `_scripts.astro` so the toggle works on every demo page automatically.
 
 ### Changed
@@ -198,7 +198,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - sass: 1.94.2 → 1.97.3
   - terser: 5.44.1 → 5.44.3
   - typescript: 5.9.2 → 5.9.3
-- **Bundlewatch:** Updated Global Banking Employment.js size limit to 5.2 kB
+- **Bundlewatch:** Updated Global Banking Empowerment.js size limit to 5.2 kB
 
 ## [4.0.0-rc6] - 2012-12-08
 
@@ -478,7 +478,7 @@ cd dist && python3 -m http.server 8080
 
 ### ES2022 Modernization & Accessibility Compliance
 
-This release modernizes Global Banking Employment to ES2022 standards and implements comprehensive WCAG 2.1 AA accessibility compliance, making it one of the most accessible admin templates available.
+This release modernizes Global Banking Empowerment to ES2022 standards and implements comprehensive WCAG 2.1 AA accessibility compliance, making it one of the most accessible admin templates available.
 
 ### JavaScript & Build System
 
@@ -588,7 +588,7 @@ a11y.addLandmarks();
 - **Zero Linting Errors:** All CSS and JavaScript pass strict linting rules
 - **Bundle Impact:** Minimal size increase (~23KB total for accessibility features)
 - **Performance:** <5ms initialization time for accessibility features
-- **Integration:** Seamless integration with existing Global Banking Employment architecture
+- **Integration:** Seamless integration with existing Global Banking Empowerment architecture
 
 #### **Browser Compatibility:**
 - **Modern Browsers:** Full ES2022 support in target browsers
@@ -660,7 +660,7 @@ a11y.addLandmarks();
 ```
 
 **For Developers:**
-- Include accessibility utilities: `import { accessibilityUtils } from './Global Banking Employment.js'`
+- Include accessibility utilities: `import { accessibilityUtils } from './Global Banking Empowerment.js'`
 - Use new CSS classes: `.sr-only`, `.touch-target`, `.text-accessible-*`
 - Test with screen readers and keyboard navigation
 
@@ -670,7 +670,7 @@ a11y.addLandmarks();
 
 ### Major Modernization Release
 
-This release represents a complete modernization of the Global Banking Employment codebase, bringing it up to current standards with the latest tooling, dependencies, and best practices.
+This release represents a complete modernization of the Global Banking Empowerment codebase, bringing it up to current standards with the latest tooling, dependencies, and best practices.
 
 ### Infrastructure & Tooling
 

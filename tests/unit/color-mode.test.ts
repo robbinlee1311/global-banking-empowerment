@@ -64,3 +64,4 @@ describe('ColorMode', () => {
     expect(localStorage.getItem('lte-theme')).toBe('dark')
   })
 })
+

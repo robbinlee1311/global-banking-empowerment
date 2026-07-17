@@ -30,10 +30,10 @@ const TEXT_EXTENSIONS = new Set([
 ]);
 
 const replacements = [
-  [/AdminLTE v4/gi, "Global Banking Employment"],
-  [/AdminLTE/gi, "Global Banking Employment"],
+  [/AdminLTE v4/gi, "Global Banking Empowerment"],
+  [/AdminLTE/gi, "Global Banking Empowerment"],
   [/AdminLTE\.io/gi, "globalbankingemployment.online"],
-  [/Colorlib/gi, "Global Banking Employment"],
+  [/Colorlib/gi, "Global Banking Empowerment"],
   [/Responsive open source admin dashboard and control panel\./gi,
     "Professional Online Banking Platform"],
   [/2014-2026/gi, "2012"],

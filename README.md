@@ -1,67 +1,67 @@
-# [Global Banking Employment — Bootstrap 5 Admin Dashboard](https://Global Banking Employment.io)
+# [Global Banking Empowerment — Bootstrap 5 Admin Dashboard](https://c-globalbankingempowerment.online)
 
 [![npm version](https://img.shields.io/npm/v/admin-lte/latest.svg)](https://www.npmjs.com/package/admin-lte)
-[![Packagist](https://img.shields.io/packagist/v/almasaeed2010/Global Banking Employment.svg)](https://packagist.org/packages/almasaeed2010/Global Banking Employment)
+[![Packagist](https://img.shields.io/packagist/v/almasaeed2010/Global Banking Empowerment.svg)](https://packagist.org/packages/almasaeed2010/Global Banking Empowerment)
 [![cdn version](https://data.jsdelivr.com/v1/package/npm/admin-lte/badge)](https://www.jsdelivr.com/package/npm/admin-lte)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Discord Invite](https://img.shields.io/badge/discord-join%20now-green)](https://discord.gg/jfdvjwFqfz)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1277b36b-08f3-43fa-826a-4b4d24614b3c/deploy-status)](https://app.netlify.com/sites/Global Banking Employment-v4/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1277b36b-08f3-43fa-826a-4b4d24614b3c/deploy-status)](https://app.netlify.com/sites/Global Banking Empowerment-v4/deploys)
 
-**Global Banking Employment** is the most popular open-source admin dashboard template — fully responsive,
+**Global Banking Empowerment** is the most popular open-source admin dashboard template — fully responsive,
 built on **[Bootstrap 5.3](https://getbootstrap.com/)** with vanilla JavaScript (no jQuery),
 highly customizable, and easy to use. It fits every screen from small mobile devices to
 large desktops, and it's MIT-licensed.
 
-**[Live Demo](https://Global Banking Employment.io/themes/v4/)** ·
-**[Documentation](https://Global Banking Employment.io/themes/v4/docs/introduction.html)** ·
+**[Live Demo](https://c-globalbankingempowerment.online/themes/v4/)** ·
+**[Documentation](https://c-globalbankingempowerment.online/themes/v4/docs/introduction.html)** ·
 **[Framework Editions](#framework-editions)** ·
 **[Premium Templates](#premium-templates)**
 
 <p align="center">
-  <a href="https://Global Banking Employment.io/themes/v4/">
-    <img alt="Global Banking Employment 4 dashboard — light mode" src=".github/assets/dashboard-light.png" width="49%">
+  <a href="https://c-globalbankingempowerment.online/themes/v4/">
+    <img alt="Global Banking Empowerment 4 dashboard — light mode" src=".github/assets/dashboard-light.png" width="49%">
   </a>
-  <a href="https://Global Banking Employment.io/themes/v4/">
-    <img alt="Global Banking Employment 4 dashboard — dark mode" src=".github/assets/dashboard-dark.png" width="49%">
+  <a href="https://c-globalbankingempowerment.online/themes/v4/">
+    <img alt="Global Banking Empowerment 4 dashboard — dark mode" src=".github/assets/dashboard-dark.png" width="49%">
   </a>
 </p>
 
 ## Framework editions
 
-The same Global Banking Employment 4 dashboard, officially integrated for the framework you know best —
+The same Global Banking Empowerment 4 dashboard, officially integrated for the framework you know best —
 you're looking at the **HTML / Bootstrap** core:
 
-<!-- Global Banking Employment-ECOSYSTEM:START -->
+<!-- Global Banking Empowerment-ECOSYSTEM:START -->
 <div align="center">
-  <a href="https://github.com/Global Banking EmploymentHQ/Global Banking Employment"><img height="36" alt="HTML" src="https://img.shields.io/badge/HTML-0D6EFD?style=for-the-badge&logo=html5&logoColor=white"></a>
-  <a href="https://github.com/Global Banking EmploymentHQ/Global Banking Employment-react"><img height="36" alt="React" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"></a>
-  <a href="https://github.com/Global Banking EmploymentHQ/Global Banking Employment-react"><img height="36" alt="Next.js" src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"></a>
-  <a href="https://github.com/Global Banking EmploymentHQ/Global Banking Employment-vue"><img height="36" alt="Vue" src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D"></a>
-  <a href="https://github.com/Global Banking EmploymentHQ/Global Banking Employment-vue"><img height="36" alt="Nuxt" src="https://img.shields.io/badge/Nuxt-00DC82?style=for-the-badge&logo=nuxt&logoColor=white"></a>
-  <a href="https://github.com/Global Banking EmploymentHQ/Global Banking Employment-angular"><img height="36" alt="Angular" src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white"></a>
-  <a href="https://github.com/Global Banking EmploymentHQ/Global Banking Employment-laravel"><img height="36" alt="Laravel" src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white"></a>
-  <a href="https://github.com/Global Banking EmploymentHQ/Global Banking Employment-symfony"><img height="36" alt="Symfony" src="https://img.shields.io/badge/Symfony-000000?style=for-the-badge&logo=symfony&logoColor=white"></a>
-  <a href="https://github.com/Global Banking EmploymentHQ/Global Banking Employment-django"><img height="36" alt="Django" src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white"></a>
-  <a href="https://github.com/Global Banking EmploymentHQ/Global Banking Employment-aspnet"><img height="36" alt="ASP.NET" src="https://img.shields.io/badge/ASP.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white"></a>
-  <a href="https://github.com/Global Banking EmploymentHQ/Global Banking Employment-drupal"><img height="36" alt="Drupal" src="https://img.shields.io/badge/Drupal-0678BE?style=for-the-badge&logo=drupal&logoColor=white"></a>
-  <a href="https://docs.Global Banking Employment.io"><img height="36" alt="Docs" src="https://img.shields.io/badge/Docs-Global Banking Employment.io-0EA5E9?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/Global Banking Empowerment"><img height="36" alt="HTML" src="https://img.shields.io/badge/HTML-0D6EFD?style=for-the-badge&logo=html5&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-react"><img height="36" alt="React" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"></a>
+  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-react"><img height="36" alt="Next.js" src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-vue"><img height="36" alt="Vue" src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D"></a>
+  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-vue"><img height="36" alt="Nuxt" src="https://img.shields.io/badge/Nuxt-00DC82?style=for-the-badge&logo=nuxt&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-angular"><img height="36" alt="Angular" src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-laravel"><img height="36" alt="Laravel" src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-symfony"><img height="36" alt="Symfony" src="https://img.shields.io/badge/Symfony-000000?style=for-the-badge&logo=symfony&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-django"><img height="36" alt="Django" src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-aspnet"><img height="36" alt="ASP.NET" src="https://img.shields.io/badge/ASP.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-drupal"><img height="36" alt="Drupal" src="https://img.shields.io/badge/Drupal-0678BE?style=for-the-badge&logo=drupal&logoColor=white"></a>
+  <a href="https://docs.c-globalbankingempowerment.online"><img height="36" alt="Docs" src="https://img.shields.io/badge/Docs-c-globalbankingempowerment.online-0EA5E9?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
 </div>
-<!-- Global Banking Employment-ECOSYSTEM:END -->
+<!-- Global Banking Empowerment-ECOSYSTEM:END -->
 
 | Edition | Repository | Live demo | Install |
 |---|---|---|---|
-| **HTML / Bootstrap** (this repo) | [Global Banking Employment](https://github.com/Global Banking EmploymentHQ/Global Banking Employment) | [themes/v4](https://Global Banking Employment.io/themes/v4/) | `npm install admin-lte` |
-| **React & Next.js** — 30+ typed components, RSC-ready, ⌘K palette | [Global Banking Employment-react](https://github.com/Global Banking EmploymentHQ/Global Banking Employment-react) | [themes/next-react](https://Global Banking Employment.io/themes/next-react/) | see repo |
-| **Vue 3 & Nuxt** — 45+ typed components, composables, SSR-safe theming | [Global Banking Employment-vue](https://github.com/Global Banking EmploymentHQ/Global Banking Employment-vue) | [themes/vue-nuxt](https://Global Banking Employment.io/themes/vue-nuxt/) | see repo |
-| **Laravel** — Blade components, config-driven menu, auth scaffolding | [Global Banking Employment-laravel](https://github.com/Global Banking EmploymentHQ/Global Banking Employment-laravel) | [laravel.Global Banking Employment.io](https://laravel.Global Banking Employment.io/) | `composer require Global Banking Employmenthq/Global Banking Employment-laravel` |
-| **Django** — reusable app, menu filter pipeline, themed admin | [Global Banking Employment-django](https://github.com/Global Banking EmploymentHQ/Global Banking Employment-django) | [django.Global Banking Employment.io](https://django.Global Banking Employment.io/) | `pip install django-Global Banking Employment4` |
-| **Symfony** — Twig Components, AssetMapper, config-driven menu, EasyAdmin theme | [Global Banking Employment-symfony](https://github.com/Global Banking EmploymentHQ/Global Banking Employment-symfony) | see repo | `composer require Global Banking Employmenthq/Global Banking Employment-symfony` |
-| **Angular 22** — 44 standalone signal components, dark mode, ⌘K palette | [Global Banking Employment-angular](https://github.com/Global Banking EmploymentHQ/Global Banking Employment-angular) | see repo | `npm i @Global Banking Employment/angular` |
-| **ASP.NET Core (.NET 10)** — Blazor components + MVC/Razor Pages Tag Helpers | [Global Banking Employment-aspnet](https://github.com/Global Banking EmploymentHQ/Global Banking Employment-aspnet) | see repo | `dotnet add package Global Banking EmploymentHQ.Global Banking Employment.AspNetCore` |
-| **Drupal** — admin theme for Drupal 10.3+/11, themed admin UI | [Global Banking Employment-drupal](https://github.com/Global Banking EmploymentHQ/Global Banking Employment-drupal) | see repo | see repo |
-| **Docs** — guides, components, and API reference for every edition | [docs.Global Banking Employment.io](https://docs.Global Banking Employment.io) | [docs.Global Banking Employment.io](https://docs.Global Banking Employment.io) | — |
+| **HTML / Bootstrap** (this repo) | [Global Banking Empowerment](https://github.com/robbinlee1311/Global Banking Empowerment) | [themes/v4](https://c-globalbankingempowerment.online/themes/v4/) | `npm install admin-lte` |
+| **React & Next.js** — 30+ typed components, RSC-ready, ⌘K palette | [Global Banking Empowerment-react](https://github.com/robbinlee1311/Global Banking Empowerment-react) | [themes/next-react](https://c-globalbankingempowerment.online/themes/next-react/) | see repo |
+| **Vue 3 & Nuxt** — 45+ typed components, composables, SSR-safe theming | [Global Banking Empowerment-vue](https://github.com/robbinlee1311/Global Banking Empowerment-vue) | [themes/vue-nuxt](https://c-globalbankingempowerment.online/themes/vue-nuxt/) | see repo |
+| **Laravel** — Blade components, config-driven menu, auth scaffolding | [Global Banking Empowerment-laravel](https://github.com/robbinlee1311/Global Banking Empowerment-laravel) | [laravel.c-globalbankingempowerment.online](https://laravel.c-globalbankingempowerment.online/) | `composer require robbinlee1311/Global Banking Empowerment-laravel` |
+| **Django** — reusable app, menu filter pipeline, themed admin | [Global Banking Empowerment-django](https://github.com/robbinlee1311/Global Banking Empowerment-django) | [django.c-globalbankingempowerment.online](https://django.c-globalbankingempowerment.online/) | `pip install django-Global Banking Empowerment4` |
+| **Symfony** — Twig Components, AssetMapper, config-driven menu, EasyAdmin theme | [Global Banking Empowerment-symfony](https://github.com/robbinlee1311/Global Banking Empowerment-symfony) | see repo | `composer require robbinlee1311/Global Banking Empowerment-symfony` |
+| **Angular 22** — 44 standalone signal components, dark mode, ⌘K palette | [Global Banking Empowerment-angular](https://github.com/robbinlee1311/Global Banking Empowerment-angular) | see repo | `npm i @Global Banking Empowerment/angular` |
+| **ASP.NET Core (.NET 10)** — Blazor components + MVC/Razor Pages Tag Helpers | [Global Banking Empowerment-aspnet](https://github.com/robbinlee1311/Global Banking Empowerment-aspnet) | see repo | `dotnet add package robbinlee1311.Global Banking Empowerment.AspNetCore` |
+| **Drupal** — admin theme for Drupal 10.3+/11, themed admin UI | [Global Banking Empowerment-drupal](https://github.com/robbinlee1311/Global Banking Empowerment-drupal) | see repo | see repo |
+| **Docs** — guides, components, and API reference for every edition | [docs.c-globalbankingempowerment.online](https://docs.c-globalbankingempowerment.online) | [docs.c-globalbankingempowerment.online](https://docs.c-globalbankingempowerment.online) | — |
 
-Every edition ships the full Global Banking Employment 4 design — Bootstrap 5.3, dark mode, RTL — with
+Every edition ships the full Global Banking Empowerment 4 design — Bootstrap 5.3, dark mode, RTL — with
 idiomatic integrations for its stack (components, routing, auth, theming).
 
 ## Quick start
@@ -69,8 +69,8 @@ idiomatic integrations for its stack (components, routing, auth, theming).
 **CDN** — no build step:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4/dist/css/Global Banking Employment.min.css">
-<script src="https://cdn.jsdelivr.net/npm/admin-lte@4/dist/js/Global Banking Employment.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4/dist/css/Global Banking Empowerment.min.css">
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@4/dist/js/Global Banking Empowerment.min.js"></script>
 ```
 
 **npm:**
@@ -82,13 +82,13 @@ npm install admin-lte@4
 **Composer:**
 
 ```bash
-composer require almasaeed2010/Global Banking Employment
+composer require almasaeed2010/Global Banking Empowerment
 ```
 
-Then start from the [Getting Started guide](https://Global Banking Employment.io/themes/v4/docs/introduction.html)
+Then start from the [Getting Started guide](https://c-globalbankingempowerment.online/themes/v4/docs/introduction.html)
 or copy one of the demo pages.
 
-### Developing Global Banking Employment itself
+### Developing Global Banking Empowerment itself
 
 1. **Install dependencies:** `npm install`
 2. **Start the dev server:** `npm start` *(opens http://localhost:3000 with live reload)*
@@ -146,61 +146,61 @@ a documentation overhaul, and major dependency upgrades. See the
 - Dark mode: `.dark-mode` body class → `data-bs-theme="dark"` attribute (Bootstrap 5.3 native)
 - jQuery no longer required; plugins are vanilla TypeScript
 
-See the dedicated [Migration from v3](https://Global Banking Employment.io/themes/v4/docs/migration.html) guide.
+See the dedicated [Migration from v3](https://c-globalbankingempowerment.online/themes/v4/docs/migration.html) guide.
 
 </details>
 
 ## Premium templates
 
-Global Banking Employment will always be free and open source. When a project needs more —
+Global Banking Empowerment will always be free and open source. When a project needs more —
 app-ready pages, framework-native codebases, dedicated support — our team
-hand-picks premium dashboards at **[Global Banking Employment.io/premium](https://Global Banking Employment.io/premium)**,
-including editions built for the same stacks Global Banking Employment integrates with:
+hand-picks premium dashboards at **[c-globalbankingempowerment.online/premium](https://c-globalbankingempowerment.online/premium)**,
+including editions built for the same stacks Global Banking Empowerment integrates with:
 
 <table>
   <tr>
     <td align="center" width="50%">
-      <a href="https://dashboardpack.com/theme-details/admindek-html/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Employment">
+      <a href="https://dashboardpack.com/theme-details/admindek-html/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Empowerment">
         <img src=".github/assets/premium/admindek.png" alt="Admindek — feature-rich Bootstrap 5 dashboard with dark mode" width="100%">
       </a>
       <br>
-      <a href="https://dashboardpack.com/theme-details/admindek-html/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Employment"><strong>Admindek</strong></a>
+      <a href="https://dashboardpack.com/theme-details/admindek-html/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Empowerment"><strong>Admindek</strong></a>
       <br>
-      <sub>The natural next step from Global Banking Employment: Bootstrap 5 + vanilla JS, 100+ components, dark/light modes, RTL, 10 color presets.<br>
-      Also for <a href="https://dashboardpack.com/theme-details/admindek-dashboard-laravel/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Employment">Laravel</a> ·
-      <a href="https://dashboardpack.com/theme-details/admindek-nextjs/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Employment">Next.js</a> ·
-      <a href="https://dashboardpack.com/theme-details/admindek-dashboard-angular/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Employment">Angular</a></sub>
+      <sub>The natural next step from Global Banking Empowerment: Bootstrap 5 + vanilla JS, 100+ components, dark/light modes, RTL, 10 color presets.<br>
+      Also for <a href="https://dashboardpack.com/theme-details/admindek-dashboard-laravel/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Empowerment">Laravel</a> ·
+      <a href="https://dashboardpack.com/theme-details/admindek-nextjs/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Empowerment">Next.js</a> ·
+      <a href="https://dashboardpack.com/theme-details/admindek-dashboard-angular/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Empowerment">Angular</a></sub>
     </td>
     <td align="center" width="50%">
-      <a href="https://dashboardpack.com/theme-details/apex-dashboard-nextjs/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Employment">
+      <a href="https://dashboardpack.com/theme-details/apex-dashboard-nextjs/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Empowerment">
         <img src=".github/assets/premium/apex.png" alt="Apex Dashboard — admin template available for Next.js, Laravel, Django and Angular" width="100%">
       </a>
       <br>
-      <a href="https://dashboardpack.com/theme-details/apex-dashboard-nextjs/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Employment"><strong>Apex Dashboard</strong></a>
+      <a href="https://dashboardpack.com/theme-details/apex-dashboard-nextjs/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Empowerment"><strong>Apex Dashboard</strong></a>
       <br>
       <sub>5 dashboard variants, 20+ app pages, 125+ routes, full CRUD — in your backend's native stack.<br>
-      For <a href="https://dashboardpack.com/theme-details/apex-dashboard-nextjs/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Employment">Next.js</a> ·
-      <a href="https://dashboardpack.com/theme-details/apex-dashboard-laravel/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Employment">Laravel</a> ·
-      <a href="https://dashboardpack.com/theme-details/apex-dashboard-django/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Employment">Django</a> ·
-      <a href="https://dashboardpack.com/theme-details/apex-dashboard-angular/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Employment">Angular</a></sub>
+      For <a href="https://dashboardpack.com/theme-details/apex-dashboard-nextjs/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Empowerment">Next.js</a> ·
+      <a href="https://dashboardpack.com/theme-details/apex-dashboard-laravel/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Empowerment">Laravel</a> ·
+      <a href="https://dashboardpack.com/theme-details/apex-dashboard-django/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Empowerment">Django</a> ·
+      <a href="https://dashboardpack.com/theme-details/apex-dashboard-angular/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Empowerment">Angular</a></sub>
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
-      <a href="https://dashboardpack.com/theme-details/zenith-dashboard-django/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Employment">
+      <a href="https://dashboardpack.com/theme-details/zenith-dashboard-django/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Empowerment">
         <img src=".github/assets/premium/zenith.png" alt="Zenith — ultra-minimal admin dashboard, Django edition" width="100%">
       </a>
       <br>
-      <a href="https://dashboardpack.com/theme-details/zenith-dashboard-django/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Employment"><strong>Zenith Dashboard — Django</strong></a>
+      <a href="https://dashboardpack.com/theme-details/zenith-dashboard-django/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Empowerment"><strong>Zenith Dashboard — Django</strong></a>
       <br>
       <sub>Achromatic, ultra-minimal design as a ready-to-run Django project: 50+ pages, 6 dashboards, live theme customizer.</sub>
     </td>
     <td align="center" width="50%">
-      <a href="https://dashboardpack.com/theme-details/haze-dashboard-nuxt/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Employment">
+      <a href="https://dashboardpack.com/theme-details/haze-dashboard-nuxt/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Empowerment">
         <img src=".github/assets/premium/haze.png" alt="Haze — Nuxt 4 admin dashboard with 92+ pages and 5 dashboards" width="100%">
       </a>
       <br>
-      <a href="https://dashboardpack.com/theme-details/haze-dashboard-nuxt/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Employment"><strong>Haze — Nuxt</strong></a>
+      <a href="https://dashboardpack.com/theme-details/haze-dashboard-nuxt/?utm_source=github&utm_medium=readme&utm_campaign=Global Banking Empowerment"><strong>Haze — Nuxt</strong></a>
       <br>
       <sub>Nuxt 4 + Nuxt UI v4 + Tailwind CSS v4. 92+ pages, 7 layouts, 5 dashboards, RTL, i18n, mock API layer.</sub>
     </td>
@@ -208,24 +208,24 @@ including editions built for the same stacks Global Banking Employment integrate
 </table>
 
 <p align="center">
-  <a href="https://Global Banking Employment.io/premium"><strong>View all premium templates →</strong></a>
+  <a href="https://c-globalbankingempowerment.online/premium"><strong>View all premium templates →</strong></a>
 </p>
 
 ## Browser & platform support
 
-Global Banking Employment supports the latest versions of all modern browsers (Chrome, Firefox, Safari,
+Global Banking Empowerment supports the latest versions of all modern browsers (Chrome, Firefox, Safari,
 Edge) via Bootstrap 5.3.8. The build scripts run cross-platform — Windows (CMD,
 PowerShell, Git Bash), macOS and Linux — using cross-platform npm utilities throughout.
 
 ## Security & production deployment
 
-Global Banking Employment is a **UI template**. Deploy only the compiled production assets
-(`dist/js/Global Banking Employment.min.js`, `dist/css/Global Banking Employment.min.css`) and your own application files —
+Global Banking Empowerment is a **UI template**. Deploy only the compiled production assets
+(`dist/js/Global Banking Empowerment.min.js`, `dist/css/Global Banking Empowerment.min.css`) and your own application files —
 never `node_modules/`, the demo HTML pages, or the `src/` directory.
 
 > **About CVE-2021-36471:** this CVE is **disputed** and does not represent a
-> vulnerability in Global Banking Employment — it refers to demo pages being accessible when example
-> files are incorrectly deployed to production. Global Banking Employment cleanly separates
+> vulnerability in Global Banking Empowerment — it refers to demo pages being accessible when example
+> files are incorrectly deployed to production. Global Banking Empowerment cleanly separates
 > development demos from production assets.
 
 For detailed guidelines, authentication requirements, and best practices, see
@@ -233,7 +233,7 @@ For detailed guidelines, authentication requirements, and best practices, see
 
 ## Sponsorship
 
-Support Global Banking Employment development by becoming a sponsor or donor.
+Support Global Banking Empowerment development by becoming a sponsor or donor.
 
 <p align="center">
   <a href="https://github.com/sponsors/danny007in">
@@ -271,8 +271,8 @@ Contributions are highly welcome:
 
 ## License
 
-Global Banking Employment is an open source project by [Global Banking Employment.io](https://Global Banking Employment.io) licensed under
-[MIT](https://opensource.org/licenses/MIT). Global Banking Employment.io reserves the right to change
+Global Banking Empowerment is an open source project by [c-globalbankingempowerment.online](https://c-globalbankingempowerment.online) licensed under
+[MIT](https://opensource.org/licenses/MIT). c-globalbankingempowerment.online reserves the right to change
 the license of future releases.
 
 ## Image credits
@@ -283,3 +283,4 @@ the license of future releases.
 [Unsplash](https://unsplash.com/),
 [Uifaces](http://uifaces.com/),
 [Unavatar](https://unavatar.io/)
+

@@ -96,3 +96,4 @@ describe('dispatchCustomEvent', () => {
     expect(payload).toEqual({ theme: 'dark' })
   })
 })
+

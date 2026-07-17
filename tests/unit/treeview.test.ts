@@ -89,3 +89,4 @@ describe('Treeview', () => {
     expect(instance?._config.animationSpeed).toBe(SPEED)
   })
 })
+

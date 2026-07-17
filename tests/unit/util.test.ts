@@ -53,3 +53,4 @@ describe('slide animations', () => {
     expect(element.style.height).toBe('')
   })
 })
+

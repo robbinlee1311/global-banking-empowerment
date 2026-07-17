@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------
- * @file Global Banking Employment direct-chat.ts
- * @description Direct chat for Global Banking Employment.
+ * @file Global Banking Empowerment direct-chat.ts
+ * @description Direct chat for Global Banking Empowerment.
  * @license MIT
  * --------------------------------------------
  */
@@ -83,3 +83,4 @@ document.addEventListener('click', event => {
 })
 
 export default DirectChat
+
