@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Banking Empowerment — Admin Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #0a1628; color: #e2e8f0; }
+        .sidebar { position: fixed; left: 0; top: 0; width: 280px; height: 100vh; background: #111d32; border-right: 1px solid #1e3a5f; padding: 1.5rem; overflow-y: auto; }
+        .sidebar .brand { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #1e3a5f; }
+        .sidebar .brand-logo { width: 36px; height: 36px; background: #c9a84c; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+        .sidebar .brand-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #f8fafc; }
+        .sidebar .brand-tagline { font-size: 0.6rem; color: #c9a84c; text-transform: uppercase; letter-spacing: 2px; }
+        .nav-section { margin-bottom: 1.5rem; }
+        .nav-section-title { font-size: 0.7rem; color: #4a5568; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.75rem; padding-left: 0.5rem; }
+        .nav-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 0.75rem; color: #8a9bb8; text-decoration: none; border-radius: 8px; margin-bottom: 0.25rem; font-size: 0.9rem; transition: all 0.2s; cursor: pointer; border: none; background: none; width: 100%; }
+        .nav-item:hover, .nav-item.active { background: rgba(201,168,76,0.1); color: #c9a84c; }
+        .nav-item .icon { font-size: 1.1rem; }
+        .nav-item .badge-count { background: #dc2626; color: white; font-size: 0.7rem; padding: 0.15rem 0.4rem; border-radius: 10px; margin-left: auto; }
+        .main-content { margin-left: 280px; padding: 2rem; min-height: 100vh; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .header h1 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #f8fafc; }
+        .header .user-info { display: flex; align-items: center; gap: 1rem; }
+        .header .user-badge { background: rgba(201,168,76,0.15); color: #c9a84c; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; }
+        .btn { padding: 0.6rem 1.2rem; border: none; border-radius: 6px; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; font-weight: 500; }
+        .btn-primary { background: #c9a84c; color: #0a1628; }
+        .btn-primary:hover { background: #b89a3e; }
+        .btn-danger { background: #dc2626; color: white; }
+        .btn-danger:hover { background: #b91c1c; }
+        .btn-success { background: #059669; color: white; }
+        .btn-success:hover { background: #047857; }
+        .btn-warning { background: #d97706; color: white; }
+        .btn-info { background: #2563eb; color: white; }
+        .btn-sm { padding: 0.35rem 0.8rem; font-size: 0.8rem; }
+        .card { background: #111d32; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid #1e3a5f; }
+        .card h3 { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; font-weight: 600; }
+        .card h3 .icon { font-size: 1.2rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+        .stat-card { background: #111d32; border-radius: 12px; padding: 1.5rem; border: 1px solid #1e3a5f; }
+        .stat-card .label { color: #6b7a94; font-size: 0.75rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-card .value { font-size: 1.6rem; font-weight: 700; color: #f8fafc; }
+        .stat-card .change { font-size: 0.8rem; margin-top: 0.25rem; }
+        .change.up { color: #4ade80; }
+        .change.down { color: #f87171; }
+        .change.neutral { color: #8a9bb8; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 0.75rem 1rem; text-align: left; font-size: 0.85rem; }
+        th { color: #6b7a94; font-weight: 500; border-bottom: 1px solid #1e3a5f; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
+        td { color: #cbd5e1; border-bottom: 1px solid #0f1a2e; }
+        tr:hover td { background: rgba(201,168,76,0.03); }
+        .badge { display: inline-block; padding: 0.25rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 600; }
+        .badge-green { background: rgba(6,78,59,0.3); color: #4ade80; }
+        .badge-yellow { background: rgba(113,63,18,0.3); color: #facc15; }
+        .badge-red { background: rgba(69,10,10,0.3); color: #f87171; }
+        .badge-blue { background: rgba(30,58,138,0.3); color: #60a5fa; }
+        .badge-purple { background: rgba(88,28,135,0.3); color: #c084fc; }
+        .badge-orange { background: rgba(154,52,18,0.3); color: #fb923c; }
+        .form-row { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-end; }
+        .form-group { flex: 1; }
+        .form-group label { display: block; margin-bottom: 0.4rem; color: #6b7a94; font-size: 0.8rem; font-weight: 500; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.6rem; border: 1px solid #1e3a5f; border-radius: 6px; background: #0a1628; color: #e2e8f0; font-size: 0.9rem; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #c9a84c; }
+        .form-group textarea { min-height: 80px; resize: vertical; }
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; border-bottom: 1px solid #1e3a5f; padding-bottom: 0.5rem; flex-wrap: wrap; }
+        .tab { padding: 0.5rem 1rem; background: none; border: none; color: #6b7a94; cursor: pointer; font-size: 0.85rem; border-radius: 6px; transition: all 0.2s; }
+        .tab:hover { color: #c9a84c; }
+        .tab.active { background: rgba(201,168,76,0.1); color: #c9a84c; }
+        .notification-panel { position: fixed; top: 1rem; right: 1rem; z-index: 1000; max-width: 380px; }
+        .toast { background: #111d32; border: 1px solid #1e3a5f; border-radius: 10px; padding: 1rem; margin-bottom: 0.75rem; box-shadow: 0 10px 40px rgba(0,0,0,0.3); animation: slideIn 0.3s ease; }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        .toast-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .toast-title { font-weight: 600; font-size: 0.9rem; }
+        .toast-time { font-size: 0.75rem; color: #4a5568; }
+        .toast-body { font-size: 0.85rem; color: #8a9bb8; }
+        .toast-success { border-left: 3px solid #4ade80; }
+        .toast-warning { border-left: 3px solid #facc15; }
+        .toast-error { border-left: 3px solid #f87171; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10,22,40,0.7); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+        .modal-overlay.active { display: flex; }
+        .modal { background: #111d32; border-radius: 16px; padding: 2rem; width: 90%; max-width: 700px; border: 1px solid #1e3a5f; }
+        .modal h3 { margin-bottom: 1rem; color: #f8fafc; font-family: 'Playfair Display', serif; }
+        .modal p { color: #8a9bb8; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        .modal-actions { display: flex; gap: 0.75rem; justify-content: flex-end; flex-wrap: wrap; }
+        .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .detail-item { background: #0a1628; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #1e3a5f; }
+        .detail-item label { display: block; font-size: 0.75rem; color: #6b7a94; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem; }
+        .detail-item span { color: #e2e8f0; font-size: 0.9rem; font-weight: 500; }
+        .detail-item.full { grid-column: 1 / -1; }
+        .complaint-priority-high { border-left: 3px solid #dc2626; }
+        .complaint-priority-medium { border-left: 3px solid #d97706; }
+        .complaint-priority-low { border-left: 3px solid #059669; }
+        .hidden { display: none; }
+        .empty-state { text-align: center; padding: 3rem; color: #4a5568; }
+        .empty-state .icon { font-size: 3rem; margin-bottom: 1rem; }
+        .tx-type-debit { color: #f87171; }
+        .tx-type-credit { color: #4ade80; }
+        .tx-type-transfer { color: #60a5fa; }
+        .tx-status-pending { border-left: 3px solid #d97706; }
+        .tx-status-approved { border-left: 3px solid #059669; }
+        .tx-status-rejected { border-left: 3px solid #dc2626; }
+        .tx-status-reversed { border-left: 3px solid #6b7280; }
+        .balance-display { background: rgba(201,168,76,0.1); border: 1px solid #c9a84c; border-radius: 12px; padding: 1.5rem; text-align: center; margin-bottom: 1.5rem; }
+        .balance-display .label { color: #8a9bb8; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+        .balance-display .value { color: #c9a84c; font-size: 2.5rem; font-weight: 700; font-family: 'Playfair Display', serif; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a1628; }
+        ::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c9a84c; }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-logo">◆</div>
+            <div>
+                <div class="brand-name">Global Banking</div>
+                <div class="brand-tagline">Empowerment</div>
+            </div>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-title">Overview</div>
+            <button class="nav-item active" onclick="showSection('dashboard')">
+                <span class="icon">📊</span> Dashboard
+            </button>
+            <button class="nav-item" onclick="showSection('accounts')">
+                <span class="icon">👤</span> Customer Accounts
+            </button>
+            <button class="nav-item" onclick="showSection('transactions')">
+                <span class="icon">💰</span> Transactions
+                <span class="badge-count" id="pendingTxBadge">0</span>
+            </button>
+            <button class="nav-item" onclick="showSection('complaints')">
+                <span class="icon">⚠️</span> Complaints
+                <span class="badge-count" id="complaintBadge">0</span>
+            </button>
+            <button class="nav-item" onclick="showSection('support')">
+                <span class="icon">🎫</span> Support Tickets
+                <span class="badge-count" id="supportBadge">0</span>
+            </button>
+            <button class="nav-item" onclick="showSection('feedback')">
+                <span class="icon">💬</span> Feedback
+            </button>
+            <button class="nav-item" onclick="showSection('logs')">
+                <span class="icon">📋</span> Activity Logs
+            </button>
+        </div>
+        <div class="nav-section">
+            <div class="nav-section-title">Management</div>
+            <button class="nav-item" onclick="showSection('users')">
+                <span class="icon">🔑</span> Control Users
+            </button>
+            <button class="nav-item" onclick="showSection('notifications')">
+                <span class="icon">🔔</span> Notifications
+            </button>
+            <button class="nav-item" onclick="showSection('settings')">
+                <span class="icon">⚙️</span> Settings
+            </button>
+        </div>
+        <div class="nav-section" style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid #1e3a5f;">
+            <button class="nav-item" onclick="logout()">
+                <span class="icon">🚪</span> Sign Out
+            </button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <!-- DASHBOARD -->
+        <div id="section-dashboard">
+            <div class="header">
+                <h1>Executive Dashboard</h1>
+                <div class="user-info">
+                    <span class="user-badge">Super Administrator</span>
+                    <button class="btn btn-danger btn-sm" onclick="logout()">Sign Out</button>
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="label">Total Accounts</div><div class="value" id="statTotalAccounts">0</div><div class="change up">All customers</div></div>
+                <div class="stat-card"><div class="label">Pending Review</div><div class="value" id="statPending">0</div><div class="change neutral">Awaiting approval</div></div>
+                <div class="stat-card"><div class="label">Pending Transactions</div><div class="value" id="statPendingTx">0</div><div class="change down">Needs action</div></div>
+                <div class="stat-card"><div class="label">Today Volume</div><div class="value" id="statTodayVolume">$0</div><div class="change up">Transaction volume</div></div>
+                <div class="stat-card"><div class="label">Open Complaints</div><div class="value" id="statComplaints">0</div><div class="change down">Needs attention</div></div>
+                <div class="stat-card"><div class="label">Support Tickets</div><div class="value" id="statSupport">0</div><div class="change neutral">Active tickets</div></div>
+            </div>
+            <div class="card">
+                <h3><span class="icon">💰</span> Recent Pending Transactions</h3>
+                <table><thead><tr><th>Tx ID</th><th>Account</th><th>Type</th><th>Amount</th><th>Description</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+                <tbody id="recentPendingTxTable"><tr><td colspan="8" style="text-align:center;color:#4a5568;padding:2rem;">No pending transactions</td></tr></tbody></table>
+            </div>
+            <div class="card">
+                <h3><span class="icon">⚠️</span> Recent Complaints (Fallback from Users)</h3>
+                <table><thead><tr><th>ID</th><th>Customer</th><th>Category</th><th>Priority</th><th>Status</th><th>Submitted</th><th>Actions</th></tr></thead>
+                <tbody id="recentComplaintsTable"><tr><td colspan="7" style="text-align:center;color:#4a5568;padding:2rem;">No complaints yet</td></tr></tbody></table>
+            </div>
+        </div>
+
+        <!-- ACCOUNTS -->
+        <div id="section-accounts" class="hidden">
+            <div class="header">
+                <h1>Customer Accounts</h1>
+                <div class="user-info">
+                    <input type="text" id="accountSearch" placeholder="Search accounts..." style="padding:0.5rem 1rem; border-radius:6px; border:1px solid #1e3a5f; background:#0a1628; color:#e2e8f0; width:250px;">
+                </div>
+            </div>
+            <div class="tabs">
+                <button class="tab active" onclick="filterAccounts('all')">All Accounts</button>
+                <button class="tab" onclick="filterAccounts('pending_review')">Pending Review</button>
+                <button class="tab" onclick="filterAccounts('active')">Active</button>
+                <button class="tab" onclick="filterAccounts('suspended')">Suspended</button>
+            </div>
+            <div class="card">
+                <table><thead><tr><th>Account ID</th><th>Full Name</th><th>Email</th><th>Phone</th><th>Type</th><th>Balance</th><th>Status</th><th>Created</th><th>Actions</th></tr></thead>
+                <tbody id="allAccountsTable"><tr><td colspan="9" style="text-align:center;color:#4a5568;padding:2rem;">No accounts found</td></tr></tbody></table>
+            </div>
+        </div>
+
+        <!-- TRANSACTIONS -->
+        <div id="section-transactions" class="hidden">
+            <div class="header">
+                <h1>Transaction Management</h1>
+                <div class="user-info">
+                    <button class="btn btn-primary btn-sm" onclick="openModal('newTransactionModal')">➕ New Transaction</button>
+                </div>
+            </div>
+            <div class="balance-display">
+                <div class="label">Total Transaction Volume (All Time)</div>
+                <div class="value" id="totalVolumeDisplay">$0.00</div>
+            </div>
+            <div class="tabs">
+                <button class="tab active" onclick="filterTransactions('all')">All Transactions</button>
+                <button class="tab" onclick="filterTransactions('pending')">Pending</button>
+                <button class="tab" onclick="filterTransactions('approved')">Approved</button>
+                <button class="tab" onclick="filterTransactions('rejected')">Rejected</button>
+                <button class="tab" onclick="filterTransactions('reversed')">Reversed</button>
+                <button class="tab" onclick="filterTransactions('debit')">Debits</button>
+                <button class="tab" onclick="filterTransactions('credit')">Credits</button>
+                <button class="tab" onclick="filterTransactions('transfer')">Transfers</button>
+            </div>
+            <div class="card">
+                <table><thead><tr><th>Tx ID</th><th>Date</th><th>Account</th><th>Type</th><th>Amount</th><th>Description</th><th>Status</th><th>Processed By</th><th>Actions</th></tr></thead>
+                <tbody id="allTransactionsTable"><tr><td colspan="9" style="text-align:center;color:#4a5568;padding:2rem;">No transactions found</td></tr></tbody></table>
+            </div>
+        </div>
+
+        <!-- COMPLAINTS -->
+        <div id="section-complaints" class="hidden">
+            <div class="header">
+                <h1>Customer Complaints</h1>
+                <div class="user-info"><span class="user-badge" style="background:rgba(220,38,38,0.15);color:#f87171;">Admin Fallback</span></div>
+            </div>
+            <div class="tabs">
+                <button class="tab active" onclick="filterComplaints('all')">All Complaints</button>
+                <button class="tab" onclick="filterComplaints('open')">Open</button>
+                <button class="tab" onclick="filterComplaints('in_progress')">In Progress</button>
+                <button class="tab" onclick="filterComplaints('resolved')">Resolved</button>
+                <button class="tab" onclick="filterComplaints('HIGH')">High Priority</button>
+            </div>
+            <div class="card">
+                <table><thead><tr><th>Complaint ID</th><th>Customer</th><th>Email</th><th>Category</th><th>Priority</th><th>Status</th><th>Submitted</th><th>Actions</th></tr></thead>
+                <tbody id="allComplaintsTable"><tr><td colspan="8" style="text-align:center;color:#4a5568;padding:2rem;">No complaints found</td></tr></tbody></table>
+            </div>
+        </div>
+
+        <!-- SUPPORT TICKETS -->
+        <div id="section-support" class="hidden">
+            <div class="header"><h1>Support Tickets</h1></div>
+            <div class="tabs">
+                <button class="tab active" onclick="filterSupport('all')">All Tickets</button>
+                <button class="tab" onclick="filterSupport('open')">Open</button>
+                <button class="tab" onclick="filterSupport('closed')">Closed</button>
+            </div>
+            <div class="card">
+                <table><thead><tr><th>Ticket ID</th><th>Customer</th><th>Topic</th><th>Status</th><th>Submitted</th><th>Actions</th></tr></thead>
+                <tbody id="allSupportTable"><tr><td colspan="6" style="text-align:center;color:#4a5568;padding:2rem;">No support tickets found</td></tr></tbody></table>
+            </div>
+        </div>
+
+        <!-- FEEDBACK -->
+        <div id="section-feedback" class="hidden">
+            <div class="header"><h1>Customer Feedback</h1></div>
+            <div class="card">
+                <table><thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Message</th><th>Submitted</th></tr></thead>
+                <tbody id="allFeedbackTable"><tr><td colspan="5" style="text-align:center;color:#4a5568;padding:2rem;">No feedback yet</td></tr></tbody></table>
+            </div>
+        </div>
+
+        <!-- LOGS -->
+        <div id="section-logs" class="hidden">
+            <div class="header">
+                <h1>Activity Logs</h1>
+                <div class="user-info"><button class="btn btn-primary btn-sm" onclick="exportLogs()">📥 Export CSV</button></div>
+            </div>
+            <div class="tabs">
+                <button class="tab active" onclick="filterLogs('all')">All Events</button>
+                <button class="tab" onclick="filterLogs('ACCOUNT_CREATED')">Account Creation</button>
+                <button class="tab" onclick="filterLogs('TRANSACTION_CREATED')">Transactions</button>
+                <button class="tab" onclick="filterLogs('TRANSACTION_APPROVED')">Approved</button>
+                <button class="tab" onclick="filterLogs('TRANSACTION_REJECTED')">Rejected</button>
+                <button class="tab" onclick="filterLogs('USER_COMPLAINT_SUBMITTED')">Complaints</button>
+                <button class="tab" onclick="filterLogs('ADMIN_LOGIN_ATTEMPT')">Admin Access</button>
+            </div>
+            <div class="card">
+                <table><thead><tr><th>Timestamp</th><th>Event Type</th><th>Source</th><th>User / Account</th><th>Details</th><th>IP Address</th><th>Notified</th></tr></thead>
+                <tbody id="allLogsTable"><tr><td colspan="7" style="text-align:center;color:#4a5568;padding:2rem;">No logs found</td></tr></tbody></table>
+            </div>
+        </div>
+
+        <!-- CONTROL USERS -->
+        <div id="section-users" class="hidden">
+            <div class="header">
+                <h1>Control Users</h1>
+                <div class="user-info"><span class="user-badge">Security Management</span></div>
+            </div>
+            <div class="card">
+                <h3><span class="icon">➕</span> Add Control User</h3>
+                <p style="color:#6b7a94; margin-bottom:1rem; font-size:0.85rem;">These users receive automatic email notifications when admin control changes or customer complaints are submitted.</p>
+                <div class="form-row">
+                    <div class="form-group"><label>Full Name</label><input type="text" id="newUserName" placeholder="e.g. John Doe"></div>
+                    <div class="form-group"><label>Email Address</label><input type="email" id="newUserEmail" placeholder="e.g. john@globalbankingempowerment.com"></div>
+                    <div class="form-group"><label>Role</label><select id="newUserRole"><option value="super_admin">Super Administrator</option><option value="compliance">Compliance Officer</option><option value="support">Support Manager</option><option value="security">Security Analyst</option><option value="auditor">Auditor</option></select></div>
+                    <button class="btn btn-primary" onclick="addControlUser()" style="height:fit-content;">Add User</button>
+                </div>
+            </div>
+            <div class="card">
+                <h3><span class="icon">👥</span> Active Control Users</h3>
+                <table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Added</th><th>Actions</th></tr></thead>
+                <tbody id="controlUsersTable"></tbody></table>
+            </div>
+        </div>
+
+        <!-- NOTIFICATIONS -->
+        <div id="section-notifications" class="hidden">
+            <div class="header"><h1>Notification Settings</h1></div>
+            <div class="card">
+                <h3><span class="icon">🔔</span> Monitored Events</h3>
+                <p style="color:#6b7a94; margin-bottom:1rem; font-size:0.85rem;">Configure which events trigger email alerts to control users.</p>
+                <table><thead><tr><th>Event Type</th><th>Description</th><th>Email Alert</th><th>Priority</th></tr></thead>
+                <tbody>
+                    <tr><td>ACCOUNT_CREATED</td><td>New customer account application</td><td><span class="badge badge-green">Enabled</span></td><td><span class="badge badge-blue">NORMAL</span></td></tr>
+                    <tr><td>TRANSACTION_CREATED</td><td>New transaction recorded</td><td><span class="badge badge-green">Enabled</span></td><td><span class="badge badge-blue">NORMAL</span></td></tr>
+                    <tr><td>TRANSACTION_APPROVED</td><td>Transaction approved by admin</td><td><span class="badge badge-green">Enabled</span></td><td><span class="badge badge-blue">NORMAL</span></td></tr>
+                    <tr><td>TRANSACTION_REJECTED</td><td>Transaction rejected by admin</td><td><span class="badge badge-green">Enabled</span></td><td><span class="badge badge-yellow">MEDIUM</span></td></tr>
+                    <tr><td>TRANSACTION_REVERSED</td><td>Transaction reversed</td><td><span class="badge badge-green">Enabled</span></td><td><span class="badge badge-red">HIGH</span></td></tr>
+                    <tr><td>USER_COMPLAINT_SUBMITTED</td><td>Customer files a complaint (FALLBACK)</td><td><span class="badge badge-green">Enabled</span></td><td><span class="badge badge-red">HIGH</span></td></tr>
+                    <tr><td>SUPPORT_TICKET_SUBMITTED</td><td>Customer requests support</td><td><span class="badge badge-green">Enabled</span></td><td><span class="badge badge-blue">NORMAL</span></td></tr>
+                    <tr><td>USER_FEEDBACK_SUBMITTED</td><td>Customer submits feedback</td><td><span class="badge badge-green">Enabled</span></td><td><span class="badge badge-blue">NORMAL</span></td></tr>
+                    <tr><td>ADMIN_LOGIN_ATTEMPT</td><td>Admin portal login</td><td><span class="badge badge-green">Enabled</span></td><td><span class="badge badge-blue">NORMAL</span></td></tr>
+                    <tr><td>PRIVILEGE_ESCALATION</td><td>User granted higher privileges</td><td><span class="badge badge-green">Enabled</span></td><td><span class="badge badge-red">HIGH</span></td></tr>
+                    <tr><td>ADMIN_ADDED</td><td>New admin/control user added</td><td><span class="badge badge-green">Enabled</span></td><td><span class="badge badge-red">HIGH</span></td></tr>
+                    <tr><td>ADMIN_REMOVED</td><td>Admin/control user removed</td><td><span class="badge badge-green">Enabled</span></td><td><span class="badge badge-red">HIGH</span></td></tr>
+                    <tr><td>UNAUTHORIZED_ACCESS</td><td>Failed access attempts</td><td><span class="badge badge-green">Enabled</span></td><td><span class="badge badge-red">HIGH</span></td></tr>
+                </tbody></table>
+            </div>
+        </div>
+
+        <!-- SETTINGS -->
+        <div id="section-settings" class="hidden">
+            <div class="header"><h1>System Settings</h1></div>
+            <div class="card">
+                <h3><span class="icon">⚙️</span> General Configuration</h3>
+                <p style="color:#6b7a94;">System settings and configuration options will appear here.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Panel -->
+    <div class="notification-panel" id="notificationPanel"></div>
+
+    <!-- Confirm Modal -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal">
+            <h3>⚠️ Confirm Action</h3>
+            <p id="confirmMessage">Are you sure?</p>
+            <div class="modal-actions">
+                <button class="btn" onclick="closeModal()" style="background:#1e3a5f; color:#e2e8f0;">Cancel</button>
+                <button class="btn btn-danger" id="confirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Account Detail Modal -->
+    <div class="modal-overlay" id="accountModal">
+        <div class="modal" style="max-width:600px;">
+            <h3><span class="icon">👤</span> Account Details</h3>
+            <div id="accountDetailContent"></div>
+            <div class="modal-actions">
+                <button class="btn" onclick="closeAccountModal()" style="background:#1e3a5f; color:#e2e8f0;">Close</button>
+                <button class="btn btn-primary" id="approveAccountBtn">Approve Account</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Complaint Detail Modal -->
+    <div class="modal-overlay" id="complaintModal">
+        <div class="modal" style="max-width:700px;">
+            <h3><span class="icon">⚠️</span> Complaint Details</h3>
+            <div id="complaintDetailContent"></div>
+            <div class="form-group" style="margin-top:1rem;">
+                <label>Admin Response / Resolution Notes</label>
+                <textarea id="complaintResponse" placeholder="Enter your response to the customer..."></textarea>
+            </div>
+            <div class="modal-actions">
+                <button class="btn" onclick="closeComplaintModal()" style="background:#1e3a5f; color:#e2e8f0;">Close</button>
+                <button class="btn btn-warning" onclick="updateComplaintStatus('in_progress')">Mark In Progress</button>
+                <button class="btn btn-success" onclick="updateComplaintStatus('resolved')">Resolve</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction Detail Modal -->
+    <div class="modal-overlay" id="transactionModal">
+        <div class="modal" style="max-width:700px;">
+            <h3><span class="icon">💰</span> Transaction Details</h3>
+            <div id="transactionDetailContent"></div>
+            <div class="modal-actions" id="transactionActions">
+                <button class="btn" onclick="closeTransactionModal()" style="background:#1e3a5f; color:#e2e8f0;">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Transaction Modal -->
+    <div class="modal-overlay" id="newTransactionModal">
+        <div class="modal" style="max-width:600px;">
+            <h3><span class="icon">➕</span> Record New Transaction</h3>
+            <p style="color:#6b7a94; margin-bottom:1rem; font-size:0.9rem;">Manually record a transaction for a customer account.</p>
+            <div id="newTxAlert" class="alert"></div>
+            <form id="newTransactionForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Account ID *</label>
+                        <select id="txAccountId" required><option value="">Select account...</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Transaction Type *</label>
+                        <select id="txType" required>
+                            <option value="debit">Debit (Withdrawal)</option>
+                            <option value="credit">Credit (Deposit)</option>
+                            <option value="transfer">Transfer</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Amount ($) *</label>
+                        <input type="number" id="txAmount" step="0.01" min="0.01" required placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>Status *</label>
+                        <select id="txStatus" required>
+                            <option value="pending">Pending Review</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description *</label>
+                    <input type="text" id="txDescription" required placeholder="e.g. Monthly deposit, ATM withdrawal...">
+                </div>
+                <div class="form-group">
+                    <label>Reference / Note</label>
+                    <input type="text" id="txReference" placeholder="Optional reference number or note">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Record Transaction</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const DashboardSystem = {
+            controlUsers: JSON.parse(localStorage.getItem('gbe_controlUsers')) || [
+                { id: 1, name: 'System Administrator', email: 'admin@globalbankingempowerment.com', role: 'super_admin', status: 'active', addedAt: new Date().toISOString() },
+                { id: 2, name: 'Compliance Officer', email: 'compliance@globalbankingempowerment.com', role: 'compliance', status: 'active', addedAt: new Date().toISOString() },
+                { id: 3, name: 'Support Manager', email: 'support@globalbankingempowerment.com', role: 'support', status: 'active', addedAt: new Date().toISOString() }
+            ],
+
+            async notifyControlUsers(eventType, details) {
+                const timestamp = new Date().toISOString();
+                const activeUsers = this.controlUsers.filter(u => u.status === 'active');
+                const notifications = activeUsers.map(user => ({
+                    to: user.email,
+                    subject: `[GBE ALERT] ${eventType}`,
+                    body: this.formatEmailBody(eventType, details, user.name, timestamp),
+                    priority: this.getPriority(eventType)
+                }));
+                const results = [];
+                for (const notification of notifications) {
+                    const result = await this.sendEmail(notification);
+                    results.push(result);
+                }
+                this.logNotification(eventType, details, timestamp, results);
+                this.showToast(eventType, details, timestamp);
+                return results;
+            },
+
+            formatEmailBody(eventType, details, recipientName, timestamp) {
+                const formattedTime = new Date(timestamp).toLocaleString();
+                const priority = this.getPriority(eventType);
+                return `GBE — ADMIN CONTROL NOTIFICATION\n═══════════════════════════════════\n\nRecipient: ${recipientName}\nEvent Type: ${eventType}\nPriority: ${priority}\nTimestamp: ${formattedTime}\n\nDETAILS:\n${JSON.stringify(details, null, 2)}\n\nACTION REQUIRED:\n• Review the change details above\n• Verify if this change was authorized\n• If unauthorized, revoke access immediately\n• Escalate to Head of Security if suspicious\n\nThis is an automated security notification.\nDo not reply to this email.\n\nGlobal Banking Empowerment\nSecurity Operations Center\nGenerated: ${formattedTime}`;
+            },
+
+            getPriority(eventType) {
+                const highPriority = ['PRIVILEGE_ESCALATION', 'UNAUTHORIZED_ACCESS', 'ADMIN_ADDED', 'ADMIN_REMOVED', 'SUSPICIOUS_LOGIN', 'USER_COMPLAINT_SUBMITTED', 'TRANSACTION_REVERSED'];
+                return highPriority.includes(eventType) ? 'HIGH' : 'NORMAL';
+            },
+
+            async sendEmail(notification) {
+                console.log(`[GBE EMAIL] To: ${notification.to} | Subject: ${notification.subject} | Priority: ${notification.priority}`);
+                await new Promise(resolve => setTimeout(resolve, 150));
+                return { success: true, messageId: `msg_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`, to: notification.to };
+            },
+
+            logNotification(eventType, details, timestamp, results) {
+                const logEntry = {
+                    id: `log_${Date.now()}`,
+                    eventType,
+                    details,
+                    timestamp,
+                    source: 'admin_dashboard',
+                    notifiedUsers: results.filter(r => r.success).map(r => r.to),
+                    failedUsers: results.filter(r => !r.success).map(r => r.to)
+                };
+                const logs = JSON.parse(localStorage.getItem('gbe_adminNotificationLogs') || '[]');
+                logs.unshift(logEntry);
+                localStorage.setItem('gbe_adminNotificationLogs', JSON.stringify(logs.slice(0, 200)));
+            },
+
+            showToast(eventType, details, timestamp) {
+                const panel = document.getElementById('notificationPanel');
+                const priority = this.getPriority(eventType);
+                const toastClass = priority === 'HIGH' ? 'toast-error' : 'toast-success';
+                const icon = priority === 'HIGH' ? '🔴' : '🟢';
+                const toast = document.createElement('div');
+                toast.className = `toast ${toastClass}`;
+                toast.innerHTML = `<div class="toast-header"><span class="toast-title">${icon} ${eventType}</span><span class="toast-time">${new Date(timestamp).toLocaleTimeString()}</span></div><div class="toast-body">${details.username || details.name || details.email || details.customer || details.accountId || 'System Event'}<br><small style="color:#4a5568">Notified ${this.controlUsers.filter(u=>u.status==='active').length} control users</small></div>`;
+                panel.appendChild(toast);
+                setTimeout(() => toast.remove(), 6000);
+            },
+
+            saveControlUsers() { localStorage.setItem('gbe_controlUsers', JSON.stringify(this.controlUsers)); },
+            getAccounts() { return JSON.parse(localStorage.getItem('gbe_accounts') || '[]'); },
+            getTransactions() { return JSON.parse(localStorage.getItem('gbe_transactions') || '[]'); },
+            getComplaints() { return JSON.parse(localStorage.getItem('gbe_complaints') || '[]'); },
+            getSupportTickets() { return JSON.parse(localStorage.getItem('gbe_support_tickets') || '[]'); },
+            getFeedback() { return JSON.parse(localStorage.getItem('gbe_feedback') || '[]'); },
+            getLogs() {
+                const adminLogs = JSON.parse(localStorage.getItem('gbe_adminNotificationLogs') || '[]');
+                const customerLogs = JSON.parse(localStorage.getItem('gbe_admin_logs') || '[]');
+                return [...customerLogs, ...adminLogs].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            },
+
+            getAccountBalance(accountId) {
+                const transactions = this.getTransactions().filter(t => t.accountId === accountId && t.status === 'approved');
+                let balance = 0;
+                transactions.forEach(t => {
+                    if (t.type === 'credit') balance += parseFloat(t.amount);
+                    else if (t.type === 'debit') balance -= parseFloat(t.amount);
+                });
+                return balance;
+            },
+
+            updateStats() {
+                const accounts = this.getAccounts();
+                const transactions = this.getTransactions();
+                const complaints = this.getComplaints().filter(c => c.status === 'open');
+                const support = this.getSupportTickets().filter(t => t.status === 'open');
+                const pendingTx = transactions.filter(t => t.status === 'pending');
+                const today = new Date().toDateString();
+                const todayVolume = transactions.filter(t => t.status === 'approved' && new Date(t.timestamp).toDateString() === today).reduce((sum, t) => sum + parseFloat(t.amount), 0);
+                const totalVolume = transactions.filter(t => t.status === 'approved').reduce((sum, t) => sum + parseFloat(t.amount), 0);
+
+                document.getElementById('statTotalAccounts').textContent = accounts.length;
+                document.getElementById('statPending').textContent = accounts.filter(a => a.status === 'pending_review').length;
+                document.getElementById('statPendingTx').textContent = pendingTx.length;
+                document.getElementById('statTodayVolume').textContent = '$' + todayVolume.toLocaleString();
+                document.getElementById('statComplaints').textContent = complaints.length;
+                document.getElementById('statSupport').textContent = support.length;
+                document.getElementById('complaintBadge').textContent = complaints.length || '';
+                document.getElementById('supportBadge').textContent = support.length || '';
+                document.getElementById('pendingTxBadge').textContent = pendingTx.length || '';
+                document.getElementById('totalVolumeDisplay').textContent = '$' + totalVolume.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            },
+
+            renderAccounts(filter = 'all') {
+                const accounts = this.getAccounts();
+                const filtered = filter === 'all' ? accounts : accounts.filter(a => a.status === filter);
+                const tbody = document.getElementById('allAccountsTable');
+                if (filtered.length === 0) { tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;color:#4a5568;padding:2rem;">No accounts found</td></tr>`; return; }
+                tbody.innerHTML = filtered.map(acc => {
+                    const balance = this.getAccountBalance(acc.id);
+                    return `<tr><td><strong style="color:#c9a84c;">${acc.id}</strong></td><td>${acc.firstName} ${acc.lastName}</td><td>${acc.email}</td><td>${acc.phone}</td><td>${acc.accountType}</td><td><strong style="color:${balance >= 0 ? '#4ade80' : '#f87171'}">$${balance.toLocaleString(undefined, {minimumFractionDigits: 2})}</strong></td><td><span class="badge badge-${acc.status === 'active' ? 'green' : acc.status === 'pending_review' ? 'yellow' : 'red'}">${acc.status}</span></td><td>${new Date(acc.createdAt).toLocaleDateString()}</td><td><button class="btn btn-sm btn-primary" onclick="viewAccount('${acc.id}')">View</button>${acc.status === 'pending_review' ? `<button class="btn btn-sm" style="background:#059669;color:white;" onclick="approveAccount('${acc.id}')">Approve</button>` : ''}</td></tr>`;
+                }).join('');
+            },
+
+            renderRecentAccounts() {
+                const accounts = this.getAccounts().slice(0, 5);
+                const tbody = document.getElementById('recentAccountsTable');
+                if (accounts.length === 0) { tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:#4a5568;padding:2rem;">No account applications yet</td></tr>`; return; }
+                tbody.innerHTML = accounts.map(acc => `<tr><td><strong style="color:#c9a84c;">${acc.id}</strong></td><td>${acc.firstName} ${acc.lastName}</td><td>${acc.email}</td><td>${acc.accountType}</td><td><span class="badge badge-${acc.status === 'active' ? 'green' : acc.status === 'pending_review' ? 'yellow' : 'red'}">${acc.status}</span></td><td>${new Date(acc.createdAt).toLocaleDateString()}</td><td><button class="btn btn-sm btn-primary" onclick="viewAccount('${acc.id}')">Details</button></td></tr>`).join('');
+            },
+
+            renderTransactions(filter = 'all') {
+                const transactions = this.getTransactions();
+                let filtered = transactions;
+                if (['pending','approved','rejected','reversed'].includes(filter)) filtered = transactions.filter(t => t.status === filter);
+                else if (['debit','credit','transfer'].includes(filter)) filtered = transactions.filter(t => t.type === filter);
+                const tbody = document.getElementById('allTransactionsTable');
+                if (filtered.length === 0) { tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;color:#4a5568;padding:2rem;">No transactions found</td></tr>`; return; }
+                tbody.innerHTML = filtered.map(tx => {
+                    const account = this.getAccounts().find(a => a.id === tx.accountId);
+                    const accountName = account ? `${account.firstName} ${account.lastName}` : tx.accountId;
+                    return `<tr class="tx-status-${tx.status}"><td><strong style="color:#c9a84c;">${tx.id}</strong></td><td>${new Date(tx.timestamp).toLocaleDateString()}</td><td>${accountName}<br><small style="color:#4a5568">${tx.accountId}</small></td><td><span class="tx-type-${tx.type}">${tx.type.toUpperCase()}</span></td><td><strong style="color:${tx.type === 'credit' ? '#4ade80' : tx.type === 'debit' ? '#f87171' : '#60a5fa'}">$${parseFloat(tx.amount).toLocaleString(undefined, {minimumFractionDigits: 2})}</strong></td><td>${tx.description}</td><td><span class="badge badge-${tx.status === 'approved' ? 'green' : tx.status === 'pending' ? 'yellow' : tx.status === 'rejected' ? 'red' : 'orange'}">${tx.status}</span></td><td>${tx.processedBy || '—'}</td><td><button class="btn btn-sm btn-primary" onclick="viewTransaction('${tx.id}')">View</button></td></tr>`;
+                }).join('');
+            },
+
+            renderRecentPendingTransactions() {
+                const pending = this.getTransactions().filter(t => t.status === 'pending').slice(0, 5);
+                const tbody = document.getElementById('recentPendingTxTable');
+                if (pending.length === 0) { tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;color:#4a5568;padding:2rem;">No pending transactions</td></tr>`; return; }
+                tbody.innerHTML = pending.map(tx => {
+                    const account = this.getAccounts().find(a => a.id === tx.accountId);
+                    const accountName = account ? `${account.firstName} ${account.lastName}` : tx.accountId;
+                    return `<tr class="tx-status-pending"><td><strong style="color:#c9a84c;">${tx.id}</strong></td><td>${accountName}</td><td><span class="tx-type-${tx.type}">${tx.type.toUpperCase()}</span></td><td><strong>$${parseFloat(tx.amount).toLocaleString(undefined, {minimumFractionDigits: 2})}</strong></td><td>${tx.description}</td><td><span class="badge badge-yellow">pending</span></td><td>${new Date(tx.timestamp).toLocaleDateString()}</td><td><button class="btn btn-sm btn-success" onclick="approveTransaction('${tx.id}')">Approve</button><button class="btn btn-sm btn-danger" onclick="rejectTransaction('${tx.id}')">Reject</button></td></tr>`;
+                }).join('');
+            },
+
+            renderComplaints(filter = 'all') {
+                const complaints = this.getComplaints();
+                let filtered = complaints;
+                if (['open','in_progress','resolved'].includes(filter)) filtered = complaints.filter(c => c.status === filter);
+                else if (filter === 'HIGH') filtered = complaints.filter(c => c.priority === 'HIGH');
+                const tbody = document.getElementById('allComplaintsTable');
+                if (filtered.length === 0) { tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;color:#4a5568;padding:2rem;">No complaints found</td></tr>`; return; }
+                tbody.innerHTML = filtered.map(comp => `<tr class="complaint-priority-${comp.priority.toLowerCase()}"><td><strong style="color:#c9a84c;">${comp.id}</strong></td><td>${comp.name}</td><td>${comp.email}</td><td>${comp.category}</td><td><span class="badge badge-${comp.priority === 'HIGH' ? 'red' : comp.priority === 'MEDIUM' ? 'yellow' : 'green'}">${comp.priority}</span></td><td><span class="badge badge-${comp.status === 'open' ? 'red' : comp.status === 'in_progress' ? 'yellow' : 'green'}">${comp.status}</span></td><td>${new Date(comp.submittedAt).toLocaleDateString()}</td><td><button class="btn btn-sm btn-primary" onclick="viewComplaint('${comp.id}')">View</button></td></tr>`).join('');
+            },
+
+            renderRecentComplaints() {
+                const complaints = this.getComplaints().slice(0, 5);
+                const tbody = document.getElementById('recentComplaintsTable');
+                if (complaints.length === 0) { tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:#4a5568;padding:2rem;">No complaints yet</td></tr>`; return; }
+                tbody.innerHTML = complaints.map(comp => `<tr class="complaint-priority-${comp.priority.toLowerCase()}"><td><strong style="color:#c9a84c;">${comp.id}</strong></td><td>${comp.name}</td><td>${comp.category}</td><td><span class="badge badge-${comp.priority === 'HIGH' ? 'red' : comp.priority === 'MEDIUM' ? 'yellow' : 'green'}">${comp.priority}</span></td><td><span class="badge badge-${comp.status === 'open' ? 'red' : comp.status === 'in_progress' ? 'yellow' : 'green'}">${comp.status}</span></td><td>${new Date(comp.submittedAt).toLocaleDateString()}</td><td><button class="btn btn-sm btn-primary" onclick="viewComplaint('${comp.id}')">View</button></td></tr>`).join('');
+            },
+
+            renderSupportTickets(filter = 'all') {
+                const tickets = this.getSupportTickets();
+                const filtered = filter === 'all' ? tickets : tickets.filter(t => t.status === filter);
+                const tbody = document.getElementById('allSupportTable');
+                if (filtered.length === 0) { tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:#4a5568;padding:2rem;">No support tickets found</td></tr>`; return; }
+                tbody.innerHTML = filtered.map(t => `<tr><td><strong style="color:#c9a84c;">${t.id}</strong></td><td>${t.name}</td><td>${t.topic}</td><td><span class="badge badge-${t.status === 'open' ? 'yellow' : 'green'}">${t.status}</span></td><td>${new Date(t.submittedAt).toLocaleDateString()}</td><td><button class="btn btn-sm btn-primary" onclick="viewSupportTicket('${t.id}')">View</button></td></tr>`).join('');
+            },
+
+            renderFeedback() {
+                const feedbacks = this.getFeedback();
+                const tbody = document.getElementById('allFeedbackTable');
+                if (feedbacks.length === 0) { tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:#4a5568;padding:2rem;">No feedback yet</td></tr>`; return; }
+                tbody.innerHTML = feedbacks.map(f => `<tr><td><strong style="color:#c9a84c;">${f.id}</strong></td><td>${f.name || 'Anonymous'}</td><td>${f.email || 'N/A'}</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${f.message}">${f.message}</td><td>${new Date(f.submittedAt).toLocaleDateString()}</td></tr>`).join('');
+            },
+
+            renderLogs(filter = 'all') {
+                const logs = this.getLogs();
+                const filtered = filter === 'all' ? logs : logs.filter(l => l.eventType === filter);
+                const tbody = document.getElementById('allLogsTable');
+                if (filtered.length === 0) { tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:#4a5568;padding:2rem;">No logs found</td></tr>`; return; }
+                tbody.innerHTML = filtered.slice(0, 50).map(log => {
+                    const user = log.details?.email || log.details?.username || log.details?.name || log.details?.customer || log.details?.accountId || 'System';
+                    const details = JSON.stringify(log.details).substring(0, 60) + '...';
+                    return `<tr><td>${new Date(log.timestamp).toLocaleString()}</td><td><span class="badge badge-${this.getPriority(log.eventType) === 'HIGH' ? 'red' : 'blue'}">${log.eventType}</span></td><td>${log.source || 'unknown'}</td><td>${user}</td><td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${details}">${details}</td><td>${log.ip || '—'}</td><td><span class="badge badge-green">${(log.notifiedUsers || []).length} sent</span></td></tr>`;
+                }).join('');
+            },
+
+            renderControlUsers() {
+                const tbody = document.getElementById('controlUsersTable');
+                tbody.innerHTML = this.controlUsers.map(user => `<tr><td>${user.name}</td><td>${user.email}</td><td><span class="badge badge-${user.role === 'super_admin' ? 'red' : user.role === 'compliance' ? 'yellow' : user.role === 'support' ? 'purple' : 'blue'}">${user.role}</span></td><td><span class="badge badge-${user.status === 'active' ? 'green' : 'red'}">${user.status}</span></td><td>${new Date(user.addedAt).toLocaleDateString()}</td><td>${user.id !== 1 ? `<button class="btn btn-sm btn-danger" onclick="removeControlUser(${user.id})">Remove</button>` : '<span style="color:#4a5568;font-size:0.8rem;">Protected</span>'}</td></tr>`).join('');
+            },
+
+            populateAccountDropdown() {
+                const accounts = this.getAccounts().filter(a => a.status === 'active');
+                const select = document.getElementById('txAccountId');
+                select.innerHTML = '<option value="">Select account...</option>' + accounts.map(a => `<option value="${a.id}">${a.id} — ${a.firstName} ${a.lastName}</option>`).join('');
+            }
+        };
+
+        let currentAccountFilter = 'all';
+        let currentTransactionFilter = 'all';
+        let currentComplaintFilter = 'all';
+        let currentSupportFilter = 'all';
+        let currentLogFilter = 'all';
+        let currentComplaintId = null;
+        let currentTransactionId = null;
+
+        function showSection(sectionId) {
+            document.querySelectorAll('[id^="section-"]').forEach(el => el.classList.add('hidden'));
+            document.getElementById('section-' + sectionId).classList.remove('hidden');
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            event.target.closest('.nav-item').classList.add('active');
+            if (sectionId === 'accounts') DashboardSystem.renderAccounts(currentAccountFilter);
+            if (sectionId === 'transactions') { DashboardSystem.renderTransactions(currentTransactionFilter); DashboardSystem.populateAccountDropdown(); }
+            if (sectionId === 'complaints') DashboardSystem.renderComplaints(currentComplaintFilter);
+            if (sectionId === 'support') DashboardSystem.renderSupportTickets(currentSupportFilter);
+            if (sectionId === 'feedback') DashboardSystem.renderFeedback();
+            if (sectionId === 'logs') DashboardSystem.renderLogs(currentLogFilter);
+            if (sectionId === 'users') DashboardSystem.renderControlUsers();
+            if (sectionId === 'dashboard') { DashboardSystem.updateStats(); DashboardSystem.renderRecentAccounts(); DashboardSystem.renderRecentPendingTransactions(); DashboardSystem.renderRecentComplaints(); }
+        }
+
+        function filterAccounts(status) {
+            currentAccountFilter = status;
+            document.querySelectorAll('#section-accounts .tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            DashboardSystem.renderAccounts(status);
+        }
+
+        function filterTransactions(filter) {
+            currentTransactionFilter = filter;
+            document.querySelectorAll('#section-transactions .tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            DashboardSystem.renderTransactions(filter);
+        }
+
+        function filterComplaints(status) {
+            currentComplaintFilter = status;
+            document.querySelectorAll('#section-complaints .tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            DashboardSystem.renderComplaints(status);
+        }
+
+        function filterSupport(status) {
+            currentSupportFilter = status;
+            document.querySelectorAll('#section-support .tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            DashboardSystem.renderSupportTickets(status);
+        }
+
+        function filterLogs(type) {
+            currentLogFilter = type;
+            document.querySelectorAll('#section-logs .tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            DashboardSystem.renderLogs(type);
+        }
+
+        async function addControlUser() {
+            const name = document.getElementById('newUserName').value;
+            const email = document.getElementById('newUserEmail').value;
+            const role = document.getElementById('newUserRole').value;
+            if (!name || !email) { alert('Please fill in all fields'); return; }
+            const newUser = { id: Date.now(), name, email, role, status: 'active', addedAt: new Date().toISOString() };
+            DashboardSystem.controlUsers.push(newUser);
+            DashboardSystem.saveControlUsers();
+            DashboardSystem.renderControlUsers();
+            await DashboardSystem.notifyControlUsers('ADMIN_ADDED', { name: newUser.name, email: newUser.email, role: newUser.role, addedBy: 'Super Administrator' });
+            document.getElementById('newUserName').value = '';
+            document.getElementById('newUserEmail').value = '';
+        }
+
+        async function removeControlUser(userId) {
+            const user = DashboardSystem.controlUsers.find(u => u.id === userId);
+            if (!user) return;
+            document.getElementById('confirmMessage').textContent = `Remove ${user.name} (${user.email}) from control users? This action will be logged and notified.`;
+            document.getElementById('confirmModal').classList.add('active');
+            document.getElementById('confirmBtn').onclick = async () => {
+                DashboardSystem.controlUsers = DashboardSystem.controlUsers.filter(u => u.id !== userId);
+                DashboardSystem.saveControlUsers();
+                DashboardSystem.renderControlUsers();
+                closeModal();
+                await DashboardSystem.notifyControlUsers('ADMIN_REMOVED', { name: user.name, email: user.email, role: user.role, removedBy: 'Super Administrator' });
+            };
+        }
+
+        function viewAccount(accountId) {
+            const accounts = DashboardSystem.getAccounts();
+            const acc = accounts.find(a => a.id === accountId);
+            if (!acc) return;
+            const balance = DashboardSystem.getAccountBalance(acc.id);
+            const content = document.getElementById('accountDetailContent');
+            content.innerHTML = `<div class="detail-grid"><div class="detail-item"><label>Account ID</label><span>${acc.id}</span></div><div class="detail-item"><label>Status</label><span class="badge badge-${acc.status === 'active' ? 'green' : acc.status === 'pending_review' ? 'yellow' : 'red'}">${acc.status}</span></div><div class="detail-item"><label>First Name</label><span>${acc.firstName}</span></div><div class="detail-item"><label>Last Name</label><span>${acc.lastName}</span></div><div class="detail-item"><label>Email</label><span>${acc.email}</span></div><div class="detail-item"><label>Phone</label><span>${acc.phone}</span></div><div class="detail-item"><label>Account Type</label><span>${acc.accountType}</span></div><div class="detail-item"><label>Current Balance</label><span style="color:${balance >= 0 ? '#4ade80' : '#f87171'}">$${balance.toLocaleString(undefined, {minimumFractionDigits: 2})}</span></div><div class="detail-item"><label>Initial Deposit</label><span>$${parseFloat(acc.initialDeposit || 0).toLocaleString()}</span></div><div class="detail-item"><label>Created</label><span>${new Date(acc.createdAt).toLocaleString()}</span></div></div>`;
+            const approveBtn = document.getElementById('approveAccountBtn');
+            if (acc.status === 'pending_review') { approveBtn.style.display = 'inline-block'; approveBtn.onclick = () => { approveAccount(accountId); closeAccountModal(); }; }
+            else { approveBtn.style.display = 'none'; }
+            document.getElementById('accountModal').classList.add('active');
+        }
+
+        function closeAccountModal() { document.getElementById('accountModal').classList.remove('active'); }
+
+        function viewComplaint(complaintId) {
+            const complaints = DashboardSystem.getComplaints();
+            const comp = complaints.find(c => c.id === complaintId);
+            if (!comp) return;
+            currentComplaintId = complaintId;
+            const content = document.getElementById('complaintDetailContent');
+            content.innerHTML = `<div class="detail-grid"><div class="detail-item"><label>Complaint ID</label><span>${comp.id}</span></div><div class="detail-item"><label>Priority</label><span class="badge badge-${comp.priority === 'HIGH' ? 'red' : comp.priority === 'MEDIUM' ? 'yellow' : 'green'}">${comp.priority}</span></div><div class="detail-item"><label>Customer</label><span>${comp.name}</span></div><div class="detail-item"><label>Email</label><span>${comp.email}</span></div><div class="detail-item"><label>Account</label><span>${comp.account || 'N/A'}</span></div><div class="detail-item"><label>Category</label><span>${comp.category}</span></div><div class="detail-item full"><label>Complaint Details</label><span style="white-space:pre-wrap; line-height:1.5;">${comp.details}</span></div>${comp.resolution ? `<div class="detail-item full"><label>Desired Resolution</label><span>${comp.resolution}</span></div>` : ''}<div class="detail-item"><label>Submitted</label><span>${new Date(comp.submittedAt).toLocaleString()}</span></div><div class="detail-item"><label>Current Status</label><span class="badge badge-${comp.status === 'open' ? 'red' : comp.status === 'in_progress' ? 'yellow' : 'green'}">${comp.status}</span></div></div>`;
+            document.getElementById('complaintResponse').value = comp.adminResponse || '';
+            document.getElementById('complaintModal').classList.add('active');
+        }
+
+        function closeComplaintModal() { document.getElementById('complaintModal').classList.remove('active'); currentComplaintId = null; }
+
+        function updateComplaintStatus(status) {
+            if (!currentComplaintId) return;
+            const complaints = DashboardSystem.getComplaints();
+            const comp = complaints.find(c => c.id === currentComplaintId);
+            if (!comp) return;
+            comp.status = status;
+            comp.adminResponse = document.getElementById('complaintResponse').value;
+            comp.updatedAt = new Date().toISOString();
+            comp.updatedBy = 'Super Administrator';
+            localStorage.setItem('gbe_complaints', JSON.stringify(complaints));
+            DashboardSystem.updateStats();
+            DashboardSystem.renderComplaints(currentComplaintFilter);
+            DashboardSystem.renderRecentComplaints();
+            closeComplaintModal();
+            DashboardSystem.notifyControlUsers('COMPLAINT_STATUS_CHANGED', { complaintId: comp.id, customer: comp.name, newStatus: status, updatedBy: 'Super Administrator' });
+        }
+
+        function viewSupportTicket(ticketId) {
+            const tickets = DashboardSystem.getSupportTickets();
+            const t = tickets.find(t => t.id === ticketId);
+            if (!t) return;
+            alert(`Support Ticket: ${t.id}\n\nCustomer: ${t.name}\nEmail: ${t.email}\nTopic: ${t.topic}\n\nQuestion: ${t.question}\n\nSubmitted: ${new Date(t.submittedAt).toLocaleString()}`);
+        }
+
+        // TRANSACTION FUNCTIONS
+        function viewTransaction(txId) {
+            const transactions = DashboardSystem.getTransactions();
+            const tx = transactions.find(t => t.id === txId);
+            if (!tx) return;
+            currentTransactionId = txId;
+            const account = DashboardSystem.getAccounts().find(a => a.id === tx.accountId);
+            const accountName = account ? `${account.firstName} ${account.lastName}` : tx.accountId;
+            const content = document.getElementById('transactionDetailContent');
+            content.innerHTML = `<div class="detail-grid"><div class="detail-item"><label>Transaction ID</label><span>${tx.id}</span></div><div class="detail-item"><label>Status</label><span class="badge badge-${tx.status === 'approved' ? 'green' : tx.status === 'pending' ? 'yellow' : tx.status === 'rejected' ? 'red' : 'orange'}">${tx.status}</span></div><div class="detail-item"><label>Account</label><span>${accountName}</span></div><div class="detail-item"><label>Account ID</label><span>${tx.accountId}</span></div><div class="detail-item"><label>Type</label><span class="tx-type-${tx.type}">${tx.type.toUpperCase()}</span></div><div class="detail-item"><label>Amount</label><span style="color:${tx.type === 'credit' ? '#4ade80' : tx.type === 'debit' ? '#f87171' : '#60a5fa'}">$${parseFloat(tx.amount).toLocaleString(undefined, {minimumFractionDigits: 2})}</span></div><div class="detail-item full"><label>Description</label><span>${tx.description}</span></div><div class="detail-item"><label>Reference</label><span>${tx.reference || 'N/A'}</span></div><div class="detail-item"><label>Created</label><span>${new Date(tx.timestamp).toLocaleString()}</span></div><div class="detail-item"><label>Processed By</label><span>${tx.processedBy || '—'}</span></div>${tx.processedAt ? `<div class="detail-item"><label>Processed At</label><span>${new Date(tx.processedAt).toLocaleString()}</span></div>` : ''}${tx.rejectionReason ? `<div class="detail-item full"><label>Rejection Reason</label><span style="color:#f87171">${tx.rejectionReason}</span></div>` : ''}</div>`;
+
+            const actionsDiv = document.getElementById('transactionActions');
+            let actionsHTML = `<button class="btn" onclick="closeTransactionModal()" style="background:#1e3a5f; color:#e2e8f0;">Close</button>`;
+            if (tx.status === 'pending') {
+                actionsHTML += `<button class="btn btn-success" onclick="approveTransaction('${tx.id}'); closeTransactionModal();">Approve</button><button class="btn btn-danger" onclick="rejectTransaction('${tx.id}'); closeTransactionModal();">Reject</button>`;
+            } else if (tx.status === 'approved') {
+                actionsHTML += `<button class="btn btn-warning" onclick="reverseTransaction('${tx.id}'); closeTransactionModal();">Reverse Transaction</button>`;
+            }
+            actionsDiv.innerHTML = actionsHTML;
+            document.getElementById('transactionModal').classList.add('active');
+        }
+
+        function closeTransactionModal() { document.getElementById('transactionModal').classList.remove('active'); currentTransactionId = null; }
+
+        async function approveTransaction(txId) {
+            const transactions = DashboardSystem.getTransactions();
+            const tx = transactions.find(t => t.id === txId);
+            if (!tx) return;
+            tx.status = 'approved';
+            tx.processedBy = 'Super Administrator';
+            tx.processedAt = new Date().toISOString();
+            localStorage.setItem('gbe_transactions', JSON.stringify(transactions));
+            DashboardSystem.updateStats();
+            DashboardSystem.renderTransactions(currentTransactionFilter);
+            DashboardSystem.renderRecentPendingTransactions();
+            await DashboardSystem.notifyControlUsers('TRANSACTION_APPROVED', { transactionId: tx.id, accountId: tx.accountId, amount: tx.amount, type: tx.type, description: tx.description, approvedBy: 'Super Administrator' });
+        }
+
+        async function rejectTransaction(txId) {
+            const reason = prompt('Enter rejection reason:');
+            if (reason === null) return;
+            const transactions = DashboardSystem.getTransactions();
+            const tx = transactions.find(t => t.id === txId);
+            if (!tx) return;
+            tx.status = 'rejected';
+            tx.processedBy = 'Super Administrator';
+            tx.processedAt = new Date().toISOString();
+            tx.rejectionReason = reason || 'No reason provided';
+            localStorage.setItem('gbe_transactions', JSON.stringify(transactions));
+            DashboardSystem.updateStats();
+            DashboardSystem.renderTransactions(currentTransactionFilter);
+            DashboardSystem.renderRecentPendingTransactions();
+            await DashboardSystem.notifyControlUsers('TRANSACTION_REJECTED', { transactionId: tx.id, accountId: tx.accountId, amount: tx.amount, type: tx.type, reason: tx.rejectionReason, rejectedBy: 'Super Administrator' });
+        }
+
+        async function reverseTransaction(txId) {
+            if (!confirm('Are you sure you want to reverse this transaction? This is a HIGH priority event.')) return;
+            const transactions = DashboardSystem.getTransactions();
+            const tx = transactions.find(t => t.id === txId);
+            if (!tx) return;
+            tx.status = 'reversed';
+            tx.reversedBy = 'Super Administrator';
+            tx.reversedAt = new Date().toISOString();
+            localStorage.setItem('gbe_transactions', JSON.stringify(transactions));
+            DashboardSystem.updateStats();
+            DashboardSystem.renderTransactions(currentTransactionFilter);
+            await DashboardSystem.notifyControlUsers('TRANSACTION_REVERSED', { transactionId: tx.id, accountId: tx.accountId, amount: tx.amount, type: tx.type, description: tx.description, reversedBy: 'Super Administrator' });
+        }
+
+        // New Transaction Form
+        document.getElementById('newTransactionForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('newTxAlert');
+            const accountId = document.getElementById('txAccountId').value;
+            if (!accountId) {
+                alertBox.className = 'alert alert-error';
+                alertBox.style.display = 'block';
+                alertBox.textContent = 'Please select an account.';
+                return;
+            }
+            const txData = {
+                id: 'TX-' + Date.now(),
+                accountId: accountId,
+                type: document.getElementById('txType').value,
+                amount: parseFloat(document.getElementById('txAmount').value).toFixed(2),
+                description: document.getElementById('txDescription').value,
+                reference: document.getElementById('txReference').value,
+                status: document.getElementById('txStatus').value,
+                timestamp: new Date().toISOString(),
+                processedBy: document.getElementById('txStatus').value === 'approved' ? 'Super Administrator' : null,
+                processedAt: document.getElementById('txStatus').value === 'approved' ? new Date().toISOString() : null
+            };
+            const transactions = DashboardSystem.getTransactions();
+            transactions.unshift(txData);
+            localStorage.setItem('gbe_transactions', JSON.stringify(transactions.slice(0, 500)));
+
+            alertBox.className = 'alert alert-success';
+            alertBox.style.display = 'block';
+            alertBox.innerHTML = `<strong>Transaction recorded!</strong><br>ID: <strong>${txData.id}</strong>`;
+            document.getElementById('newTransactionForm').reset();
+
+            DashboardSystem.updateStats();
+            DashboardSystem.renderTransactions(currentTransactionFilter);
+            DashboardSystem.renderRecentPendingTransactions();
+            await DashboardSystem.notifyControlUsers('TRANSACTION_CREATED', { transactionId: txData.id, accountId: txData.accountId, amount: txData.amount, type: txData.type, status: txData.status, description: txData.description });
+        });
+
+        async function approveAccount(accountId) {
+            const accounts = DashboardSystem.getAccounts();
+            const acc = accounts.find(a => a.id === accountId);
+            if (!acc) return;
+            acc.status = 'active';
+            acc.approvedAt = new Date().toISOString();
+            acc.approvedBy = 'Super Administrator';
+            localStorage.setItem('gbe_accounts', JSON.stringify(accounts));
+            DashboardSystem.updateStats();
+            DashboardSystem.renderAccounts(currentAccountFilter);
+            DashboardSystem.renderRecentAccounts();
+            await DashboardSystem.notifyControlUsers('ACCOUNT_APPROVED', { accountId: acc.id, name: `${acc.firstName} ${acc.lastName}`, email: acc.email, approvedBy: 'Super Administrator' });
+        }
+
+        function closeModal() { document.getElementById('confirmModal').classList.remove('active'); }
+        function logout() { window.location.href = 'admin-login.html'; }
+
+        function exportLogs() {
+            const logs = DashboardSystem.getLogs();
+            const csv = [['Timestamp', 'Event Type', 'Source', 'Details', 'IP', 'Notified Users'].join(','), ...logs.map(l => [l.timestamp, l.eventType, l.source || 'unknown', JSON.stringify(l.details).replace(/,/g, ';'), l.ip || '', (l.notifiedUsers || []).join(';')].join(','))].join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `gbe_logs_${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        document.getElementById('accountSearch')?.addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            const accounts = DashboardSystem.getAccounts();
+            const filtered = accounts.filter(a => a.firstName.toLowerCase().includes(term) || a.lastName.toLowerCase().includes(term) || a.email.toLowerCase().includes(term) || a.id.toLowerCase().includes(term));
+            const tbody = document.getElementById('allAccountsTable');
+            if (filtered.length === 0) { tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;color:#4a5568;padding:2rem;">No matching accounts</td></tr>`; return; }
+            tbody.innerHTML = filtered.map(acc => { const balance = DashboardSystem.getAccountBalance(acc.id); return `<tr><td><strong style="color:#c9a84c;">${acc.id}</strong></td><td>${acc.firstName} ${acc.lastName}</td><td>${acc.email}</td><td>${acc.phone}</td><td>${acc.accountType}</td><td><strong style="color:${balance >= 0 ? '#4ade80' : '#f87171'}">$${balance.toLocaleString(undefined, {minimumFractionDigits: 2})}</strong></td><td><span class="badge badge-${acc.status === 'active' ? 'green' : acc.status === 'pending_review' ? 'yellow' : 'red'}">${acc.status}</span></td><td>${new Date(acc.createdAt).toLocaleDateString()}</td><td><button class="btn btn-sm btn-primary" onclick="viewAccount('${acc.id}')">View</button></td></tr>`; }).join('');
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            DashboardSystem.updateStats();
+            DashboardSystem.renderRecentAccounts();
+            DashboardSystem.renderRecentPendingTransactions();
+            DashboardSystem.renderRecentComplaints();
+            DashboardSystem.renderControlUsers();
+            setTimeout(() => {
+                DashboardSystem.notifyControlUsers('ADMIN_LOGIN_ATTEMPT', { username: 'Super Administrator', ip: '192.168.1.100', userAgent: navigator.userAgent, status: 'DASHBOARD_ACCESS', page: 'admin-dashboard.html' });
+            }, 800);
+        });
+    </script>
+</body>
+</html>

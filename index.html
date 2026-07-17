@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Banking Empowerment — Customer Portal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #f8f9fb; color: #1a1a2e; }
+
+        /* Navbar */
+        .navbar { background: #0a1628; color: white; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; height: 72px; position: sticky; top: 0; z-index: 100; }
+        .navbar .brand { display: flex; align-items: center; gap: 0.75rem; }
+        .navbar .brand-logo { width: 40px; height: 40px; background: #c9a84c; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+        .navbar .brand-name { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; letter-spacing: 0.5px; }
+        .navbar .brand-tagline { font-size: 0.65rem; color: #8a9bb8; text-transform: uppercase; letter-spacing: 2px; margin-top: -4px; }
+        .navbar .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .navbar .nav-links a { color: #8a9bb8; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+        .navbar .nav-links a:hover { color: white; }
+        .btn { display: inline-block; padding: 0.6rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 0.9rem; cursor: pointer; border: none; transition: all 0.2s; }
+        .btn-primary { background: #c9a84c; color: #0a1628; }
+        .btn-primary:hover { background: #b89a3e; }
+        .btn-outline { background: transparent; color: #c9a84c; border: 1px solid #c9a84c; }
+        .btn-outline:hover { background: #c9a84c; color: #0a1628; }
+        .btn-sm { padding: 0.4rem 1rem; font-size: 0.85rem; }
+        .btn-danger { background: #dc2626; color: white; }
+        .btn-danger:hover { background: #b91c1c; }
+
+        /* Hero with Video */
+        .hero { position: relative; height: 600px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .hero-video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10,22,40,0.75); z-index: 2; }
+        .hero-content { position: relative; z-index: 3; text-align: center; color: white; padding: 2rem; max-width: 800px; }
+        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 700; margin-bottom: 1rem; }
+        .hero-content h1 span { color: #c9a84c; }
+        .hero-content p { color: #b8c5d8; font-size: 1.15rem; max-width: 600px; margin: 0 auto 2rem; line-height: 1.7; }
+        .hero-content .cta-group { display: flex; gap: 1rem; justify-content: center; }
+        .play-btn { width: 60px; height: 60px; background: rgba(201,168,76,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; transition: transform 0.2s; border: none; color: #0a1628; }
+        .play-btn:hover { transform: scale(1.1); }
+
+        /* Photo Gallery Section */
+        .gallery-section { padding: 4rem 2rem; max-width: 1400px; margin: 0 auto; background: white; }
+        .gallery-section h2 { text-align: center; font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 0.5rem; color: #0a1628; }
+        .gallery-section .sub { text-align: center; color: #6b7280; margin-bottom: 2.5rem; }
+        .photo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+        .photo-item { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; }
+        .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .photo-item:hover img { transform: scale(1.05); }
+        .photo-item .photo-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: rgba(10,22,40,0.8); color: white; font-size: 0.85rem; font-weight: 500; }
+        .photo-item.tall { grid-row: span 2; aspect-ratio: auto; }
+        .photo-item.wide { grid-column: span 2; }
+
+        /* Features */
+        .features-section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .features-section h2 { text-align: center; font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 0.5rem; color: #0a1628; }
+        .features-section .sub { text-align: center; color: #6b7280; margin-bottom: 3rem; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+        .feature-card { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.04); border: 1px solid #e5e7eb; transition: transform 0.2s, box-shadow 0.2s; }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .feature-card .icon { width: 48px; height: 48px; background: #f0f4ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1rem; }
+        .feature-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: #0a1628; }
+        .feature-card p { color: #6b7280; font-size: 0.9rem; line-height: 1.6; }
+
+        /* Video Section */
+        .video-section { background: #0a1628; padding: 4rem 2rem; text-align: center; }
+        .video-section h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: white; margin-bottom: 0.5rem; }
+        .video-section .sub { color: #8a9bb8; margin-bottom: 2rem; }
+        .video-container { max-width: 900px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .video-container video { width: 100%; display: block; }
+
+        /* Support / Complaint Section */
+        .support-section { padding: 4rem 2rem; max-width: 800px; margin: 0 auto; }
+        .support-section h2 { text-align: center; font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 0.5rem; color: #0a1628; }
+        .support-section .sub { text-align: center; color: #6b7280; margin-bottom: 2rem; }
+        .support-card { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.04); border: 1px solid #e5e7eb; }
+        .support-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem; }
+        .support-tab { padding: 0.5rem 1rem; background: none; border: none; color: #6b7280; cursor: pointer; font-size: 0.9rem; border-radius: 6px; transition: all 0.2s; }
+        .support-tab.active { background: #f0f4ff; color: #c9a84c; font-weight: 500; }
+
+        /* Footer */
+        footer { background: #0a1628; color: #8a9bb8; padding: 3rem 2rem 2rem; text-align: center; }
+        footer .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: white; margin-bottom: 0.5rem; }
+        footer .footer-links { display: flex; justify-content: center; gap: 2rem; margin: 1.5rem 0; flex-wrap: wrap; }
+        footer .footer-links a { color: #8a9bb8; text-decoration: none; font-size: 0.85rem; }
+        footer .footer-links a:hover { color: #c9a84c; }
+        footer .copyright { font-size: 0.8rem; color: #4a5568; margin-top: 1rem; }
+
+        /* Modal */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10,22,40,0.7); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+        .modal-overlay.active { display: flex; }
+        .modal { background: white; border-radius: 16px; width: 90%; max-width: 480px; padding: 2.5rem; box-shadow: 0 20px 60px rgba(0,0,0,0.2); position: relative; }
+        .modal .close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; color: #9ca3af; cursor: pointer; }
+        .modal h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 0.5rem; color: #0a1628; }
+        .modal .subtitle { color: #6b7280; font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 500; color: #374151; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.7rem 0.9rem; border: 1px solid #d1d5db; border-radius: 8px; font-size: 0.95rem; transition: border-color 0.2s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #c9a84c; }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .alert { padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem; display: none; }
+        .alert-success { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+        .alert-error { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+        /* Video Lightbox */
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; }
+        .lightbox.active { display: flex; }
+        .lightbox video { max-width: 90%; max-height: 80vh; border-radius: 12px; }
+        .lightbox .close-lightbox { position: absolute; top: 2rem; right: 2rem; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand">
+            <div class="brand-logo">◆</div>
+            <div>
+                <div class="brand-name">Global Banking Empowerment</div>
+                <div class="brand-tagline">Financial Freedom</div>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#support">Support</a>
+            <a href="#about">About</a>
+            <button class="btn btn-outline btn-sm" onclick="openModal('loginModal')">Sign In</button>
+            <button class="btn btn-primary btn-sm" onclick="openModal('registerModal')">Open Account</button>
+        </div>
+    </nav>
+
+    <!-- Hero with Video Background -->
+    <section class="hero">
+        <video class="hero-video-bg" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920">
+            <source src="https://player.vimeo.com/external/451837698.sd.mp4?s=8d75c77c4e3567c524f9f0050f056&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Empowering Your <span>Financial Future</span></h1>
+            <p>Global Banking Empowerment provides accessible, innovative banking solutions designed to uplift individuals, businesses, and communities worldwide.</p>
+            <div class="cta-group">
+                <button class="btn btn-primary" onclick="openModal('registerModal')">Open an Account</button>
+                <button class="btn btn-outline" style="color:white;border-color:white;" onclick="openModal('loginModal')">Client Sign In</button>
+                <button class="play-btn" onclick="openLightbox()">▶</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="gallery-section" id="gallery">
+        <h2>Banking in Action</h2>
+        <p class="sub">A glimpse into how we empower communities globally</p>
+        <div class="photo-grid">
+            <div class="photo-item wide">
+                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800" alt="Business meeting">
+                <div class="photo-caption">Strategic Financial Advisory</div>
+            </div>
+            <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600" alt="Mobile banking">
+                <div class="photo-caption">Mobile Banking Access</div>
+            </div>
+            <div class="photo-item tall">
+                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff20?w=600" alt="Community empowerment">
+                <div class="photo-caption">Community Empowerment Programs</div>
+            </div>
+            <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600" alt="Financial planning">
+                <div class="photo-caption">Personal Financial Planning</div>
+            </div>
+            <div class="photo-item wide">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Data analytics">
+                <div class="photo-caption">Real-Time Analytics Dashboard</div>
+            </div>
+            <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1553729459-afe8308a57c5?w=600" alt="Investment growth">
+                <div class="photo-caption">Investment Portfolio Growth</div>
+            </div>
+            <div class="photo-item">
+                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600" alt="Secure transactions">
+                <div class="photo-caption">Secure Digital Transactions</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section" id="about">
+        <h2>Our Mission in Motion</h2>
+        <p class="sub">See how Global Banking Empowerment transforms lives through financial inclusion</p>
+        <div class="video-container">
+            <video controls poster="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200">
+                <source src="https://player.vimeo.com/external/451837698.sd.mp4?s=8d75c77c4e3567c524f9f0050f056&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="features-section" id="services">
+        <h2>Our Services</h2>
+        <p class="sub">Comprehensive financial solutions for everyone, everywhere</p>
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon">🌍</div>
+                <h3>Global Transfers</h3>
+                <p>Send and receive money across borders with competitive rates and instant settlements.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📱</div>
+                <h3>Mobile Banking</h3>
+                <p>Full-featured mobile app for banking on the go — transfers, payments, and investments.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">💼</div>
+                <h3>Microfinance</h3>
+                <p>Accessible loans and credit for small businesses and entrepreneurs in underserved markets.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🎓</div>
+                <h3>Financial Literacy</h3>
+                <p>Free educational resources and workshops to empower informed financial decisions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🏦</div>
+                <h3>Savings & Investment</h3>
+                <p>High-yield savings accounts and diversified investment portfolios for wealth building.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🛡️</div>
+                <h3>Secure Vault</h3>
+                <p>Bank-grade encryption, biometric authentication, and 24/7 fraud monitoring.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support / Complaint Section -->
+    <section class="support-section" id="support">
+        <h2>Customer Support</h2>
+        <p class="sub">We're here to help. Your feedback falls back directly to our admin team.</p>
+        <div class="support-card">
+            <div class="support-tabs">
+                <button class="support-tab active" onclick="switchSupportTab('complaint')">File a Complaint</button>
+                <button class="support-tab" onclick="switchSupportTab('support')">Request Support</button>
+                <button class="support-tab" onclick="switchSupportTab('feedback')">General Feedback</button>
+            </div>
+
+            <div id="complaintForm">
+                <div id="complaintAlert" class="alert"></div>
+                <form id="supportComplaintForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" id="compName" required placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" id="compEmail" required placeholder="your@email.com">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Account Number (if applicable)</label>
+                            <input type="text" id="compAccount" placeholder="GBE-XXXXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>Complaint Category *</label>
+                            <select id="compCategory" required>
+                                <option value="">Select category...</option>
+                                <option value="transaction_error">Transaction Error</option>
+                                <option value="account_access">Account Access Issue</option>
+                                <option value="fee_dispute">Fee or Charge Dispute</option>
+                                <option value="service_quality">Service Quality</option>
+                                <option value="fraud_suspicion">Fraud or Security Concern</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Complaint Details *</label>
+                        <textarea id="compDetails" required placeholder="Please describe your issue in detail..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Desired Resolution</label>
+                        <textarea id="compResolution" placeholder="What would resolve this issue for you?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-danger" style="width:100%;">Submit Complaint to Admin</button>
+                </form>
+            </div>
+
+            <div id="supportForm" style="display:none;">
+                <div id="supportAlert" class="alert"></div>
+                <form id="supportRequestForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" id="supName" required placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" id="supEmail" required placeholder="your@email.com">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Support Topic *</label>
+                        <select id="supTopic" required>
+                            <option value="">Select topic...</option>
+                            <option value="account_setup">Account Setup Help</option>
+                            <option value="password_reset">Password Reset</option>
+                            <option value="transfer_help">Transfer Assistance</option>
+                            <option value="app_support">Mobile App Support</option>
+                            <option value="general">General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Question *</label>
+                        <textarea id="supQuestion" required placeholder="How can we help you today?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;">Submit Support Request</button>
+                </form>
+            </div>
+
+            <div id="feedbackForm" style="display:none;">
+                <div id="feedbackAlert" class="alert"></div>
+                <form id="supportFeedbackForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="feedName" placeholder="Your name (optional)">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="feedEmail" placeholder="your@email.com (optional)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Feedback *</label>
+                        <textarea id="feedMessage" required placeholder="Share your thoughts, suggestions, or experience..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;">Send Feedback</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-brand">Global Banking Empowerment</div>
+        <p style="font-size:0.85rem; color:#6b7280;">Empowering Communities · Building Futures · Financial Inclusion for All</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Security</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="copyright">© 2026 Global Banking Empowerment. All rights reserved.</div>
+    </footer>
+
+    <!-- Video Lightbox -->
+    <div class="lightbox" id="videoLightbox" onclick="closeLightbox(event)">
+        <button class="close-lightbox" onclick="closeLightbox()">×</button>
+        <video controls id="lightboxVideo">
+            <source src="https://player.vimeo.com/external/451837698.sd.mp4?s=8d75c77c4e3567c524f9f0050f056&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal">
+            <button class="close" onclick="closeModal('loginModal')">×</button>
+            <h2>Client Sign In</h2>
+            <p class="subtitle">Access your Global Banking Empowerment account</p>
+            <div id="loginAlert" class="alert"></div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Account Number or Email</label>
+                    <input type="text" id="loginEmail" required placeholder="Enter account number or email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required placeholder="Enter password">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%; margin-top:0.5rem;">Sign In</button>
+            </form>
+            <p style="text-align:center; margin-top:1rem; font-size:0.85rem; color:#6b7280;">Don't have an account? <a href="#" onclick="closeModal('loginModal'); openModal('registerModal')" style="color:#c9a84c; text-decoration:none; font-weight:500;">Open one today</a></p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal">
+            <button class="close" onclick="closeModal('registerModal')">×</button>
+            <h2>Open Your Account</h2>
+            <p class="subtitle">Join Global Banking Empowerment in minutes</p>
+            <div id="registerAlert" class="alert"></div>
+            <form id="registerForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" id="regFirstName" required placeholder="John">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" id="regLastName" required placeholder="Doe">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" required placeholder="john.doe@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="regPhone" required placeholder="(555) 123-4567">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Account Type</label>
+                        <select id="regAccountType">
+                            <option value="personal">Personal Checking</option>
+                            <option value="savings">Savings</option>
+                            <option value="business">Business</option>
+                            <option value="microfinance">Microfinance</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Initial Deposit</label>
+                        <input type="number" id="regDeposit" min="0" placeholder="$0.00">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Create Password</label>
+                    <input type="password" id="regPassword" required placeholder="Min. 8 characters">
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="regConfirmPassword" required placeholder="Confirm password">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%; margin-top:0.5rem;">Create Account</button>
+            </form>
+            <p style="text-align:center; margin-top:1rem; font-size:0.8rem; color:#9ca3af;">By creating an account, you agree to our Terms of Service and Privacy Policy.</p>
+        </div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════
+        // GLOBAL BANKING EMPOWERMENT — CUSTOMER PORTAL SYSTEM
+        // ═══════════════════════════════════════════════════════════════
+
+        const GBE_System = {
+            getAccounts() {
+                return JSON.parse(localStorage.getItem('gbe_accounts') || '[]');
+            },
+            saveAccount(account) {
+                const accounts = this.getAccounts();
+                account.id = 'GBE-' + Date.now();
+                account.createdAt = new Date().toISOString();
+                account.status = 'pending_review';
+                accounts.push(account);
+                localStorage.setItem('gbe_accounts', JSON.stringify(accounts));
+                this.logToAdmin('ACCOUNT_CREATED', account);
+                return account;
+            },
+            logToAdmin(eventType, details) {
+                const logEntry = {
+                    id: 'LOG-' + Date.now(),
+                    eventType,
+                    details,
+                    timestamp: new Date().toISOString(),
+                    source: 'customer_portal',
+                    ip: '192.168.1.xxx',
+                    userAgent: navigator.userAgent
+                };
+                const logs = JSON.parse(localStorage.getItem('gbe_admin_logs') || '[]');
+                logs.unshift(logEntry);
+                localStorage.setItem('gbe_admin_logs', JSON.stringify(logs.slice(0, 500)));
+                this.notifyControlUsers(eventType, details);
+            },
+            async notifyControlUsers(eventType, details) {
+                const controlUsers = [
+                    { name: 'System Admin', email: 'admin@globalbankingempowerment.com' },
+                    { name: 'Compliance Officer', email: 'compliance@globalbankingempowerment.com' },
+                    { name: 'Support Manager', email: 'support@globalbankingempowerment.com' }
+                ];
+                const timestamp = new Date().toLocaleString();
+                controlUsers.forEach(user => {
+                    console.log(`[GBE EMAIL ALERT] To: ${user.email} | Event: ${eventType} | Time: ${timestamp}`);
+                });
+            },
+            // COMPLAINT SYSTEM — Falls back to admin
+            submitComplaint(data) {
+                const complaint = {
+                    id: 'COMP-' + Date.now(),
+                    type: 'complaint',
+                    ...data,
+                    status: 'open',
+                    priority: this.calculatePriority(data.category),
+                    submittedAt: new Date().toISOString(),
+                    assignedTo: 'admin_pool'
+                };
+                const complaints = JSON.parse(localStorage.getItem('gbe_complaints') || '[]');
+                complaints.unshift(complaint);
+                localStorage.setItem('gbe_complaints', JSON.stringify(complaints.slice(0, 200)));
+
+                // Log to admin with HIGH priority
+                this.logToAdmin('USER_COMPLAINT_SUBMITTED', {
+                    complaintId: complaint.id,
+                    category: data.category,
+                    priority: complaint.priority,
+                    customer: data.name,
+                    email: data.email,
+                    account: data.account || 'N/A',
+                    summary: data.details.substring(0, 100) + '...'
+                });
+
+                return complaint;
+            },
+            submitSupport(data) {
+                const ticket = {
+                    id: 'SUP-' + Date.now(),
+                    type: 'support',
+                    ...data,
+                    status: 'open',
+                    submittedAt: new Date().toISOString()
+                };
+                const tickets = JSON.parse(localStorage.getItem('gbe_support_tickets') || '[]');
+                tickets.unshift(ticket);
+                localStorage.setItem('gbe_support_tickets', JSON.stringify(tickets.slice(0, 200)));
+                this.logToAdmin('SUPPORT_TICKET_SUBMITTED', ticket);
+                return ticket;
+            },
+            submitFeedback(data) {
+                const feedback = {
+                    id: 'FDB-' + Date.now(),
+                    type: 'feedback',
+                    ...data,
+                    submittedAt: new Date().toISOString()
+                };
+                const feedbacks = JSON.parse(localStorage.getItem('gbe_feedback') || '[]');
+                feedbacks.unshift(feedback);
+                localStorage.setItem('gbe_feedback', JSON.stringify(feedbacks.slice(0, 200)));
+                this.logToAdmin('USER_FEEDBACK_SUBMITTED', feedback);
+                return feedback;
+            },
+            calculatePriority(category) {
+                const high = ['fraud_suspicion', 'account_access'];
+                const medium = ['transaction_error', 'fee_dispute'];
+                if (high.includes(category)) return 'HIGH';
+                if (medium.includes(category)) return 'MEDIUM';
+                return 'LOW';
+            }
+        };
+
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+        function openLightbox() { document.getElementById('videoLightbox').classList.add('active'); document.getElementById('lightboxVideo').play(); }
+        function closeLightbox(e) { if (!e || e.target === document.getElementById('videoLightbox')) { document.getElementById('videoLightbox').classList.remove('active'); document.getElementById('lightboxVideo').pause(); } }
+
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('active'); });
+        });
+
+        function switchSupportTab(tab) {
+            document.querySelectorAll('.support-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('complaintForm').style.display = tab === 'complaint' ? 'block' : 'none';
+            document.getElementById('supportForm').style.display = tab === 'support' ? 'block' : 'none';
+            document.getElementById('feedbackForm').style.display = tab === 'feedback' ? 'block' : 'none';
+        }
+
+        // Login handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const alertBox = document.getElementById('loginAlert');
+            GBE_System.logToAdmin('LOGIN_ATTEMPT', { email, status: 'success', source: 'customer_portal' });
+            alertBox.className = 'alert alert-success';
+            alertBox.style.display = 'block';
+            alertBox.textContent = 'Welcome back! Redirecting to your account...';
+        });
+
+        // Registration handler
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('registerAlert');
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            if (password !== confirmPassword) {
+                alertBox.className = 'alert alert-error';
+                alertBox.style.display = 'block';
+                alertBox.textContent = 'Passwords do not match. Please try again.';
+                return;
+            }
+            const accountData = {
+                firstName: document.getElementById('regFirstName').value,
+                lastName: document.getElementById('regLastName').value,
+                email: document.getElementById('regEmail').value,
+                phone: document.getElementById('regPhone').value,
+                accountType: document.getElementById('regAccountType').value,
+                initialDeposit: document.getElementById('regDeposit').value || '0',
+                password: password
+            };
+            const newAccount = GBE_System.saveAccount(accountData);
+            alertBox.className = 'alert alert-success';
+            alertBox.style.display = 'block';
+            alertBox.innerHTML = `<strong>Account created successfully!</strong><br>Your account number is <strong>${newAccount.id}</strong>. A confirmation email has been sent. Our team will review your application within 24 hours.`;
+            document.getElementById('registerForm').reset();
+        });
+
+        // Complaint handler — FALLS BACK TO ADMIN
+        document.getElementById('supportComplaintForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('complaintAlert');
+            const data = {
+                name: document.getElementById('compName').value,
+                email: document.getElementById('compEmail').value,
+                account: document.getElementById('compAccount').value,
+                category: document.getElementById('compCategory').value,
+                details: document.getElementById('compDetails').value,
+                resolution: document.getElementById('compResolution').value
+            };
+            const complaint = GBE_System.submitComplaint(data);
+            alertBox.className = 'alert alert-success';
+            alertBox.style.display = 'block';
+            alertBox.innerHTML = `<strong>Complaint received!</strong><br>Reference: <strong>${complaint.id}</strong><br>Priority: <strong>${complaint.priority}</strong><br>Our admin team has been notified and will respond within 24 hours.`;
+            document.getElementById('supportComplaintForm').reset();
+        });
+
+        // Support handler
+        document.getElementById('supportRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('supportAlert');
+            const data = {
+                name: document.getElementById('supName').value,
+                email: document.getElementById('supEmail').value,
+                topic: document.getElementById('supTopic').value,
+                question: document.getElementById('supQuestion').value
+            };
+            const ticket = GBE_System.submitSupport(data);
+            alertBox.className = 'alert alert-success';
+            alertBox.style.display = 'block';
+            alertBox.innerHTML = `<strong>Support ticket created!</strong><br>Ticket ID: <strong>${ticket.id}</strong><br>Our team will contact you shortly.`;
+            document.getElementById('supportRequestForm').reset();
+        });
+
+        // Feedback handler
+        document.getElementById('supportFeedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('feedbackAlert');
+            const data = {
+                name: document.getElementById('feedName').value,
+                email: document.getElementById('feedEmail').value,
+                message: document.getElementById('feedMessage').value
+            };
+            GBE_System.submitFeedback(data);
+            alertBox.className = 'alert alert-success';
+            alertBox.style.display = 'block';
+            alertBox.textContent = 'Thank you for your feedback! We appreciate your input.';
+            document.getElementById('supportFeedbackForm').reset();
+        });
+    </script>
+</body>
+</html>
