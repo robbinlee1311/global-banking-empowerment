@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------
- * @file Global Banking Employment card-widget.ts
- * @description Card widget for Global Banking Employment.
+ * @file Global Banking Empowerment card-widget.ts
+ * @description Card widget for Global Banking Empowerment.
  * @license MIT
  * --------------------------------------------
  */
@@ -28,3 +28,4 @@ declare class CardWidget extends BaseComponent {
     toggleMaximize(): void;
 }
 export default CardWidget;
+

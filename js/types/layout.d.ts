@@ -1,7 +1,7 @@
 /**
  * ----------------------------------------------------------------------------
- * @file Global Banking Employment layout.ts
- * @description Layout for Global Banking Employment.
+ * @file Global Banking Empowerment layout.ts
+ * @description Layout for Global Banking Empowerment.
  * @license MIT
  * ----------------------------------------------------------------------------
  */
@@ -17,3 +17,4 @@ declare class Layout {
     holdTransition(time?: number): void;
 }
 export default Layout;
+

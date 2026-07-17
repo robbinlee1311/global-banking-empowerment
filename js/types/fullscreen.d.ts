@@ -1,7 +1,7 @@
 /**
  * --------------------------------------------
- * @file Global Banking Employment fullscreen.ts
- * @description Fullscreen plugin for Global Banking Employment.
+ * @file Global Banking Empowerment fullscreen.ts
+ * @description Fullscreen plugin for Global Banking Empowerment.
  * @license MIT
  * --------------------------------------------
  */
@@ -19,3 +19,4 @@ declare class FullScreen extends BaseComponent {
     toggleFullScreen(): void;
 }
 export default FullScreen;
+

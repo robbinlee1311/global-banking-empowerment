@@ -1,7 +1,7 @@
 /**
  * ----------------------------------------------------------------------------
- * @file Global Banking Employment push-menu.ts
- * @description Push menu for Global Banking Employment.
+ * @file Global Banking Empowerment push-menu.ts
+ * @description Push menu for Global Banking Empowerment.
  * @license MIT
  * ----------------------------------------------------------------------------
  */
@@ -100,3 +100,4 @@ declare class PushMenu extends BaseComponent {
     init(): void;
 }
 export default PushMenu;
+
