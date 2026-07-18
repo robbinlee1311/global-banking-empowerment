@@ -40,4 +40,3 @@ declare const slideUp: (target: HTMLElement, duration?: number) => void;
 declare const slideDown: (target: HTMLElement, duration?: number) => void;
 declare const slideToggle: (target: HTMLElement, duration?: number) => void;
 export { onDOMContentLoaded, getLifecycleSignal, slideUp, slideDown, slideToggle, hasDataAttribute, getLastElement, safePropertyAccess };
-

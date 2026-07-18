@@ -53,7 +53,7 @@
     <!--begin::Accessibility Features-->
     <!-- Skip links will be dynamically added by accessibility.js -->
     <meta name="supported-color-schemes" content="light dark" />
-    <link rel="preload" href="../../css/Global Banking Empowerment.css" as="style" />
+    <link rel="preload" href="../../css/GlobalBankingEmpowerment.css" as="style" />
     <!--end::Accessibility Features-->
 
     <!--begin::Fonts-->
@@ -84,9 +84,9 @@
     <!--end::Third Party Plugin(Bootstrap Icons)-->
 
     <!--begin::Required Plugin(Global Banking Empowerment)-->
-    <link rel="stylesheet" href="../../css/Global Banking Empowerment.css" />
+    <link rel="stylesheet" href="../../css/GlobalBankingEmpowerment.css" />
     <!--end::Required Plugin(Global Banking Empowerment)-->
-    <link rel="stylesheet" href="../../css/Global Banking Empowerment-docs.css" />
+    <link rel="stylesheet" href="../../css/GlobalBankingEmpowerment-docs.css" />
   </head>
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary docs-page">
     <div class="app-wrapper">
@@ -389,7 +389,7 @@
         <div class="sidebar-brand">
           <a href="../../docs/introduction.html" class="brand-link">
             <img
-              src="../../assets/img/Global Banking EmpowermentLogo.png"
+              src="../../assets/img/GlobalBankingEmpowermentLogo.png"
               alt="Global Banking Empowerment Logo"
               class="brand-image opacity-75 shadow"
             />
@@ -592,7 +592,7 @@
               </li>
               <li class="nav-item">
                 <a
-                  href="https://github.com/robbinlee1311/Global Banking Empowerment"
+                  href="https://github.com/robbinlee1311/global-banking-empowerment"
                   target="_blank"
                   rel="noopener"
                   class="nav-link"
@@ -649,9 +649,9 @@
                   <div class="card-body">
                     <p>
                       Global Banking Empowerment ships seven JavaScript plugins as a single bundle
-                      (<code>Global Banking Empowerment.js</code>). Each one is exported from the
-                      package root, can be triggered via <code>data-lte-*</code> attributes for
-                      declarative use, and exposes a programmatic API for code-driven control.
+                      (<code>adminlte.js</code>). Each one is exported from the package root, can be
+                      triggered via <code>data-lte-*</code> attributes for declarative use, and
+                      exposes a programmatic API for code-driven control.
                     </p>
                     <h5 id="at-a-glance">At a glance</h5>
                     <table>
@@ -791,7 +791,7 @@
                       data-language="html"
                     ><code><span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">script</span><span style="color:#808080">></span></span>
 <span class="line"><span style="color:#6A9955">  // The bundle assigns to window.Global Banking Empowerment</span></span>
-<span class="line"><span style="color:#9CDCFE">  Global</span><span style="color:#9CDCFE"> Banking</span><span style="color:#9CDCFE"> Employment</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">PushMenu</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getInstance</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">".app-sidebar"</span><span style="color:#D4D4D4">))?.</span><span style="color:#DCDCAA">expand</span><span style="color:#D4D4D4">()</span></span>
+<span class="line"><span style="color:#9CDCFE">  Global</span><span style="color:#9CDCFE"> Banking</span><span style="color:#9CDCFE"> Empowerment</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">PushMenu</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">getInstance</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">document</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">querySelector</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">".app-sidebar"</span><span style="color:#D4D4D4">))?.</span><span style="color:#DCDCAA">expand</span><span style="color:#D4D4D4">()</span></span>
 <span class="line"><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">script</span><span style="color:#808080">></span></span></code></pre>
                     <h6 id="component-lifecycle">Component lifecycle</h6>
                     <p>Every component follows the same Bootstrap-style contract:</p>
@@ -1050,13 +1050,15 @@
                     </table>
                     <h5 id="production-vs-source">Production vs source</h5>
                     <p>
-                      The plugins live in [<code>src/ts/</code>](<a href="https://github.com/Global"
-                        >https://github.com/Global</a
+                      The plugins live in
+                      <a
+                        href="https://github.com/robbinlee1311/global-banking-empowerment/tree/master/src/ts"
+                        ><code>src/ts/</code></a
                       >
-                      Banking EmploymentHQ/master/src/ts) as TypeScript modules. The published
-                      <code>dist/js/Global Banking Empowerment.js</code> is a Rollup bundle of all
-                      seven, exporting them under a single
-                      <code>Global Banking Empowerment</code> namespace (UMD) or named imports (ESM).
+                      as TypeScript modules. The published <code>dist/js/adminlte.js</code> is a
+                      Rollup bundle of all seven, exporting them under a single
+                      <code>Global Banking Empowerment</code> namespace (UMD) or named imports
+                      (ESM).
                     </p>
                     <p>
                       If you only need one or two plugins and care about bundle size, importing
@@ -1155,4 +1157,3 @@
     <!--end::Color Mode Toggle-->
   </body>
 </html>
-

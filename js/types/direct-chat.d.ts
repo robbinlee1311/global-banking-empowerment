@@ -17,4 +17,3 @@ declare class DirectChat extends BaseComponent {
     toggle(): void;
 }
 export default DirectChat;
-

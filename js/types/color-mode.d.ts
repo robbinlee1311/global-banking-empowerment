@@ -54,4 +54,3 @@ declare class ColorMode {
     init(): void;
 }
 export default ColorMode;
-

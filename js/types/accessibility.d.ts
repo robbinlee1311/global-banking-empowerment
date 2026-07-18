@@ -44,4 +44,3 @@ export declare const accessibilityUtils: {
     generateId: (prefix?: string) => string;
     isFocusable: (element: HTMLElement) => boolean;
 };
-
