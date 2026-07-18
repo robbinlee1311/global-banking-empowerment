@@ -73,3 +73,32 @@ textarea { min-height: 110px; resize: vertical; }
 .rule-list { display: grid; gap: 12px; padding: 0; margin: 0; list-style: none; }
 .rule-list li { border: 1px solid var(--line); border-radius: 8px; padding: 14px; background: #fff; }
 .role-pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 7px 11px; color: var(--muted); font-weight: 800; }
+
+.customer-sidebar { background: #102238; }
+.admin-sidebar { background: #211b2f; }
+.admin-auth .auth-visual { background: linear-gradient(135deg, rgba(33,27,47,.9), rgba(83,54,101,.78)), url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center; }
+.banking-workspace { max-width: 1320px; }
+.customer-hero { background: linear-gradient(135deg, #102238, #0b6b5c); color: #fff; border-radius: 8px; padding: 28px; display: flex; justify-content: space-between; gap: 20px; align-items: center; box-shadow: var(--shadow); }
+.customer-hero p { color: #dcebf3; }
+.customer-hero h1 { margin-bottom: 8px; }
+.hero-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+.dashboard-layout { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(280px, .8fr); gap: 18px; align-items: start; }
+.premium-card { min-height: 230px; background: radial-gradient(circle at top right, rgba(201,151,43,.45), transparent 34%), linear-gradient(135deg, #102238, #0b6b5c 62%, #123d54); }
+.metric span, .metric small { color: var(--muted); }
+.metric small { display: block; margin-top: 5px; }
+.insight-list { display: grid; gap: 12px; padding: 0; margin: 0; list-style: none; }
+.insight-list li { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 11px; }
+.insight-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+.insight-list span { color: var(--muted); text-align: right; }
+.support-card { border-left: 4px solid var(--brand); }
+.mini-thread { border: 1px solid var(--line); border-radius: 8px; padding: 14px; background: #f8fafc; margin-bottom: 14px; }
+.support-layout { max-width: 1260px; display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(280px, .65fr); gap: 18px; align-items: start; }
+.support-thread { display: grid; gap: 12px; margin: 18px 0; }
+.bubble { width: min(680px, 92%); border: 1px solid var(--line); border-radius: 8px; padding: 14px; background: #f8fafc; }
+.bubble p { margin-bottom: 8px; }
+.bubble span { color: var(--muted); font-size: 12px; font-weight: 700; }
+.bubble.me { margin-left: auto; background: #e7f7f2; border-color: #b8e2d6; }
+.bubble.agent { margin-right: auto; }
+.message-box { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end; }
+.message-box textarea { min-height: 84px; }
+@media (max-width: 900px) { .customer-hero, .dashboard-layout, .support-layout, .message-box { grid-template-columns: 1fr; display: grid; } .hero-actions { justify-content: flex-start; } .insight-list li { display: grid; } .insight-list span { text-align: left; } }
