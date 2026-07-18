@@ -1,6 +1,55 @@
 ﻿<!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Customer Dashboard | Global Banking Empowerment</title><link rel="stylesheet" href="assets/css/bank.css"></head>
-<body data-role="user"><div class="shell"><aside class="sidebar"><a class="brand" href="dashboard.html"><span class="logo">GBE</span><span>Global Banking Empowerment</span></a><nav class="nav"><a class="active" href="dashboard.html">Dashboard <span>01</span></a><a href="transfer.html">Transfers <span>02</span></a><a href="cards.html">Cards <span>03</span></a><a href="statements.html">Statements <span>04</span></a><a href="profile.html">Profile <span>05</span></a></nav></aside><main class="main"><header class="topbar"><strong>Customer Dashboard</strong><span><span data-user-name></span> <button class="btn outline" type="button" onclick="bank.logout()">Sign out</button></span></header><section class="page grid"><div><p class="kicker">Welcome back</p><h1 data-user-name></h1><p>Account <strong data-account></strong> is active and ready for online banking.</p></div><div class="grid cols-3"><article class="card account-card"><span>Total balance</span><div class="balance" data-total></div><small>Checking and savings</small></article><article class="card"><h3>Checking</h3><strong class="balance" data-checking></strong><p>Available balance</p></article><article class="card"><h3>Savings</h3><strong class="balance" data-savings></strong><p>Interest-bearing reserve</p></article></div><div class="grid cols-2"><section class="card"><h2>Quick actions</h2><div class="actions"><a class="btn primary" href="transfer.html">Send money</a><a class="btn secondary" href="cards.html">Manage card</a><a class="btn outline" href="statements.html">Download statement</a></div></section><section class="card"><h2>Security</h2><p>Two-factor authentication is enabled. Last sign-in: Today at 9:42 AM.</p><span class="badge ok">Protected</span></section></div><section class="card"><h2>Recent activity</h2><table class="table"><thead><tr><th>Date</th><th>Description</th><th>Account</th><th>Amount</th><th>Status</th></tr></thead><tbody id="transactions"></tbody></table></section></section></main></div><script src="assets/js/bank.js"></script></body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customer Dashboard | Global Banking Empowerment</title>
+  <link rel="stylesheet" href="assets/css/bank.css">
+</head>
+<body data-role="user">
+  <div class="shell customer-shell">
+    <aside class="sidebar customer-sidebar">
+      <a class="brand" href="dashboard.html"><span class="logo">GBE</span><span>Global Banking Empowerment</span></a>
+      <nav class="nav">
+        <a class="active" href="dashboard.html">Overview <span>01</span></a>
+        <a href="transfer.html">Move Money <span>02</span></a>
+        <a href="cards.html">Cards <span>03</span></a>
+        <a href="statements.html">Statements <span>04</span></a>
+        <a href="support.html">Support <span>05</span></a>
+        <a href="profile.html">Profile <span>06</span></a>
+      </nav>
+    </aside>
+    <main class="main">
+      <header class="topbar"><strong>Online Banking</strong><span><span data-user-name></span> <button class="btn outline" type="button" onclick="bank.logout()">Sign out</button></span></header>
+      <section class="page grid banking-workspace">
+        <section class="customer-hero">
+          <div>
+            <p class="kicker">Primary relationship</p>
+            <h1>Good afternoon, <span data-user-name></span></h1>
+            <p>Here is your full financial picture, recent account movement, and direct access to support.</p>
+          </div>
+          <div class="hero-actions"><a class="btn primary" href="transfer.html">Send money</a><a class="btn secondary" href="support.html">Message support</a></div>
+        </section>
+        <section class="grid cols-4">
+          <article class="metric"><span>Total balance</span><strong data-total></strong><small>Across checking and savings</small></article>
+          <article class="metric"><span>Checking</span><strong data-checking></strong><small>Available now</small></article>
+          <article class="metric"><span>Savings</span><strong data-savings></strong><small>Emergency reserve</small></article>
+          <article class="metric"><span>Account status</span><strong>Active</strong><small>Protected by 2-step security</small></article>
+        </section>
+        <section class="dashboard-layout">
+          <div class="grid">
+            <article class="card account-card premium-card"><span>Global Banking Empowerment Debit</span><div class="balance">**** **** **** <span data-card></span></div><small><span data-user-name></span> · Account <span data-account></span></small></article>
+            <section class="card"><h2>Recent activity</h2><table class="table"><thead><tr><th>Date</th><th>Description</th><th>Account</th><th>Amount</th><th>Status</th></tr></thead><tbody id="transactions"></tbody></table></section>
+          </div>
+          <aside class="grid">
+            <section class="card"><h2>Upcoming</h2><ul class="insight-list"><li><strong>Mortgage</strong><span>$2,180.45 due Jul 28</span></li><li><strong>Card autopay</strong><span>$486.22 due Aug 2</span></li><li><strong>Savings goal</strong><span>82% funded</span></li></ul></section>
+            <section class="card support-card"><h2>Customer care</h2><div class="mini-thread"><p><strong>Maya, Support</strong></p><p>Your wire question is in review. Send us a secure message if you need a same-day callback.</p></div><a class="btn primary" href="support.html">Open conversation</a></section>
+            <section class="card"><h2>Security center</h2><p>No unusual sign-ins detected. Travel notices and card controls are available from the Cards page.</p><span class="badge ok">Secure</span></section>
+          </aside>
+        </section>
+      </section>
+    </main>
+  </div>
+  <script src="assets/js/user.js"></script>
+</body>
 </html>
-
