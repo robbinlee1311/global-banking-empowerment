@@ -53,8 +53,6 @@ jobs:
 
       - name: Show lint versions
         run: |
-          set +e
-
           echo "===== STYLELINT VERSION ====="
           npx stylelint --version
 
@@ -69,22 +67,24 @@ jobs:
           npm ls stylelint-config-twbs-bootstrap || true
           npm ls @stylistic/stylelint-plugin || true
 
-          set -e
-
       - name: Run Stylelint diagnostics
         run: |
-          echo "===== REMOVE CACHE ====="
+          echo "===== REMOVE STYLELINT CACHE ====="
           rm -rf .cache
 
-          echo "===== RUN STYLELINT (NO CACHE) ====="
-          npx stylelint "src/scss/**/*.scss" --formatter verbose
+          echo "===== RUN STYLELINT WITHOUT CACHE ====="
+          npx stylelint "src/scss/**/*.scss" --formatter verbose --no-cache
 
-          echo "===== RUN CSS-LINT SCRIPT ====="
-          npm run css-lint
+      - name: Run CSS lint
+        run: |
+          echo "===== REMOVE STYLELINT CACHE AGAIN ====="
+          rm -rf .cache
+
+          echo "===== RUN CSS LINT WITHOUT CACHE ====="
+          npx stylelint "src/scss/**/*.scss" --rd --no-cache
 
       - name: Run full lint
         run: |
           npm run lockfile-lint
-          npm run css-lint
           npm run docs-lint
           npm run js-lint
