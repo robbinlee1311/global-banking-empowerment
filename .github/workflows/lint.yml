@@ -24,6 +24,24 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Debug checkout
+        run: |
+          echo "===== COMMIT ====="
+          git rev-parse HEAD
+
+          echo "===== STATUS ====="
+          git status
+
+          echo "===== FILE LENGTHS ====="
+          wc -l src/scss/_app-sidebar.scss
+          wc -l src/scss/_compact-mode.scss
+
+          echo "===== LAST 10 LINES OF _app-sidebar.scss ====="
+          tail -n 10 src/scss/_app-sidebar.scss
+
+          echo "===== LAST 10 LINES OF _compact-mode.scss ====="
+          tail -n 10 src/scss/_compact-mode.scss
+
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
