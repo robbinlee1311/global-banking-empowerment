@@ -51,5 +51,32 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      - name: Run lint
+      - name: Show lint versions
+        run: |
+          echo "===== STYLELINT VERSION ====="
+          npx stylelint --version
+
+          echo "===== NODE ====="
+          node --version
+
+          echo "===== NPM ====="
+          npm --version
+
+          echo "===== PACKAGE TREE ====="
+          npm ls stylelint
+          npm ls stylelint-config-twbs-bootstrap
+          npm ls @stylistic/stylelint-plugin
+
+      - name: Run Stylelint diagnostics
+        run: |
+          echo "===== REMOVE CACHE ====="
+          rm -rf .cache
+
+          echo "===== RUN STYLELINT (NO CACHE) ====="
+          npx stylelint "src/scss/**/*.scss" --formatter verbose
+
+          echo "===== RUN CSS-LINT SCRIPT ====="
+          npm run css-lint
+
+      - name: Run full lint
         run: npm run lint
