@@ -19,4 +19,3 @@ declare class FullScreen extends BaseComponent {
     toggleFullScreen(): void;
 }
 export default FullScreen;
-

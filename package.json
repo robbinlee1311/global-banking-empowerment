@@ -1,10 +1,10 @@
 {
-  "name": "admin-lte",
-  "description": "Responsive open source admin dashboard and control panel.",
+  "name": "global-banking-empowerment",
+  "description": "Global Banking Empowerment Bootstrap 5 admin dashboard and control panel.",
   "version": "4.1.0",
   "type": "module",
   "license": "MIT",
-  "author": "Colorlib <https://colorlib.com>",
+  "author": "robbinlee1311",
   "main": "dist/js/adminlte.min.js",
   "module": "dist/js/adminlte.esm.js",
   "types": "dist/js/types/adminlte.d.ts",
@@ -30,13 +30,13 @@
     "ACCESSIBILITY-COMPLIANCE.md"
   ],
   "engines": {
-    "node": ">=20"
+    "node": "\u003e=20"
   },
   "scripts": {
     "start": "npm run dev",
     "dev": "npm-run-all --parallel watch docs-serve",
     "build": "npm-run-all clean compile",
-    "css": "npm-run-all css-compile css-prefix css-rtl css-minify",
+    "css": "npm-run-all css-compile css-prefix css-rtl css-minify css-brand",
     "css-compile": "sass --style expanded --load-path=\"node_modules\" --source-map --embed-sources --no-error-css --quiet-deps --silence-deprecation=import src/scss/:dist/css/",
     "css-rtl": "cross-env NODE_ENV=RTL postcss --config src/config/postcss.config.mjs --dir \"dist/css\" --ext \".rtl.css\" \"dist/css/*.css\" \"!dist/css/*.min.css\" \"!dist/css/*.rtl.css\"",
     "css-lint": "stylelint \"src/scss/**/*.scss\" --cache --cache-location .cache/.stylelintcache --rd",
@@ -53,12 +53,12 @@
     "js-minify-esm": "terser --compress passes=2 --module --mangle --comments \"/^!/\" --source-map \"content=dist/js/adminlte.esm.js.map,includeSources,url=adminlte.esm.min.js.map\" --output dist/js/adminlte.esm.min.js dist/js/adminlte.esm.js",
     "bundlewatch": "bundlewatch --config .bundlewatch.config.json",
     "lockfile-lint": "lockfile-lint --allowed-hosts npm --allowed-schemes https: --empty-hostname false --type npm --path package-lock.json",
-    "docs-compile": "npm run copy-assets && astro --config src/config/astro.config.mjs build",
+    "docs-compile": "npm run copy-assets \u0026\u0026 astro --config src/config/astro.config.mjs build",
     "docs-lint": "astro --config src/config/astro.config.mjs check",
     "docs-format": "prettier --write \"dist/**/*.html\"",
-    "docs-serve": "npm run copy-assets && astro --config src/config/astro.config.mjs dev --open --port 3000",
-    "copy-assets": "rimraf src/html/public && shx mkdir -p src/html/public && shx cp -r dist/css dist/js dist/assets src/html/public/",
-    "flatten-build": "shx cp -r dist/html/* dist/ && shx rm -rf dist/html && shx rm -rf dist/.astro && shx mkdir -p dist/docs && shx mv dist/docs.html dist/docs/index.html",
+    "docs-serve": "npm run copy-assets \u0026\u0026 astro --config src/config/astro.config.mjs dev --open --port 3000",
+    "copy-assets": "rimraf src/html/public \u0026\u0026 shx mkdir -p src/html/public \u0026\u0026 shx cp -r dist/css dist/js dist/assets src/html/public/",
+    "flatten-build": "shx cp -r dist/html/* dist/ \u0026\u0026 shx rm -rf dist/html \u0026\u0026 shx rm -rf dist/.astro \u0026\u0026 shx mkdir -p dist/docs \u0026\u0026 shx mv dist/docs.html dist/docs/index.html",
     "assets": "node src/config/assets.config.mjs",
     "version": "node src/config/sync-version.mjs",
     "test": "vitest run",
@@ -72,7 +72,8 @@
     "watch-css-main": "nodemon --watch src/scss/ --ext scss --exec \"npm-run-all css-lint css-compile css-prefix copy-assets\"",
     "watch-css-dist": "nodemon --watch dist/css/ --ext css --ignore \"dist/css/*.rtl.*\" --exec \"npm run css-rtl\"",
     "watch-js-main": "nodemon --watch src/ts/ --ext ts --exec \"npm-run-all js-lint js-compile copy-assets\"",
-    "watch-assets": "nodemon --watch src/assets/ --exec \"npm run assets\""
+    "watch-assets": "nodemon --watch src/assets/ --exec \"npm run assets\"",
+    "css-brand": "shx cp \"dist/css/adminlte.css\" \"dist/css/GlobalBankingEmpowerment.css\" \u0026\u0026 shx cp \"dist/css/adminlte.min.css\" \"dist/css/GlobalBankingEmpowerment.min.css\" \u0026\u0026 shx cp \"dist/css/adminlte.rtl.css\" \"dist/css/GlobalBankingEmpowerment.rtl.css\" \u0026\u0026 shx cp \"dist/css/adminlte.rtl.min.css\" \"dist/css/GlobalBankingEmpowerment.rtl.min.css\" \u0026\u0026 shx cp \"dist/css/adminlte-docs.css\" \"dist/css/GlobalBankingEmpowerment-docs.css\" \u0026\u0026 shx cp \"dist/css/adminlte-docs.min.css\" \"dist/css/GlobalBankingEmpowerment-docs.min.css\" \u0026\u0026 shx cp \"dist/css/adminlte-docs.rtl.css\" \"dist/css/GlobalBankingEmpowerment-docs.rtl.css\" \u0026\u0026 shx cp \"dist/css/adminlte-docs.rtl.min.css\" \"dist/css/GlobalBankingEmpowerment-docs.rtl.min.css\""
   },
   "keywords": [
     "css",
@@ -85,15 +86,15 @@
     "control-panel",
     "dashboard"
   ],
-  "homepage": "https://adminlte.io",
+  "homepage": "https://robbinlee1311.github.io/global-banking-empowerment/",
   "style": "dist/css/adminlte.css",
   "sass": "src/scss/adminlte.scss",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ColorlibHQ/AdminLTE.git"
+    "url": "git+https://github.com/robbinlee1311/global-banking-empowerment.git"
   },
   "bugs": {
-    "url": "https://github.com/ColorlibHQ/AdminLTE/issues"
+    "url": "https://github.com/robbinlee1311/global-banking-empowerment/issues"
   },
   "peerDependencies": {
     "bootstrap": "^5.3.8"
@@ -147,4 +148,3 @@
     "vitest": "^4.1.9"
   }
 }
-

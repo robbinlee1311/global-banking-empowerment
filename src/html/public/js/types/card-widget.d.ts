@@ -28,4 +28,3 @@ declare class CardWidget extends BaseComponent {
     toggleMaximize(): void;
 }
 export default CardWidget;
-

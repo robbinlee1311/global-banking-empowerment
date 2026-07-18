@@ -17,4 +17,3 @@ declare class Layout {
     holdTransition(time?: number): void;
 }
 export default Layout;
-

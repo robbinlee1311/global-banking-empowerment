@@ -1,4 +1,4 @@
-Global Banking Employment is a static HTML/CSS/JS template — there's nothing exotic about deploying it. But there are a handful of choices that meaningfully change page weight, time-to-interactive, and CDN reliability. This page documents the ones worth getting right.
+Global Banking Empowerment is a static HTML/CSS/JS template — there's nothing exotic about deploying it. But there are a handful of choices that meaningfully change page weight, time-to-interactive, and CDN reliability. This page documents the ones worth getting right.
 
 ##### What to deploy
 
@@ -7,27 +7,27 @@ The deployable artefact is everything under `dist/` plus your own HTML / server-
 ```text
 dist/
 ├── css/                ← stylesheets (LTR + RTL, dev + minified)
-│   ├── Global Banking Employment.css
-│   ├── Global Banking Employment.min.css
-│   ├── Global Banking Employment.rtl.css
-│   └── Global Banking Employment.rtl.min.css
+│   ├── GlobalBankingEmpowerment.css
+│   ├── GlobalBankingEmpowerment.min.css
+│   ├── GlobalBankingEmpowerment.rtl.css
+│   └── GlobalBankingEmpowerment.rtl.min.css
 ├── js/                 ← JavaScript bundle (dev + minified)
-│   ├── Global Banking Employment.js
-│   └── Global Banking Employment.min.js
+│   ├── adminlte.js
+│   └── adminlte.min.js
 └── assets/             ← demo images / fonts (replace with your own)
 ```
 
-You don't ship `src/`, `node_modules/`, or the demo HTML if you're embedding Global Banking Employment into your own app.
+You don't ship `src/`, `node_modules/`, or the demo HTML if you're embedding Global Banking Empowerment into your own app.
 
 ##### Always use the `.min` variants in production
 
-The minified builds are the same code with whitespace stripped and identifiers shortened. For `Global Banking Employment.css` the saving is roughly 15-20%; for `Global Banking Employment.js` it's bigger (about 30% after gzip). The non-minified files are useful in development for readable source-map debugging — never serve them to users.
+The minified builds are the same code with whitespace stripped and identifiers shortened. For `GlobalBankingEmpowerment.css` the saving is roughly 15-20%; for `adminlte.js` it's bigger (about 30% after gzip). The non-minified files are useful in development for readable source-map debugging — never serve them to users.
 
 | Asset | Dev | Production |
 |---|---|---|
-| Stylesheet | `dist/css/Global Banking Employment.css` | **`dist/css/Global Banking Employment.min.css`** |
-| Script | `dist/js/Global Banking Employment.js` | **`dist/js/Global Banking Employment.min.js`** |
-| RTL stylesheet | `dist/css/Global Banking Employment.rtl.css` | **`dist/css/Global Banking Employment.rtl.min.css`** |
+| Stylesheet | `dist/css/GlobalBankingEmpowerment.css` | **`dist/css/GlobalBankingEmpowerment.min.css`** |
+| Script | `dist/js/adminlte.js` | **`dist/js/adminlte.min.js`** |
+| RTL stylesheet | `dist/css/GlobalBankingEmpowerment.rtl.css` | **`dist/css/GlobalBankingEmpowerment.rtl.min.css`** |
 
 ##### Compression at the edge
 
@@ -49,29 +49,29 @@ Cloudflare, Vercel, Netlify, and most managed hosting do this automatically. Ver
 
 ##### Cache headers
 
-The dist artefacts have content hashes in their filenames *only if you wire it up via your bundler* — Global Banking Employment itself ships fixed filenames. Two reasonable strategies:
+The dist artefacts have content hashes in their filenames *only if you wire it up via your bundler* — Global Banking Empowerment itself ships fixed filenames. Two reasonable strategies:
 
 1. **Short cache + version query string** (simple, works without a build pipeline):
 
    ```html
-   <link rel="stylesheet" href="/dist/css/Global Banking Employment.min.css?v=4.0.0" />
-   <script src="/dist/js/Global Banking Employment.min.js?v=4.0.0"></script>
+   <link rel="stylesheet" href="/dist/css/GlobalBankingEmpowerment.min.css?v=4.0.0" />
+   <script src="/dist/js/adminlte.min.js?v=4.0.0"></script>
    ```
 
    Set `Cache-Control: public, max-age=86400` (1 day) at the server. Bump `?v=` on every release to force cache invalidation.
 
 2. **Fingerprinted filenames** (production-grade, requires a bundler):
 
-   Let your bundler emit `Global Banking Employment.[hash].min.css` and reference that hash in your HTML. Set `Cache-Control: public, max-age=31536000, immutable` (1 year). This is what Vite/Webpack/Rollup do by default if you import Global Banking Employment through them.
+   Let your bundler emit `Global Banking Empowerment.[hash].min.css` and reference that hash in your HTML. Set `Cache-Control: public, max-age=31536000, immutable` (1 year). This is what Vite/Webpack/Rollup do by default if you import Global Banking Empowerment through them.
 
 ##### CDN integrity hashes
 
-If you load Global Banking Employment from a public CDN (jsDelivr, unpkg), include a Subresource Integrity (SRI) hash so a compromised CDN can't serve malicious JavaScript silently:
+If you load Global Banking Empowerment from a public CDN (jsDelivr, unpkg), include a Subresource Integrity (SRI) hash so a compromised CDN can't serve malicious JavaScript silently:
 
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0/dist/css/Global Banking Employment.min.css"
+  href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0/dist/css/GlobalBankingEmpowerment.min.css"
   integrity="sha384-PASTE_THE_HASH_HERE"
   crossorigin="anonymous"
 />
@@ -82,7 +82,7 @@ You can get the hash from the [jsDelivr file detail page](https://www.jsdelivr.c
 For private-hosted assets, generate the hash yourself:
 
 ```bash
-openssl dgst -sha384 -binary dist/css/Global Banking Employment.min.css | openssl base64 -A
+openssl dgst -sha384 -binary dist/css/GlobalBankingEmpowerment.min.css | openssl base64 -A
 ```
 
 ##### Loading order matters
@@ -97,8 +97,8 @@ Get the script order right or things break silently:
   <!-- 2. OverlayScrollbars (optional, for the sidebar scroller) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css" />
 
-  <!-- 3. Global Banking Employment — includes Bootstrap CSS via its imports -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0/dist/css/Global Banking Employment.min.css" />
+  <!-- 3. Global Banking Empowerment — includes Bootstrap CSS via its imports -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0/dist/css/GlobalBankingEmpowerment.min.css" />
 </head>
 
 <body>
@@ -114,24 +114,24 @@ Get the script order right or things break silently:
   <!-- 6. OverlayScrollbars -->
   <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"></script>
 
-  <!-- 7. Global Banking Employment — must load AFTER Bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0/dist/js/Global Banking Employment.min.js"></script>
+  <!-- 7. Global Banking Empowerment — must load AFTER Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0/dist/js/adminlte.min.js"></script>
 </body>
 ```
 
 ##### Defer or async?
 
-The Global Banking Employment bundle waits for `DOMContentLoaded` before wiring its data API, so `defer` is safe and recommended:
+The Global Banking Empowerment bundle waits for `DOMContentLoaded` before wiring its data API, so `defer` is safe and recommended:
 
 ```html
-<script defer src="/dist/js/Global Banking Employment.min.js"></script>
+<script defer src="/dist/js/adminlte.min.js"></script>
 ```
 
 Don't use `async` — the script could execute before its dependencies (Bootstrap, Popper) have parsed, and listeners would attach to elements that don't exist yet.
 
 ##### Critical CSS
 
-For sub-1-second first paint, inline the styles that the above-the-fold layout uses (header + brand + first visible content) and load the rest of `Global Banking Employment.min.css` asynchronously:
+For sub-1-second first paint, inline the styles that the above-the-fold layout uses (header + brand + first visible content) and load the rest of `GlobalBankingEmpowerment.min.css` asynchronously:
 
 ```html
 <style>/* extracted critical CSS for /dashboard */</style>
@@ -139,10 +139,10 @@ For sub-1-second first paint, inline the styles that the above-the-fold layout u
 <link
   rel="preload"
   as="style"
-  href="/dist/css/Global Banking Employment.min.css"
+  href="/dist/css/GlobalBankingEmpowerment.min.css"
   onload="this.onload=null;this.rel='stylesheet'"
 />
-<noscript><link rel="stylesheet" href="/dist/css/Global Banking Employment.min.css" /></noscript>
+<noscript><link rel="stylesheet" href="/dist/css/GlobalBankingEmpowerment.min.css" /></noscript>
 ```
 
 Extract critical CSS with a tool like [Critters](https://github.com/GoogleChromeLabs/critters) or [Penthouse](https://github.com/pocketjoso/penthouse) as part of your build. For dashboards behind a login (where first-load speed matters less than for marketing pages), this is usually overkill.
@@ -152,7 +152,7 @@ Extract critical CSS with a tool like [Critters](https://github.com/GoogleChrome
 Push critical resources to the browser before it discovers them in the HTML:
 
 ```html
-<link rel="preload" as="style" href="/dist/css/Global Banking Employment.min.css" />
+<link rel="preload" as="style" href="/dist/css/GlobalBankingEmpowerment.min.css" />
 <link rel="preload" as="font" href="/fonts/source-sans-3.woff2" type="font/woff2" crossorigin />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 ```
@@ -161,7 +161,7 @@ Only preload what's used on every page. Preloading per-route assets in a shared 
 
 ##### Lazy-loading sub-pages
 
-If your dashboard has many routes and the JS is server-rendered HTML per route, prefer per-route CSS imports rather than one mega-stylesheet. Global Banking Employment's core CSS is small (~44KB gzipped) but page-specific styles (charts, calendars, tables) can add up — only load them where they're used.
+If your dashboard has many routes and the JS is server-rendered HTML per route, prefer per-route CSS imports rather than one mega-stylesheet. Global Banking Empowerment's core CSS is small (~44KB gzipped) but page-specific styles (charts, calendars, tables) can add up — only load them where they're used.
 
 For SPAs, code-split heavy integrations:
 
@@ -176,22 +176,22 @@ The current published `dist/` artefacts gzip to:
 
 | Asset | Size (gzip) |
 |---|---|
-| `Global Banking Employment.min.css` | ~40 KB |
-| `Global Banking Employment.rtl.min.css` | ~40 KB |
-| `Global Banking Employment.min.js` | ~5 KB |
+| `GlobalBankingEmpowerment.min.css` | ~40 KB |
+| `GlobalBankingEmpowerment.rtl.min.css` | ~40 KB |
+| `adminlte.min.js` | ~5 KB |
 
-The full first-page payload (HTML + Bootstrap + Global Banking Employment + Bootstrap Icons + Popper + OverlayScrollbars) is around **180 KB gzipped** when loaded from CDN. The CI build enforces a `bundlewatch` check that fails if any asset crosses its budget.
+The full first-page payload (HTML + Bootstrap + Global Banking Empowerment + Bootstrap Icons + Popper + OverlayScrollbars) is around **180 KB gzipped** when loaded from CDN. The CI build enforces a `bundlewatch` check that fails if any asset crosses its budget.
 
 ##### Service workers / offline support
 
-Global Banking Employment is just static files — caching them in a service worker works without changes. A minimal Workbox config:
+Global Banking Empowerment is just static files — caching them in a service worker works without changes. A minimal Workbox config:
 
 ```js
 import { precacheAndRoute } from "workbox-precaching"
 
 precacheAndRoute([
-  { url: "/dist/css/Global Banking Employment.min.css", revision: "4.0.0" },
-  { url: "/dist/js/Global Banking Employment.min.js", revision: "4.0.0" },
+  { url: "/dist/css/GlobalBankingEmpowerment.min.css", revision: "4.0.0" },
+  { url: "/dist/js/adminlte.min.js", revision: "4.0.0" },
   // ...your own pages
 ])
 ```
@@ -221,5 +221,5 @@ Cloudflare's default Browser Cache TTL is 4 hours. If you push a new release and
 ##### Where to next
 
 - [Customization](customization.html) — change colours, sidebar width, breakpoints before you deploy
-- [Recommended Integrations](integrations.html) — pick lightweight libraries for the things Global Banking Employment doesn't bundle
+- [Recommended Integrations](integrations.html) — pick lightweight libraries for the things Global Banking Empowerment doesn't bundle
 - [Accessibility](javascript/accessibility.html) — make sure your deployed pages keep their a11y guarantees

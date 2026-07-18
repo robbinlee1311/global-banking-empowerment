@@ -1,6 +1,6 @@
 /*!
- * AdminLTE v4.1.0 (https://adminlte.io)
- * Copyright 2014-2026 Colorlib <https://colorlib.com>
+ * AdminLTE v4.1.0 (https://robbinlee1311.github.io/global-banking-empowerment/)
+ * Copyright 2014-2026 robbinlee1311
  * Licensed under MIT (https://github.com/ColorlibHQ/AdminLTE/blob/master/LICENSE)
  */
 (function (global, factory) {
@@ -1378,4 +1378,3 @@
 
 }));
 //# sourceMappingURL=adminlte.js.map
-

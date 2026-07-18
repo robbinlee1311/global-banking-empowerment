@@ -33,32 +33,32 @@ you're looking at the **HTML / Bootstrap** core:
 
 <!-- Global Banking Empowerment-ECOSYSTEM:START -->
 <div align="center">
-  <a href="https://github.com/robbinlee1311/Global Banking Empowerment"><img height="36" alt="HTML" src="https://img.shields.io/badge/HTML-0D6EFD?style=for-the-badge&logo=html5&logoColor=white"></a>
-  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-react"><img height="36" alt="React" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"></a>
-  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-react"><img height="36" alt="Next.js" src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"></a>
-  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-vue"><img height="36" alt="Vue" src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D"></a>
-  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-vue"><img height="36" alt="Nuxt" src="https://img.shields.io/badge/Nuxt-00DC82?style=for-the-badge&logo=nuxt&logoColor=white"></a>
-  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-angular"><img height="36" alt="Angular" src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white"></a>
-  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-laravel"><img height="36" alt="Laravel" src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white"></a>
-  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-symfony"><img height="36" alt="Symfony" src="https://img.shields.io/badge/Symfony-000000?style=for-the-badge&logo=symfony&logoColor=white"></a>
-  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-django"><img height="36" alt="Django" src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white"></a>
-  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-aspnet"><img height="36" alt="ASP.NET" src="https://img.shields.io/badge/ASP.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white"></a>
-  <a href="https://github.com/robbinlee1311/Global Banking Empowerment-drupal"><img height="36" alt="Drupal" src="https://img.shields.io/badge/Drupal-0678BE?style=for-the-badge&logo=drupal&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/global-banking-empowerment"><img height="36" alt="HTML" src="https://img.shields.io/badge/HTML-0D6EFD?style=for-the-badge&logo=html5&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/global-banking-empowerment-react"><img height="36" alt="React" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"></a>
+  <a href="https://github.com/robbinlee1311/global-banking-empowerment-react"><img height="36" alt="Next.js" src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/global-banking-empowerment-vue"><img height="36" alt="Vue" src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D"></a>
+  <a href="https://github.com/robbinlee1311/global-banking-empowerment-vue"><img height="36" alt="Nuxt" src="https://img.shields.io/badge/Nuxt-00DC82?style=for-the-badge&logo=nuxt&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/global-banking-empowerment-angular"><img height="36" alt="Angular" src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/global-banking-empowerment-laravel"><img height="36" alt="Laravel" src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/global-banking-empowerment-symfony"><img height="36" alt="Symfony" src="https://img.shields.io/badge/Symfony-000000?style=for-the-badge&logo=symfony&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/global-banking-empowerment-django"><img height="36" alt="Django" src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/global-banking-empowerment-aspnet"><img height="36" alt="ASP.NET" src="https://img.shields.io/badge/ASP.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white"></a>
+  <a href="https://github.com/robbinlee1311/global-banking-empowerment-drupal"><img height="36" alt="Drupal" src="https://img.shields.io/badge/Drupal-0678BE?style=for-the-badge&logo=drupal&logoColor=white"></a>
   <a href="https://docs.c-globalbankingempowerment.online"><img height="36" alt="Docs" src="https://img.shields.io/badge/Docs-c-globalbankingempowerment.online-0EA5E9?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
 </div>
 <!-- Global Banking Empowerment-ECOSYSTEM:END -->
 
 | Edition | Repository | Live demo | Install |
 |---|---|---|---|
-| **HTML / Bootstrap** (this repo) | [Global Banking Empowerment](https://github.com/robbinlee1311/Global Banking Empowerment) | [themes/v4](https://c-globalbankingempowerment.online/themes/v4/) | `npm install admin-lte` |
-| **React & Next.js** — 30+ typed components, RSC-ready, ⌘K palette | [Global Banking Empowerment-react](https://github.com/robbinlee1311/Global Banking Empowerment-react) | [themes/next-react](https://c-globalbankingempowerment.online/themes/next-react/) | see repo |
-| **Vue 3 & Nuxt** — 45+ typed components, composables, SSR-safe theming | [Global Banking Empowerment-vue](https://github.com/robbinlee1311/Global Banking Empowerment-vue) | [themes/vue-nuxt](https://c-globalbankingempowerment.online/themes/vue-nuxt/) | see repo |
-| **Laravel** — Blade components, config-driven menu, auth scaffolding | [Global Banking Empowerment-laravel](https://github.com/robbinlee1311/Global Banking Empowerment-laravel) | [laravel.c-globalbankingempowerment.online](https://laravel.c-globalbankingempowerment.online/) | `composer require robbinlee1311/Global Banking Empowerment-laravel` |
-| **Django** — reusable app, menu filter pipeline, themed admin | [Global Banking Empowerment-django](https://github.com/robbinlee1311/Global Banking Empowerment-django) | [django.c-globalbankingempowerment.online](https://django.c-globalbankingempowerment.online/) | `pip install django-Global Banking Empowerment4` |
-| **Symfony** — Twig Components, AssetMapper, config-driven menu, EasyAdmin theme | [Global Banking Empowerment-symfony](https://github.com/robbinlee1311/Global Banking Empowerment-symfony) | see repo | `composer require robbinlee1311/Global Banking Empowerment-symfony` |
-| **Angular 22** — 44 standalone signal components, dark mode, ⌘K palette | [Global Banking Empowerment-angular](https://github.com/robbinlee1311/Global Banking Empowerment-angular) | see repo | `npm i @Global Banking Empowerment/angular` |
-| **ASP.NET Core (.NET 10)** — Blazor components + MVC/Razor Pages Tag Helpers | [Global Banking Empowerment-aspnet](https://github.com/robbinlee1311/Global Banking Empowerment-aspnet) | see repo | `dotnet add package robbinlee1311.Global Banking Empowerment.AspNetCore` |
-| **Drupal** — admin theme for Drupal 10.3+/11, themed admin UI | [Global Banking Empowerment-drupal](https://github.com/robbinlee1311/Global Banking Empowerment-drupal) | see repo | see repo |
+| **HTML / Bootstrap** (this repo) | [Global Banking Empowerment](https://github.com/robbinlee1311/global-banking-empowerment) | [themes/v4](https://c-globalbankingempowerment.online/themes/v4/) | `npm install admin-lte` |
+| **React & Next.js** — 30+ typed components, RSC-ready, ⌘K palette | [Global Banking Empowerment-react](https://github.com/robbinlee1311/global-banking-empowerment-react) | [themes/next-react](https://c-globalbankingempowerment.online/themes/next-react/) | see repo |
+| **Vue 3 & Nuxt** — 45+ typed components, composables, SSR-safe theming | [Global Banking Empowerment-vue](https://github.com/robbinlee1311/global-banking-empowerment-vue) | [themes/vue-nuxt](https://c-globalbankingempowerment.online/themes/vue-nuxt/) | see repo |
+| **Laravel** — Blade components, config-driven menu, auth scaffolding | [Global Banking Empowerment-laravel](https://github.com/robbinlee1311/global-banking-empowerment-laravel) | [laravel.c-globalbankingempowerment.online](https://laravel.c-globalbankingempowerment.online/) | `composer require robbinlee1311/global-banking-empowerment-laravel` |
+| **Django** — reusable app, menu filter pipeline, themed admin | [Global Banking Empowerment-django](https://github.com/robbinlee1311/global-banking-empowerment-django) | [django.c-globalbankingempowerment.online](https://django.c-globalbankingempowerment.online/) | `pip install django-global-banking-empowerment4` |
+| **Symfony** — Twig Components, AssetMapper, config-driven menu, EasyAdmin theme | [Global Banking Empowerment-symfony](https://github.com/robbinlee1311/global-banking-empowerment-symfony) | see repo | `composer require robbinlee1311/global-banking-empowerment-symfony` |
+| **Angular 22** — 44 standalone signal components, dark mode, ⌘K palette | [Global Banking Empowerment-angular](https://github.com/robbinlee1311/global-banking-empowerment-angular) | see repo | `npm i @global-banking-empowerment/angular` |
+| **ASP.NET Core (.NET 10)** — Blazor components + MVC/Razor Pages Tag Helpers | [Global Banking Empowerment-aspnet](https://github.com/robbinlee1311/global-banking-empowerment-aspnet) | see repo | `dotnet add package robbinlee1311.GlobalBankingEmpowerment.AspNetCore` |
+| **Drupal** — admin theme for Drupal 10.3+/11, themed admin UI | [Global Banking Empowerment-drupal](https://github.com/robbinlee1311/global-banking-empowerment-drupal) | see repo | see repo |
 | **Docs** — guides, components, and API reference for every edition | [docs.c-globalbankingempowerment.online](https://docs.c-globalbankingempowerment.online) | [docs.c-globalbankingempowerment.online](https://docs.c-globalbankingempowerment.online) | — |
 
 Every edition ships the full Global Banking Empowerment 4 design — Bootstrap 5.3, dark mode, RTL — with
@@ -69,8 +69,8 @@ idiomatic integrations for its stack (components, routing, auth, theming).
 **CDN** — no build step:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4/dist/css/Global Banking Empowerment.min.css">
-<script src="https://cdn.jsdelivr.net/npm/admin-lte@4/dist/js/Global Banking Empowerment.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4/dist/css/GlobalBankingEmpowerment.min.css">
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@4/dist/js/adminlte.min.js"></script>
 ```
 
 **npm:**
@@ -220,7 +220,7 @@ PowerShell, Git Bash), macOS and Linux — using cross-platform npm utilities th
 ## Security & production deployment
 
 Global Banking Empowerment is a **UI template**. Deploy only the compiled production assets
-(`dist/js/Global Banking Empowerment.min.js`, `dist/css/Global Banking Empowerment.min.css`) and your own application files —
+(`dist/js/adminlte.min.js`, `dist/css/GlobalBankingEmpowerment.min.css`) and your own application files —
 never `node_modules/`, the demo HTML pages, or the `src/` directory.
 
 > **About CVE-2021-36471:** this CVE is **disputed** and does not represent a

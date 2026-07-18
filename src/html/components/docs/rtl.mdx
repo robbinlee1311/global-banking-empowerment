@@ -1,14 +1,14 @@
-Global Banking Employment ships an RTL (right-to-left) stylesheet alongside the standard LTR one, generated from the same source via [`rtlcss`](https://rtlcss.com/). Use it for Arabic, Hebrew, Persian, Urdu, and any other right-to-left scripts.
+Global Banking Empowerment ships an RTL (right-to-left) stylesheet alongside the standard LTR one, generated from the same source via [`rtlcss`](https://rtlcss.com/). Use it for Arabic, Hebrew, Persian, Urdu, and any other right-to-left scripts.
 
 ##### The pre-built RTL stylesheet
 
 Every release publishes RTL variants of every CSS file:
 
 ```text
-dist/css/Global Banking Employment.css           ← LTR (default)
-dist/css/Global Banking Employment.rtl.css       ← RTL
-dist/css/Global Banking Employment.min.css
-dist/css/Global Banking Employment.rtl.min.css
+dist/css/GlobalBankingEmpowerment.css           ← LTR (default)
+dist/css/GlobalBankingEmpowerment.rtl.css       ← RTL
+dist/css/GlobalBankingEmpowerment.min.css
+dist/css/GlobalBankingEmpowerment.rtl.min.css
 ```
 
 To switch a page to RTL, swap the stylesheet and set `dir="rtl"` on the `<html>` element:
@@ -16,7 +16,7 @@ To switch a page to RTL, swap the stylesheet and set `dir="rtl"` on the `<html>`
 ```html
 <html lang="ar" dir="rtl">
   <head>
-    <link rel="stylesheet" href="dist/css/Global Banking Employment.rtl.min.css" />
+    <link rel="stylesheet" href="dist/css/GlobalBankingEmpowerment.rtl.min.css" />
   </head>
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <!-- ...same markup as LTR -->
@@ -43,11 +43,11 @@ If your app shows RTL content on an otherwise-LTR page (eg. an Arabic text block
 </body>
 ```
 
-Bootstrap and Global Banking Employment handle nested direction switches correctly — the inner element's direction is what counts.
+Bootstrap and Global Banking Empowerment handle nested direction switches correctly — the inner element's direction is what counts.
 
 ##### Building RTL yourself
 
-If you're building Global Banking Employment from source and you've modified the SCSS, regenerate the RTL CSS:
+If you're building Global Banking Empowerment from source and you've modified the SCSS, regenerate the RTL CSS:
 
 ```bash
 npm run css-compile     # builds LTR

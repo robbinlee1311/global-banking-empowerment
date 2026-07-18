@@ -34,4 +34,3 @@ declare const dispatchCustomEvent: <T = undefined>(element: Element, name: strin
     detail?: T;
 }) => CustomEvent<T | undefined>;
 export { BaseComponent, dispatchCustomEvent };
-

@@ -25,4 +25,3 @@ declare class Treeview extends BaseComponent {
     toggle(): void;
 }
 export default Treeview;
-

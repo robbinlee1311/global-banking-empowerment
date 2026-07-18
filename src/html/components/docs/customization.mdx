@@ -1,11 +1,11 @@
-Global Banking Employment inherits Bootstrap 5.3's CSS-custom-properties theming model and adds its own layer of SCSS variables on top. You can customize the look two ways:
+Global Banking Empowerment inherits Bootstrap 5.3's CSS-custom-properties theming model and adds its own layer of SCSS variables on top. You can customize the look two ways:
 
 1. **CSS custom properties** — quick, no build step, works on prebuilt CSS.
 2. **SCSS variables** — slower (requires a build), but lets you change anything including grid breakpoints and sidebar width.
 
 ##### Quick wins with CSS variables
 
-Bootstrap and Global Banking Employment expose dozens of CSS custom properties on `:root`. Override them in your own stylesheet to retheme without rebuilding:
+Bootstrap and Global Banking Empowerment expose dozens of CSS custom properties on `:root`. Override them in your own stylesheet to retheme without rebuilding:
 
 ```css
 :root,
@@ -21,7 +21,7 @@ Bootstrap and Global Banking Employment expose dozens of CSS custom properties o
 }
 ```
 
-Components built on `var(--bs-primary)` (most of Global Banking Employment's chrome) pick this up automatically.
+Components built on `var(--bs-primary)` (most of Global Banking Empowerment's chrome) pick this up automatically.
 
 ###### Common variables worth knowing
 
@@ -39,7 +39,7 @@ For the full list, see [Bootstrap CSS variables](https://getbootstrap.com/docs/5
 
 ##### SCSS variables
 
-If you're building from source (cloned the repo or installed via npm + your own bundler), edit [`src/scss/_variables.scss`](https://github.com/Global Banking EmploymentHQ/Global Banking Employment/blob/master/src/scss/_variables.scss) and recompile.
+If you're building from source (cloned the repo or installed via npm + your own bundler), edit [`src/scss/_variables.scss`](https://github.com/robbinlee1311/global-banking-empowerment/blob/master/src/scss/_variables.scss) and recompile.
 
 The most-overridden variables, with their defaults:
 
@@ -65,7 +65,7 @@ $lte-transition-speed:       .3s;
 $lte-transition-fn:          ease-in-out;
 ```
 
-Global Banking Employment changes about ten Bootstrap defaults in [`src/scss/_bootstrap-overrides.scss`](https://github.com/Global Banking EmploymentHQ/Global Banking Employment/blob/master/src/scss/_bootstrap-overrides.scss); every other Bootstrap variable (button colours, spacing scale, breakpoints) keeps its stock default. All values use `!default`, so override them in your own SCSS file *before* the import:
+Global Banking Empowerment changes about ten Bootstrap defaults in [`src/scss/_bootstrap-overrides.scss`](https://github.com/robbinlee1311/global-banking-empowerment/blob/master/src/scss/_bootstrap-overrides.scss); every other Bootstrap variable (button colours, spacing scale, breakpoints) keeps its stock default. All values use `!default`, so override them in your own SCSS file *before* the import:
 
 ```scss
 // my-theme.scss
@@ -75,8 +75,8 @@ $primary:                #6610f2;
 $lte-sidebar-width:      280px;
 $border-radius:          .25rem;
 
-// 2. Then import Global Banking Employment (which imports Bootstrap)
-@import "node_modules/admin-lte/src/scss/Global Banking Employment";
+// 2. Then import Global Banking Empowerment (which imports Bootstrap)
+@import "node_modules/admin-lte/src/scss/global-banking-empowerment";
 ```
 
 > **Note:** compiling the Sass source requires `bootstrap` to be installed —
@@ -96,11 +96,11 @@ npm run css           # one-off build → dist/css/
 npm run watch-css-main  # rebuild on save during development
 ```
 
-For a project that uses Global Banking Employment as a dependency, point your bundler at `node_modules/admin-lte/src/scss/Global Banking Employment.scss`. Examples:
+For a project that uses Global Banking Empowerment as a dependency, point your bundler at `node_modules/admin-lte/src/scss/global-banking-empowerment.scss`. Examples:
 
 ```js
 // Vite / Rollup / Webpack
-import "admin-lte/src/scss/Global Banking Employment.scss"
+import "admin-lte/src/scss/global-banking-empowerment.scss"
 ```
 
 ##### Custom sidebar branding
@@ -116,11 +116,11 @@ The `.sidebar-brand` element accepts text, an image, or both. Markup:
 </div>
 ```
 
-To swap the logo when the sidebar collapses to its mini state, Global Banking Employment provides a built-in pattern — see the [Logo Switch layout demo](../layout/logo-switch.html) for the markup.
+To swap the logo when the sidebar collapses to its mini state, Global Banking Empowerment provides a built-in pattern — see the [Logo Switch layout demo](../layout/logo-switch.html) for the markup.
 
 ##### Dark mode customization
 
-Global Banking Employment follows Bootstrap 5.3's `data-bs-theme` attribute system. To customize dark-mode colours, scope your variables under `[data-bs-theme="dark"]`:
+Global Banking Empowerment follows Bootstrap 5.3's `data-bs-theme` attribute system. To customize dark-mode colours, scope your variables under `[data-bs-theme="dark"]`:
 
 ```css
 [data-bs-theme="dark"] {
@@ -134,7 +134,7 @@ The [Color Mode](color-mode.html) page covers the toggle markup and JavaScript t
 
 ##### Custom sidebar colour scheme
 
-Global Banking Employment ships its sidebar styled for light mode, but the demos apply `data-bs-theme="dark"` on `.app-sidebar` to get the dark sidebar variant against a light page. You can mix and match:
+Global Banking Empowerment ships its sidebar styled for light mode, but the demos apply `data-bs-theme="dark"` on `.app-sidebar` to get the dark sidebar variant against a light page. You can mix and match:
 
 ```html
 <!-- Light page, dark sidebar (the demo pattern) -->
@@ -176,4 +176,4 @@ Add `.compact-mode` to `.app-wrapper` (or anywhere up the tree) to reduce paddin
 | Spacing scale | ❌ | ✅ |
 | Font sizes | partial | ✅ (full control) |
 
-Use CSS variables for everything you can — it survives Global Banking Employment upgrades without merge conflicts. Reserve SCSS overrides for structural changes (sidebar width, breakpoints) that CSS variables don't cover.
+Use CSS variables for everything you can — it survives Global Banking Empowerment upgrades without merge conflicts. Reserve SCSS overrides for structural changes (sidebar width, breakpoints) that CSS variables don't cover.
