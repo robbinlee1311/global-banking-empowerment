@@ -20,11 +20,12 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
 
-      - name: Debug checkout
+      - name: Verify GitHub checkout
         run: |
           echo "===== COMMIT ====="
           git rev-parse HEAD
@@ -32,18 +33,14 @@ jobs:
           echo "===== STATUS ====="
           git status
 
-          echo "===== FILE LENGTHS ====="
-          wc -l src/scss/_app-sidebar.scss
-          wc -l src/scss/_compact-mode.scss
+          echo "===== APP SIDEBAR LINE 615-630 ====="
+          nl -ba src/scss/_app-sidebar.scss | sed -n '615,630p'
 
-          echo "===== LAST 10 LINES OF _app-sidebar.scss ====="
-          tail -n 10 src/scss/_app-sidebar.scss
-
-          echo "===== LAST 10 LINES OF _compact-mode.scss ====="
-          tail -n 10 src/scss/_compact-mode.scss
+          echo "===== COMPACT MODE LINE 45-60 ====="
+          nl -ba src/scss/_compact-mode.scss | sed -n '45,60p'
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: "${{ env.NODE }}"
           cache: npm
@@ -67,21 +64,13 @@ jobs:
           npm ls stylelint-config-twbs-bootstrap || true
           npm ls @stylistic/stylelint-plugin || true
 
-      - name: Run Stylelint diagnostics
+      - name: Run Stylelint
         run: |
-          echo "===== REMOVE STYLELINT CACHE ====="
+          echo "===== REMOVE CACHE ====="
           rm -rf .cache
 
-          echo "===== RUN STYLELINT WITHOUT CACHE ====="
+          echo "===== RUN STYLELINT ====="
           npx stylelint "src/scss/**/*.scss" --formatter verbose --no-cache
-
-      - name: Run CSS lint
-        run: |
-          echo "===== REMOVE STYLELINT CACHE AGAIN ====="
-          rm -rf .cache
-
-          echo "===== RUN CSS LINT WITHOUT CACHE ====="
-          npx stylelint "src/scss/**/*.scss" --rd --no-cache
 
       - name: Run full lint
         run: |
