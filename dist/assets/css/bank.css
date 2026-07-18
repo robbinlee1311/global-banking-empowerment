@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --ink: #152233;
   --muted: #627084;
   --line: #d9e2ef;
@@ -69,4 +69,7 @@ textarea { min-height: 110px; resize: vertical; }
 .notice { padding: 12px 14px; border-radius: 8px; background: #e7f7f2; color: #075646; margin-bottom: 14px; display: none; }
 .notice.show { display: block; }
 .mobile-nav { display: none; }
-@media (max-width: 900px) { .shell { grid-template-columns: 1fr; } .sidebar { position: static; height: auto; } .nav { grid-template-columns: repeat(2, 1fr); } .topbar { position: static; padding: 0 16px; } .page { padding: 18px; } .grid.cols-2, .grid.cols-3, .grid.cols-4, .hero, .auth { grid-template-columns: 1fr; } .hero { padding-top: 24px; } .hero-media { min-height: 360px; } h1 { font-size: 34px; } }
+@media (max-width: 900px) { .shell { grid-template-columns: 1fr; } .sidebar { position: static; height: auto; } .nav { grid-template-columns: repeat(2, 1fr); } .topbar { position: static; padding: 0 16px; } .page { padding: 18px; } .grid.cols-2, .grid.cols-3, .grid.cols-4, .hero, .auth { grid-template-columns: 1fr; } .hero { padding-top: 24px; } .hero-media { min-height: 360px; } h1 { font-size: 34px; } }.badge.danger { background: #fee4e2; color: var(--danger); }
+.rule-list { display: grid; gap: 12px; padding: 0; margin: 0; list-style: none; }
+.rule-list li { border: 1px solid var(--line); border-radius: 8px; padding: 14px; background: #fff; }
+.role-pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 7px 11px; color: var(--muted); font-weight: 800; }
