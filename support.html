@@ -1,4 +1,79 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Support | Global Banking Empowerment</title><link rel="stylesheet" href="assets/css/bank.css"></head>
-<body data-role="user"><div class="shell customer-shell"><aside class="sidebar customer-sidebar"><a class="brand" href="dashboard.html"><span class="logo">GBE</span><span>Global Banking Empowerment</span></a><nav class="nav"><a href="dashboard.html">Overview</a><a href="transfer.html">Move Money</a><a href="cards.html">Cards</a><a href="statements.html">Statements</a><a class="active" href="support.html">Support</a><a href="profile.html">Profile</a></nav></aside><main class="main"><header class="topbar"><strong>Customer Care</strong><span><span data-user-name></span> <button class="btn outline" type="button" onclick="bank.logout()">Sign out</button></span></header><section class="page support-layout"><section class="card"><p class="kicker">Secure message center</p><h1>Talk with customer care</h1><p>Conversation is tied to account <strong data-account></strong>. Support can help with transfers, cards, statements, profile updates, and account access.</p><div id="notice" class="notice"></div><div id="support-thread" class="support-thread"><div class="bubble agent"><strong>Maya, Customer Care</strong><p>Hello <span data-user-name></span>, I can help review transfers, card questions, statement requests, or profile updates.</p><span>Today 9:34 AM</span></div><div class="bubble me"><strong>You</strong><p>I need help confirming my recent mortgage payment and card autopay.</p><span>Today 9:36 AM</span></div><div class="bubble agent"><strong>Maya, Customer Care</strong><p>Your mortgage payment shows completed. Card autopay is scheduled for Aug 2 and can be changed from Cards.</p><span>Today 9:39 AM</span></div></div><div class="message-box"><textarea id="support-message" placeholder="Write a secure message"></textarea><button class="btn primary" type="button" onclick="bank.sendSupportMessage()">Send message</button></div></section><aside class="grid"><section class="card"><h2>Support options</h2><ul class="insight-list"><li><strong>Secure message</strong><span>Usually replies within 15 minutes</span></li><li><strong>Callback</strong><span>Available for verified customers</span></li><li><strong>Dispute support</strong><span>Cards and transfers</span></li></ul></section><section class="card"><h2>Case status</h2><p>Case GBE-2048 is open for account service questions.</p><span class="badge warn">In review</span></section></aside></section></main></div><script src="assets/js/user.js"></script></body></html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Support | Global Banking Empowerment</title>
+    <link rel="stylesheet" href="assets/css/bank.css" />
+  </head>
+  <body data-role="user">
+    <div class="shell customer-shell">
+      <aside class="sidebar customer-sidebar">
+        <a class="brand" href="dashboard.html"
+          ><span class="logo">GBE</span><span>Global Banking Empowerment</span></a
+        >
+        <nav class="nav">
+          <a href="dashboard.html">Overview</a><a href="transfer.html">Move Money</a
+          ><a href="cards.html">Cards</a><a href="statements.html">Statements</a
+          ><a class="active" href="support.html">Support</a><a href="profile.html">Profile</a>
+        </nav>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <strong>Customer Care</strong
+          ><span
+            ><span data-user-name></span>
+            <button class="btn outline" type="button" onclick="bank.logout()">
+              Sign out
+            </button></span
+          >
+        </header>
+        <section class="page support-layout">
+          <section class="card">
+            <p class="kicker">Secure message center</p>
+            <h1>Talk with customer care</h1>
+            <p>
+              Conversation is tied to account <strong data-account></strong>. Support can help with
+              transfers, cards, statements, profile updates, and account access.
+            </p>
+            <div id="notice" class="notice"></div>
+            <div id="support-thread" class="support-thread">
+              <div class="bubble agent">
+                <strong>Customer Care</strong>
+                <p>
+                  Welcome, <span data-user-name></span>. Start a secure message and a member of our
+                  support team will review your question.
+                </p>
+                <span>Secure message center</span>
+              </div>
+            </div>
+            <div class="message-box">
+              <textarea id="support-message" placeholder="Write a secure message"></textarea
+              ><button class="btn primary" type="button" onclick="bank.sendSupportMessage()">
+                Send message
+              </button>
+            </div>
+          </section>
+          <aside class="grid">
+            <section class="card">
+              <h2>Support options</h2>
+              <ul class="insight-list">
+                <li>
+                  <strong>Secure message</strong><span>Usually replies within 15 minutes</span>
+                </li>
+                <li><strong>Callback</strong><span>Available for verified customers</span></li>
+                <li><strong>Dispute support</strong><span>Cards and transfers</span></li>
+              </ul>
+            </section>
+            <section class="card">
+              <h2>Case status</h2>
+              <p>You have no open service cases.</p>
+              <span class="badge ok">Ready to help</span>
+            </section>
+          </aside>
+        </section>
+      </main>
+    </div>
+    <script src="assets/js/user.js"></script>
+  </body>
+</html>
