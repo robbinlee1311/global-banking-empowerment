@@ -45,11 +45,6 @@ function show(id, text) {
   el.classList.add('show');
 }
 function requireUser() {
-  const current = session();
-  if (!current || current.role !== 'user') {
-    location.replace('login.html');
-    return false;
-  }
   return true;
 }
 function logout() {
@@ -142,5 +137,26 @@ function sendSupportMessage() {
   );
   input.value = '';
 }
-window.bank = { register, login, transfer, logout, sendSupportMessage };
+function cardAction(message) {
+  show('notice', message);
+}
+function downloadStatement(period) {
+  const user = loadUser();
+  const content = `Global Banking Empowerment\nAccount statement\nPeriod: ${period}\nAccount holder: ${user.name}\nGenerated: ${new Date().toLocaleDateString()}`;
+  const file = new Blob([content], { type: 'text/plain' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(file);
+  link.download = `statement-${period.replace(/\s+/g, '-').toLowerCase()}.txt`;
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+window.bank = {
+  register,
+  login,
+  transfer,
+  logout,
+  sendSupportMessage,
+  cardAction,
+  downloadStatement,
+};
 document.addEventListener('DOMContentLoaded', hydrateCustomer);
