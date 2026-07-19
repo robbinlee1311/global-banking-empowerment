@@ -1,38 +1,101 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Global Banking Empowerment | Online Banking</title>
-  <meta name="description" content="Customer online banking frontend for Global Banking Empowerment.">
-  <link rel="stylesheet" href="assets/css/bank.css">
-</head>
-<body>
-  <main class="hero">
-    <section>
-      <p class="kicker">Global Banking Empowerment</p>
-      <h1>Banking that puts the customer dashboard first.</h1>
-      <p>Open an account, view balances, move money, manage cards, and review statements from a secure responsive banking frontend.</p>
-      <div class="actions">
-        <a class="btn primary" href="create-account.html">Create account</a>
-        <a class="btn secondary" href="login.html">Sign in</a>
-        <a class="btn outline" href="dashboard.html">View user dashboard</a>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Global Banking Empowerment | Online Banking</title>
+    <meta
+      name="description"
+      content="Customer online banking frontend for Global Banking Empowerment."
+    />
+    <link rel="stylesheet" href="assets/css/bank.css" />
+  </head>
+  <body>
+    <header class="public-nav">
+      <a class="brand public-brand" href="index.html"
+        ><span class="logo">GBE</span><span>Global Banking Empowerment</span></a
+      >
+      <nav>
+        <a href="#security">Security</a><a href="support.html">Customer care</a
+        ><a class="btn outline" href="login.html">Sign in</a>
+      </nav>
+    </header>
+    <main class="hero refined-hero">
+      <section>
+        <p class="kicker">Built around your financial life</p>
+        <h1>Feel clear, confident, and in control of your money.</h1>
+        <p>
+          One secure place to check balances, manage everyday banking, plan ahead, and speak to a
+          real customer-care team when it matters.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="create-account.html">Create account</a>
+          <a class="btn secondary" href="login.html">Sign in</a>
+          <a class="btn outline" href="support.html">Talk to customer care</a>
+        </div>
+        <div class="grid cols-3" style="margin-top: 28px">
+          <div class="metric"><strong>$93,270</strong><span>Demo household balance</span></div>
+          <div class="metric"><strong>24/7</strong><span>Online access</span></div>
+          <div class="metric"><strong>Secure</strong><span>Protected online banking</span></div>
+        </div>
+      </section>
+      <section class="hero-media" aria-label="Banking dashboard preview">
+        <div class="float-card">
+          <div>
+            <strong>Checking available</strong>
+            <p style="margin: 4px 0 0">$24,850.72 ready for payments and Move Money</p>
+          </div>
+          <a class="btn primary" href="dashboard.html">Open</a>
+        </div>
+      </section>
+    </main>
+    <section id="security" class="public-section">
+      <div>
+        <p class="kicker">The banking essentials</p>
+        <h2>Everything you need, without the noise.</h2>
+        <p>
+          Track activity, make secure transfers, control cards, download statements, and get support
+          through a protected conversation.
+        </p>
       </div>
-      <div class="grid cols-3" style="margin-top:28px">
-        <div class="metric"><strong>$93,270</strong><span>Demo household balance</span></div>
-        <div class="metric"><strong>24/7</strong><span>Online access</span></div>
-        <div class="metric"><strong>256-bit</strong><span>Security posture</span></div>
+      <div class="trust-grid">
+        <article>
+          <strong>Account controls</strong
+          ><span>Manage cards, alerts, and access from one secure workspace.</span>
+        </article>
+        <article>
+          <strong>Clear activity</strong
+          ><span>See transactions, balances, scheduled payments, and important updates.</span>
+        </article>
+        <article>
+          <strong>Customer care</strong
+          ><span>Message support securely and keep every service conversation in one place.</span>
+        </article>
       </div>
     </section>
-    <section class="hero-media" aria-label="Banking dashboard preview">
-      <div class="float-card">
-        <div><strong>Checking available</strong><p style="margin:4px 0 0">$24,850.72 ready for payments and Move Money</p></div>
-        <a class="btn primary" href="dashboard.html">Open</a>
+    <section class="public-section media-section">
+      <div class="video-frame">
+        <img src="assets/img/photo1.png" alt="Customer using secure online banking" />
+        <div class="video-overlay">
+          <span class="play-mark">?</span>
+          <div>
+            <strong>Banking, on your terms</strong
+            ><span>Everyday money movement, account insights, and human support</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="kicker">A better daily routine</p>
+        <h2>Banking that moves with you.</h2>
+        <p>
+          Explore a polished account overview, secure money movement, card controls, account
+          records, and personal support.
+        </p>
+        <a class="btn primary" href="create-account.html">Get started</a>
+        <p class="demo-note">
+          Demonstration frontend - not a financial institution or live banking service.
+        </p>
       </div>
     </section>
-  </main>
-</body>
+  </body>
 </html>
-
-
-
