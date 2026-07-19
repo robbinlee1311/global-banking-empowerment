@@ -1,94 +1,104 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Statements | Global Banking Empowerment</title>
-    <link rel="stylesheet" href="assets/css/bank.css" />
-  </head>
-  <body data-role="user">
-    <div class="shell">
-      <aside class="sidebar">
-        <a class="brand" href="dashboard.html"
-          ><span class="logo">GBE</span><span>Global Banking Empowerment</span></a
-        >
-        <nav class="nav">
-          <a href="dashboard.html">Dashboard</a><a href="transfer.html">Move Money</a
-          ><a href="cards.html">Cards</a><a class="active" href="statements.html">Statements</a
-          ><a href="support.html">Support</a><a href="profile.html">Profile</a>
-        </nav>
-      </aside>
-      <main class="main">
-        <header class="topbar">
-          <strong>Statements</strong
-          ><span
-            ><span data-user-name></span>
-            <button class="btn outline" type="button" onclick="bank.logout()">
-              Sign out
-            </button></span
-          >
-        </header>
-        <section class="page">
-          <h1>Statements</h1>
-          <section class="card">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Period</th>
-                  <th>Account</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>July 2026</td>
-                  <td>Checking</td>
-                  <td><span class="badge ok">Ready</span></td>
-                  <td>
-                    <button
-                      class="btn outline"
-                      type="button"
-                      onclick="bank.downloadStatement('July 2026')"
-                    >
-                      Download
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>June 2026</td>
-                  <td>Savings</td>
-                  <td><span class="badge ok">Ready</span></td>
-                  <td>
-                    <button
-                      class="btn outline"
-                      type="button"
-                      onclick="bank.downloadStatement('June 2026')"
-                    >
-                      Download
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>May 2026</td>
-                  <td>Checking</td>
-                  <td><span class="badge ok">Ready</span></td>
-                  <td>
-                    <button
-                      class="btn outline"
-                      type="button"
-                      onclick="bank.downloadStatement('May 2026')"
-                    >
-                      Download
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-        </section>
-      </main>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Statements | Global Banking Empowerment</title>
+  <link rel="stylesheet" href="assets/css/bank.css">
+</head>
+<body data-role="user">
+
+  <div id="notice" class="notice">
+    <div class="notice-icon"></div>
+    <div class="notice-content"><h4></h4><p></p></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        GBE
+      </a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="transfer.html">Send Money</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="statements.html" class="active">Statements</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="#" onclick="bank.logout();return false;">Sign out</a></li>
+      </ul>
     </div>
-    <script src="assets/js/user.js"></script>
-  </body>
+  </nav>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        My Account
+      </div>
+      <ul class="sidebar-nav">
+        <li><a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Overview</a></li>
+        <li><a href="transfer.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>Send Money</a></li>
+        <li><a href="cards.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Cards</a></li>
+        <li><a href="statements.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Statements</a></li>
+        <li><a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a></li>
+        <li><a href="security.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Security</a></li>
+        <li><a href="support.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Support</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <button class="btn btn-outline btn-sm" style="width:100%" onclick="bank.logout()">Sign out</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <h2 style="margin-bottom:24px;color:var(--color-primary);">Statements & records</h2>
+
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;">
+        <div class="card" style="padding:0;overflow:hidden;">
+          <div style="padding:20px 24px;border-bottom:1px solid var(--color-border);display:flex;justify-content:space-between;align-items:center;">
+            <h4 style="color:var(--color-primary);">Monthly statements</h4>
+          </div>
+          <table class="data-table">
+            <thead><tr><th>Period</th><th>Account</th><th>Transactions</th><th>Closing balance</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td><strong>June 2026</strong></td><td>****4521</td><td>47</td><td class="amount">$91,340.50</td><td><button class="btn btn-outline btn-sm" onclick="bank.downloadStatement('June 2026')">Download</button></td></tr>
+              <tr><td><strong>May 2026</strong></td><td>****4521</td><td>52</td><td class="amount">$88,120.75</td><td><button class="btn btn-outline btn-sm" onclick="bank.downloadStatement('May 2026')">Download</button></td></tr>
+              <tr><td><strong>April 2026</strong></td><td>****4521</td><td>38</td><td class="amount">$85,450.20</td><td><button class="btn btn-outline btn-sm" onclick="bank.downloadStatement('April 2026')">Download</button></td></tr>
+              <tr><td><strong>March 2026</strong></td><td>****4521</td><td>41</td><td class="amount">$82,890.00</td><td><button class="btn btn-outline btn-sm" onclick="bank.downloadStatement('March 2026')">Download</button></td></tr>
+              <tr><td><strong>February 2026</strong></td><td>****4521</td><td>35</td><td class="amount">$80,120.30</td><td><button class="btn btn-outline btn-sm" onclick="bank.downloadStatement('February 2026')">Download</button></td></tr>
+              <tr><td><strong>January 2026</strong></td><td>****4521</td><td>44</td><td class="amount">$77,650.00</td><td><button class="btn btn-outline btn-sm" onclick="bank.downloadStatement('January 2026')">Download</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div class="card">
+            <h4 style="color:var(--color-primary);margin-bottom:16px;">Export options</h4>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <button class="btn btn-outline btn-sm" style="justify-content:flex-start;gap:10px;" onclick="bank.show('success','CSV export prepared')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Export as CSV
+              </button>
+              <button class="btn btn-outline btn-sm" style="justify-content:flex-start;gap:10px;" onclick="bank.show('success','PDF export prepared')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Export as PDF
+              </button>
+              <button class="btn btn-outline btn-sm" style="justify-content:flex-start;gap:10px;" onclick="bank.show('success','QBO export prepared')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                QuickBooks (QBO)
+              </button>
+            </div>
+          </div>
+          <div class="card" style="background:linear-gradient(135deg,var(--color-primary),var(--color-primary-light));color:#fff;border:none;">
+            <h4 style="color:#fff;margin-bottom:8px;">Tax documents</h4>
+            <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;margin-bottom:16px;">Your 1099-INT and 1099-MISC forms for 2026 will be available in January 2027.</p>
+            <button class="btn btn-primary btn-sm" style="width:100%;" onclick="bank.show('info','Tax documents will be available January 2027')">View tax center</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/user.js"></script>
+</body>
 </html>

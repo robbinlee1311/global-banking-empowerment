@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profile | Global Banking Empowerment</title>
+    <link rel="stylesheet" href="assets/css/bank.css" />
+  </head>
+  <body data-role="user">
+    <div class="shell">
+      <aside class="sidebar">
+        <a class="brand" href="dashboard.html"
+          ><span class="logo">GBE</span><span>Global Banking Empowerment</span></a
+        >
+        <nav class="nav">
+          <a href="dashboard.html">Dashboard</a><a href="transfer.html">Move Money</a
+          ><a href="cards.html">Cards</a><a href="statements.html">Statements</a
+          ><a href="support.html">Support</a><a class="active" href="profile.html">Profile</a>
+        </nav>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <strong>Profile</strong
+          ><span
+            ><span data-user-name></span>
+            <button class="btn outline" type="button" onclick="bank.logout()">
+              Sign out
+            </button></span
+          >
+        </header>
+        <section class="page grid cols-2">
+          <section class="card">
+            <h1>Customer profile</h1>
+            <p><strong>Name:</strong> <span data-user-name></span></p>
+            <p><strong>Email:</strong> <span data-user-email></span></p>
+            <p><strong>Primary account:</strong> <span data-account></span></p>
+          </section>
+          <section class="card">
+            <h2>Account services</h2>
+            <div id="notice" class="notice"></div>
+            <div class="grid">
+              <button
+                class="btn secondary"
+                type="button"
+                onclick="bank.serviceAction('Contact details update is ready to begin.')"
+              >
+                Update contact details</button
+              ><button
+                class="btn secondary"
+                type="button"
+                onclick="bank.serviceAction('Beneficiary management is ready to review.')"
+              >
+                Manage beneficiaries</button
+              ><button
+                class="btn secondary"
+                type="button"
+                onclick="bank.serviceAction('Security preferences are ready to review.')"
+              >
+                Security settings
+              </button>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+    <script src="assets/js/user.js"></script>
+  </body>
+</html>

@@ -1,68 +1,119 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Move Money | Global Banking Empowerment</title>
-    <link rel="stylesheet" href="assets/css/bank.css" />
-  </head>
-  <body data-role="user">
-    <div class="shell">
-      <aside class="sidebar">
-        <a class="brand" href="dashboard.html"
-          ><span class="logo">GBE</span><span>Global Banking Empowerment</span></a
-        >
-        <nav class="nav">
-          <a href="dashboard.html">Dashboard</a><a class="active" href="transfer.html">Move Money</a
-          ><a href="cards.html">Cards</a><a href="statements.html">Statements</a
-          ><a href="support.html">Support</a><a href="profile.html">Profile</a>
-        </nav>
-      </aside>
-      <main class="main">
-        <header class="topbar">
-          <strong>Move Money</strong
-          ><span
-            ><span data-user-name></span>
-            <button class="btn outline" type="button" onclick="bank.logout()">
-              Sign out
-            </button></span
-          >
-        </header>
-        <section class="page grid cols-2">
-          <form
-            class="card"
-            onsubmit="
-              event.preventDefault();
-              bank.transfer();
-            "
-          >
-            <h1>Send money</h1>
-            <div id="notice" class="notice"></div>
-            <div class="field">
-              <label for="recipient">Recipient</label
-              ><input id="recipient" placeholder="Recipient name or account" />
-            </div>
-            <div class="field">
-              <label for="amount">Amount</label
-              ><input id="amount" type="number" min="1" step="0.01" placeholder="0.00" />
-            </div>
-            <div class="field">
-              <label for="memo">Memo</label
-              ><textarea id="memo" placeholder="Optional note"></textarea>
-            </div>
-            <button class="btn primary" type="submit">Review and send</button>
-          </form>
-          <section class="card">
-            <h2>Funding account verification</h2>
-            <p>Account ending <strong data-account></strong></p>
-            <p>
-              Review recipient details carefully before sending. Additional verification may be
-              required to protect your account.
-            </p>
-          </section>
-        </section>
-      </main>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Send Money | Global Banking Empowerment</title>
+  <link rel="stylesheet" href="assets/css/bank.css">
+</head>
+<body data-role="user">
+
+  <div id="notice" class="notice">
+    <div class="notice-icon"></div>
+    <div class="notice-content"><h4></h4><p></p></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        GBE
+      </a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="transfer.html" class="active">Send Money</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="statements.html">Statements</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="#" onclick="bank.logout();return false;">Sign out</a></li>
+      </ul>
     </div>
-    <script src="assets/js/user.js"></script>
-  </body>
+  </nav>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        My Account
+      </div>
+      <ul class="sidebar-nav">
+        <li><a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Overview</a></li>
+        <li><a href="transfer.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>Send Money</a></li>
+        <li><a href="cards.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Cards</a></li>
+        <li><a href="statements.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Statements</a></li>
+        <li><a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a></li>
+        <li><a href="security.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Security</a></li>
+        <li><a href="support.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Support</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <button class="btn btn-outline btn-sm" style="width:100%" onclick="bank.logout()">Sign out</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <h2 style="margin-bottom:24px;color:var(--color-primary);">Send money</h2>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+        <div class="card">
+          <h4 style="color:var(--color-primary);margin-bottom:20px;">New transfer</h4>
+          <form onsubmit="return bank.submitTransfer(this)">
+            <div class="form-group">
+              <label>From account</label>
+              <select name="from">
+                <option>Primary Checking — ****4521</option>
+                <option>Savings — ****8823</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>To recipient</label>
+              <input type="text" name="to" placeholder="Account number, email, or phone" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Amount</label>
+                <input type="text" name="amount" placeholder="$0.00" required>
+              </div>
+              <div class="form-group">
+                <label>Send on</label>
+                <input type="date" name="date" value="2026-07-19">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Note (optional)</label>
+              <input type="text" name="note" placeholder="Add a note for your records">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Review and send</button>
+          </form>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div class="card">
+            <h4 style="color:var(--color-primary);margin-bottom:16px;">Recent recipients</h4>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:var(--radius-sm);background:var(--color-surface-alt);cursor:pointer;transition:var(--transition);" onmouseover="this.style.background='var(--color-border)'" onmouseout="this.style.background='var(--color-surface-alt)'">
+                <div style="width:40px;height:40px;border-radius:50%;background:var(--color-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;">SM</div>
+                <div><strong style="font-size:0.9rem;color:var(--color-primary);">Sarah Mitchell</strong><span style="display:block;font-size:0.8rem;color:var(--color-text-muted);">****8821</span></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:var(--radius-sm);background:var(--color-surface-alt);cursor:pointer;transition:var(--transition);" onmouseover="this.style.background='var(--color-border)'" onmouseout="this.style.background='var(--color-surface-alt)'">
+                <div style="width:40px;height:40px;border-radius:50%;background:var(--color-accent-dark);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;">JK</div>
+                <div><strong style="font-size:0.9rem;color:var(--color-primary);">James Kim</strong><span style="display:block;font-size:0.8rem;color:var(--color-text-muted);">****3345</span></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:12px;border-radius:var(--radius-sm);background:var(--color-surface-alt);cursor:pointer;transition:var(--transition);" onmouseover="this.style.background='var(--color-border)'" onmouseout="this.style.background='var(--color-surface-alt)'">
+                <div style="width:40px;height:40px;border-radius:50%;background:var(--color-warning);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;">ER</div>
+                <div><strong style="font-size:0.9rem;color:var(--color-primary);">Elena Rodriguez</strong><span style="display:block;font-size:0.8rem;color:var(--color-text-muted);">****1192</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="background:linear-gradient(135deg,var(--color-primary),var(--color-primary-light));color:#fff;border:none;">
+            <h4 style="color:#fff;margin-bottom:8px;">Wire transfers</h4>
+            <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;margin-bottom:16px;">For domestic or international wires over $10,000, start a secure conversation with our wire services team.</p>
+            <a href="support.html" class="btn btn-primary btn-sm" style="width:100%;">Request wire</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/user.js"></script>
+</body>
 </html>
