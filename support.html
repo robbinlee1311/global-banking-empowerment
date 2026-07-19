@@ -1,79 +1,170 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Support | Global Banking Empowerment</title>
-    <link rel="stylesheet" href="assets/css/bank.css" />
-  </head>
-  <body data-role="user">
-    <div class="shell customer-shell">
-      <aside class="sidebar customer-sidebar">
-        <a class="brand" href="dashboard.html"
-          ><span class="logo">GBE</span><span>Global Banking Empowerment</span></a
-        >
-        <nav class="nav">
-          <a href="dashboard.html">Overview</a><a href="transfer.html">Move Money</a
-          ><a href="cards.html">Cards</a><a href="statements.html">Statements</a
-          ><a class="active" href="support.html">Support</a><a href="profile.html">Profile</a>
-        </nav>
-      </aside>
-      <main class="main">
-        <header class="topbar">
-          <strong>Support</strong
-          ><span
-            ><span data-user-name></span>
-            <button class="btn outline" type="button" onclick="bank.logout()">
-              Sign out
-            </button></span
-          >
-        </header>
-        <section class="page support-layout">
-          <section class="card">
-            <p class="kicker">Secure message center</p>
-            <h1>Contact support</h1>
-            <p>
-              Conversation is tied to account <strong data-account></strong>. Support can help with
-              transfers, cards, statements, profile updates, and account access.
-            </p>
-            <div id="notice" class="notice"></div>
-            <div id="support-thread" class="support-thread">
-              <div class="bubble agent">
-                <strong>Support</strong>
-                <p>
-                  Welcome, <span data-user-name></span>. Start a secure message and a member of our
-                  support team will review your question.
-                </p>
-                <span>Secure message center</span>
-              </div>
-            </div>
-            <div class="message-box">
-              <textarea id="support-message" placeholder="Write a secure message"></textarea
-              ><button class="btn primary" type="button" onclick="bank.sendSupportMessage()">
-                Send message
-              </button>
-            </div>
-          </section>
-          <aside class="grid">
-            <section class="card">
-              <h2>Support options</h2>
-              <ul class="insight-list">
-                <li>
-                  <strong>Secure message</strong><span>Usually replies within 15 minutes</span>
-                </li>
-                <li><strong>Callback</strong><span>Available for verified customers</span></li>
-                <li><strong>Dispute support</strong><span>Cards and transfers</span></li>
-              </ul>
-            </section>
-            <section class="card">
-              <h2>Case status</h2>
-              <p>You have no open service cases.</p>
-              <span class="badge ok">Ready to help</span>
-            </section>
-          </aside>
-        </section>
-      </main>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support | Global Banking Empowerment</title>
+  <link rel="stylesheet" href="assets/css/bank.css">
+</head>
+<body data-role="user">
+
+  <div id="notice" class="notice">
+    <div class="notice-icon"></div>
+    <div class="notice-content"><h4></h4><p></p></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        GBE
+      </a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="transfer.html">Send Money</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="statements.html">Statements</a></li>
+        <li><a href="support.html" class="active">Support</a></li>
+        <li><a href="#" onclick="bank.logout();return false;">Sign out</a></li>
+      </ul>
     </div>
-    <script src="assets/js/user.js"></script>
-  </body>
+  </nav>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        My Account
+      </div>
+      <ul class="sidebar-nav">
+        <li><a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Overview</a></li>
+        <li><a href="transfer.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>Send Money</a></li>
+        <li><a href="cards.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Cards</a></li>
+        <li><a href="statements.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Statements</a></li>
+        <li><a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a></li>
+        <li><a href="security.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Security</a></li>
+        <li><a href="support.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Support</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <button class="btn btn-outline btn-sm" style="width:100%" onclick="bank.logout()">Sign out</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <h2 style="margin-bottom:24px;color:var(--color-primary);">Support</h2>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px;">
+        <div class="card" style="background:linear-gradient(135deg,var(--color-primary),var(--color-primary-light));color:#fff;border:none;">
+          <h4 style="color:#fff;margin-bottom:12px;">Send a secure message</h4>
+          <p style="color:rgba(255,255,255,0.7);font-size:0.95rem;margin-bottom:20px;">Reach our banking team directly through an encrypted channel. We typically respond within 15 minutes during business hours and within 2 hours after hours.</p>
+          <div class="form-group">
+            <label style="color:rgba(255,255,255,0.8);">Topic</label>
+            <select style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#fff;">
+              <option style="color:var(--color-text);">Payments and transfers</option>
+              <option style="color:var(--color-text);">Cards and spending</option>
+              <option style="color:var(--color-text);">Account access</option>
+              <option style="color:var(--color-text);">Security concern</option>
+              <option style="color:var(--color-text);">Other inquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label style="color:rgba(255,255,255,0.8);">Message</label>
+            <textarea rows="4" placeholder="How can we assist you today?" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#fff;"></textarea>
+          </div>
+          <button class="btn btn-primary" style="width:100%;" onclick="bank.serviceAction('Secure message sent to support team')">Send message</button>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div class="card">
+            <h4 style="color:var(--color-primary);margin-bottom:16px;">Frequently asked questions</h4>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <a href="#" style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--radius-sm);text-decoration:none;color:var(--color-text);transition:var(--transition);" onmouseover="this.style.background='var(--color-surface-alt)'" onmouseout="this.style.background='transparent'">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-dark)" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                <span style="font-size:0.9rem;font-weight:500;">How do I set up a wire transfer?</span>
+              </a>
+              <a href="#" style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--radius-sm);text-decoration:none;color:var(--color-text);transition:var(--transition);" onmouseover="this.style.background='var(--color-surface-alt)'" onmouseout="this.style.background='transparent'">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-dark)" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                <span style="font-size:0.9rem;font-weight:500;">How do I lock or replace my card?</span>
+              </a>
+              <a href="#" style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--radius-sm);text-decoration:none;color:var(--color-text);transition:var(--transition);" onmouseover="this.style.background='var(--color-surface-alt)'" onmouseout="this.style.background='transparent'">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-dark)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <span style="font-size:0.9rem;font-weight:500;">Where can I find my tax documents?</span>
+              </a>
+              <a href="#" style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--radius-sm);text-decoration:none;color:var(--color-text);transition:var(--transition);" onmouseover="this.style.background='var(--color-surface-alt)'" onmouseout="this.style.background='transparent'">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-dark)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span style="font-size:0.9rem;font-weight:500;">How do I enable two-factor authentication?</span>
+              </a>
+              <a href="#" style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:var(--radius-sm);text-decoration:none;color:var(--color-text);transition:var(--transition);" onmouseover="this.style.background='var(--color-surface-alt)'" onmouseout="this.style.background='transparent'">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-dark)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span style="font-size:0.9rem;font-weight:500;">How do I update my personal information?</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Support Section — Bottom, Professional Banking Style -->
+      <div class="card" style="margin-bottom:32px;">
+        <h4 style="color:var(--color-primary);margin-bottom:20px;">Contact us</h4>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;">
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-dark)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <strong style="color:var(--color-primary);">Phone</strong>
+            </div>
+            <p style="font-size:0.9rem;margin-bottom:4px;">1-800-GBE-BANK (1-800-423-2265)</p>
+            <p style="font-size:0.8rem;color:var(--color-text-muted);">Available 24/7 for urgent matters</p>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-dark)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <strong style="color:var(--color-primary);">Email</strong>
+            </div>
+            <p style="font-size:0.9rem;margin-bottom:4px;">support@gbe.bank</p>
+            <p style="font-size:0.8rem;color:var(--color-text-muted);">Response within 2 business hours</p>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-dark)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <strong style="color:var(--color-primary);">Hours</strong>
+            </div>
+            <p style="font-size:0.9rem;margin-bottom:4px;">Monday – Friday: 6:00 AM – 8:00 PM PT</p>
+            <p style="font-size:0.8rem;color:var(--color-text-muted);">Saturday – Sunday: 8:00 AM – 5:00 PM PT</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Message -->
+      <div class="card" style="background:var(--color-surface-alt);border:1px solid var(--color-border);">
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-dark)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h4 style="color:var(--color-primary);margin:0;">Your security is our priority</h4>
+        </div>
+        <p style="font-size:0.95rem;color:var(--color-text-muted);line-height:1.7;margin-bottom:16px;">
+          Global Banking Empowerment has been safeguarding customer accounts since 2013. Every message, transfer, and login is protected by 256-bit AES encryption, multi-factor authentication, and real-time fraud monitoring. Your deposits are insured by the FDIC up to $250,000 per depositor. We never request sensitive information through unsecured channels, and our support team will never ask for your full password or PIN.
+        </p>
+        <div style="display:flex;gap:24px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="font-size:0.85rem;color:var(--color-text);">256-bit encryption</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="font-size:0.85rem;color:var(--color-text);">FDIC insured</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="font-size:0.85rem;color:var(--color-text);">Real-time fraud alerts</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span style="font-size:0.85rem;color:var(--color-text);">SOC 2 Type II certified</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/user.js"></script>
+</body>
 </html>

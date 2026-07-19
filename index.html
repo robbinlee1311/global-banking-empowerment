@@ -1,118 +1,331 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Global Banking Empowerment | Online Banking</title>
-    <meta
-      name="description"
-      content="Customer online banking frontend for Global Banking Empowerment."
-    />
-    <link rel="stylesheet" href="assets/css/bank.css" />
-  </head>
-  <body>
-    <header class="public-nav">
-      <a class="brand public-brand" href="index.html"
-        ><span class="logo">GBE</span><span>Global Banking Empowerment</span></a
-      >
-      <nav>
-        <a href="#security">Security</a><a href="support.html">Customer care</a
-        ><a class="btn outline" href="login.html">Sign in</a>
-      </nav>
-    </header>
-    <main class="hero refined-hero">
-      <section>
-        <p class="kicker">Built around your financial life</p>
-        <h1>Feel clear, confident, and in control of your money.</h1>
-        <p>
-          One secure place to check balances, manage everyday banking, plan ahead, and speak to a
-          real customer-care team when it matters.
-        </p>
-        <div class="actions">
-          <a class="btn primary" href="create-account.html">Create account</a>
-          <a class="btn secondary" href="login.html">Sign in</a>
-          <a class="btn outline" href="support.html">Contact support</a>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Global Banking Empowerment | Secure Online Banking</title>
+  <meta name="description" content="Secure online banking with real-time insights, instant transfers, and 24/7 support. Trusted since 2013.">
+  <link rel="stylesheet" href="assets/css/bank.css">
+</head>
+<body>
+
+  <div id="notice" class="notice">
+    <div class="notice-icon"></div>
+    <div class="notice-content"><h4></h4><p></p></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        GBE
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="login.html">Sign in</a></li>
+        <li><a href="create-account.html" class="nav-cta">Open account</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <video class="hero-bg-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1920&q=80">
+      <source src="https://videos.pexels.com/video-files/6774422/6774422-hd_1920_1080_30fps.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h1>Banking that <span>moves</span> with you</h1>
+        <p>Secure online banking with real-time insights, instant transfers, and human support — all in one place.</p>
+        <div class="btn-group">
+          <a href="create-account.html" class="btn btn-primary">Open your account</a>
+          <a href="login.html" class="btn btn-secondary">Sign in</a>
         </div>
-        <div class="grid cols-3" style="margin-top: 28px">
-          <div class="metric"><strong>One place</strong><span>For your everyday banking</span></div>
-          <div class="metric">
-            <strong>Secure access</strong><span>Built around account protection</span>
-          </div>
-          <div class="metric"><strong>Secure</strong><span>Protected online banking</span></div>
+        <div class="hero-stats">
+          <div class="hero-stat"><h3>$4.2B+</h3><span>Assets managed</span></div>
+          <div class="hero-stat"><h3>2.1M</h3><span>Active accounts</span></div>
+          <div class="hero-stat"><h3>99.9%</h3><span>Uptime</span></div>
         </div>
-      </section>
-      <section class="hero-media" aria-label="Banking dashboard preview">
-        <div class="float-card">
-          <div>
-            <strong>Secure online access</strong>
-            <p style="margin: 4px 0 0">
-              Review accounts, manage cards, and access service when you need it.
-            </p>
-          </div>
-          <a class="btn primary" href="dashboard.html">Open</a>
-        </div>
-      </section>
-    </main>
-    <section id="security" class="public-section">
-      <div>
-        <p class="kicker">The banking essentials</p>
-        <h2>Everything you need, without the noise.</h2>
-        <p>
-          Track activity, make secure transfers, control cards, download statements, and get support
-          through a protected conversation.
-        </p>
       </div>
-      <div class="trust-grid">
-        <article>
-          <strong>Account controls</strong
-          ><span>Manage cards, alerts, and access from one secure workspace.</span>
-        </article>
-        <article>
-          <strong>Clear activity</strong
-          ><span>See transactions, balances, scheduled payments, and important updates.</span>
-        </article>
-        <article>
-          <strong>Customer care</strong
-          ><span>Message support securely and keep every service conversation in one place.</span>
-        </article>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <span style="font-size:0.8rem;color:rgba(255,255,255,0.5)">TOTAL BALANCE</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+          </div>
+          <div class="hero-card-balance">$93,270<span>Across linked accounts</span></div>
+          <div class="hero-card-chart">
+            <div class="bar" style="height:40%"></div>
+            <div class="bar" style="height:65%"></div>
+            <div class="bar" style="height:45%"></div>
+            <div class="bar" style="height:80%"></div>
+            <div class="bar" style="height:55%"></div>
+            <div class="bar" style="height:90%"></div>
+            <div class="bar" style="height:70%"></div>
+            <div class="bar" style="height:100%"></div>
+            <div class="bar" style="height:60%"></div>
+            <div class="bar" style="height:75%"></div>
+            <div class="bar" style="height:85%"></div>
+            <div class="bar" style="height:50%"></div>
+          </div>
+        </div>
       </div>
-    </section>
-    <section class="public-section media-section">
-      <div class="video-frame">
-        <img src="assets/img/photo1.png" alt="Customer using secure online banking" />
+    </div>
+  </section>
+
+  <section style="background:var(--color-surface);border-bottom:1px solid var(--color-border);padding:20px 0;">
+    <div class="container">
+      <div style="display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:8px;color:var(--color-text-muted);font-size:0.85rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          FDIC insured up to $250,000
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;color:var(--color-text-muted);font-size:0.85rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          256-bit AES encryption
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;color:var(--color-text-muted);font-size:0.85rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          SOC 2 Type II certified
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;color:var(--color-text-muted);font-size:0.85rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-dark)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Trusted since 2013
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Everything you need</h2>
+        <p>From everyday transactions to long-term planning, your financial tools are designed to work seamlessly together.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <h4>Account overview</h4>
+          <p>See all your balances, recent activity, and upcoming payments in one clean dashboard.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+          <h4>Instant transfers</h4>
+          <p>Send money between accounts or to external recipients with real-time confirmation.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h4>Security first</h4>
+          <p>256-bit encryption, biometric login, and real-time fraud monitoring protect every transaction.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <h4>Statements & records</h4>
+          <p>Download monthly statements, export transaction history, and search across your records.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <h4>Card controls</h4>
+          <p>Lock, unlock, set limits, and receive alerts for every card transaction in real time.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h4>Secure messaging</h4>
+          <p>Message support directly from your dashboard with end-to-end encrypted conversations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="feature-row">
+        <div class="feature-img">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" alt="Mobile banking">
+        </div>
+        <div class="feature-content">
+          <h3>Bank anywhere, anytime</h3>
+          <p>Your financial life doesn't stop when you leave your desk. Access your accounts, approve transfers, and manage cards from any device — securely.</p>
+          <ul class="feature-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Biometric authentication</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Push notifications for every transaction</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>One-tap card freeze and limits</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Deposit checks with your camera</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Banking in action</h2>
+        <p>See how real people use GBE to manage their money with confidence.</p>
+      </div>
+      <div class="video-section">
+        <video poster="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1200&q=80" muted loop playsinline>
+          <source src="https://videos.pexels.com/video-files/6774422/6774422-hd_1920_1080_30fps.mp4" type="video/mp4">
+        </video>
+        <div class="video-play">
+          <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
         <div class="video-overlay">
-          <span class="play-mark">?</span>
-          <div>
-            <strong>Banking, on your terms</strong
-            ><span>Everyday money movement, account insights, and human support</span>
+          <h3>Your money, your rules</h3>
+          <p>Watch how our customers save time and stay in control with smart banking tools.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="feature-row reverse">
+        <div class="feature-img">
+          <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80" alt="Security infrastructure">
+        </div>
+        <div class="feature-content">
+          <h3>Built on bank-grade security</h3>
+          <p>Every connection is encrypted. Every login is verified. Every transaction is monitored by AI-powered fraud detection running 24/7.</p>
+          <ul class="feature-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>256-bit AES encryption</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Multi-factor authentication</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Real-time fraud alerts</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>FDIC insured up to $250,000</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Trusted by millions</h2>
+        <p>Real customers, real stories about how GBE changed the way they bank.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="testimonial-card">
+          <p class="quote">"I switched from a traditional bank and never looked back. The dashboard is clean, transfers are instant, and the support team actually answers in minutes."</p>
+          <div class="author">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Sarah M.">
+            <div><strong>Sarah Mitchell</strong><span>Small business owner, Austin</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="quote">"The card controls saved me when I lost my wallet. I froze it in seconds from the app. No stress, no fraud, no hassle."</p>
+          <div class="author">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="James K.">
+            <div><strong>James Kim</strong><span>Software engineer, Seattle</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="quote">"As a freelancer, I need to track income across clients. The statements and export tools make tax season actually manageable."</p>
+          <div class="author">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Elena R.">
+            <div><strong>Elena Rodriguez</strong><span>Freelance designer, Miami</span></div>
           </div>
         </div>
       </div>
-      <div>
-        <p class="kicker">A better daily routine</p>
-        <h2>Banking that moves with you.</h2>
-        <p>
-          Explore a polished account overview, secure money movement, card controls, account
-          records, and personal support.
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--color-surface);border-top:1px solid var(--color-border);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why customers trust us</h2>
+        <p>Thirteen years of serving individuals, families, and businesses with integrity and security.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;">
+        <div class="card">
+          <div style="font-size:2rem;font-weight:800;color:var(--color-accent-dark);margin-bottom:8px;">2013</div>
+          <h4 style="font-size:0.95rem;margin-bottom:6px;">Founded</h4>
+          <p style="font-size:0.85rem;">Serving customers with integrity since day one</p>
+        </div>
+        <div class="card">
+          <div style="font-size:2rem;font-weight:800;color:var(--color-accent-dark);margin-bottom:8px;">$4.2B</div>
+          <h4 style="font-size:0.95rem;margin-bottom:6px;">Assets managed</h4>
+          <p style="font-size:0.85rem;">Trusted with billions in customer deposits</p>
+        </div>
+        <div class="card">
+          <div style="font-size:2rem;font-weight:800;color:var(--color-accent-dark);margin-bottom:8px;">2.1M</div>
+          <h4 style="font-size:0.95rem;margin-bottom:6px;">Active accounts</h4>
+          <p style="font-size:0.85rem;">Individuals, families, and businesses nationwide</p>
+        </div>
+        <div class="card">
+          <div style="font-size:2rem;font-weight:800;color:var(--color-accent-dark);margin-bottom:8px;">99.9%</div>
+          <h4 style="font-size:0.95rem;margin-bottom:6px;">Uptime</h4>
+          <p style="font-size:0.85rem;">Your money is always accessible when you need it</p>
+        </div>
+      </div>
+      <div style="margin-top:40px;padding:24px;background:var(--color-surface-alt);border-radius:var(--radius-md);border:1px solid var(--color-border);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-dark)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h4 style="color:var(--color-primary);margin:0;">Your deposits are protected</h4>
+        </div>
+        <p style="font-size:0.95rem;color:var(--color-text-muted);line-height:1.7;margin:0;">
+          Global Banking Empowerment is a member of the Federal Deposit Insurance Corporation (FDIC). Your deposits are insured up to $250,000 per depositor, per account ownership category. We maintain rigorous capital reserves, undergo annual independent audits, and hold SOC 2 Type II certification. Your financial security is not just a feature — it is the foundation of everything we do.
         </p>
-        <a class="btn primary" href="create-account.html">Get started</a>
       </div>
-    </section>
-    <section class="photo-story" aria-label="Everyday banking moments">
-      <div>
-        <p class="kicker">Banking built around your day</p>
-        <h2>Simple tools for the moments that matter.</h2>
-        <p>
-          From a secure message to a quick transfer or a closer look at your spending, your banking
-          tools should be easy to understand and ready when you need them.
-        </p>
+    </div>
+  </section>
+
+  <section class="section" style="background:linear-gradient(135deg,#0a2540,#1a3a5c);text-align:center;">
+    <div class="container">
+      <h2 style="color:#fff;margin-bottom:16px;">Ready to take control?</h2>
+      <p style="color:rgba(255,255,255,0.7);max-width:480px;margin:0 auto 32px;">Join 2.1 million customers who bank smarter with GBE. Open your account in under 5 minutes.</p>
+      <div class="btn-group" style="justify-content:center;">
+        <a href="create-account.html" class="btn btn-primary">Open account</a>
+        <a href="login.html" class="btn btn-secondary">Sign in</a>
       </div>
-      <div class="photo-grid">
-        <img src="assets/img/photo3.jpg" alt="Customer managing finances from home" /><img
-          src="assets/img/photo4.jpg"
-          alt="Professional reviewing banking information"
-        />
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            GBE
+          </div>
+          <p class="footer-desc">Global Banking Empowerment provides secure, modern online banking for individuals and businesses worldwide. Trusted since 2013.</p>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <ul>
+            <li><a href="login.html">Dashboard</a></li>
+            <li><a href="login.html">Send Money</a></li>
+            <li><a href="login.html">Cards</a></li>
+            <li><a href="login.html">Statements</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <ul>
+            <li><a href="login.html">Help center</a></li>
+            <li><a href="login.html">Security</a></li>
+            <li><a href="login.html">Account</a></li>
+            <li><a href="login.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy policy</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Cookie policy</a></li>
+            <li><a href="#">Licenses</a></li>
+          </ul>
+        </div>
       </div>
-    </section>
-  </body>
+      <div class="footer-bottom">
+        <span>&copy; 2013–2026 Global Banking Empowerment. All rights reserved.</span>
+        <span>Member FDIC | Equal Housing Lender | NMLS #884215</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/user.js"></script>
+</body>
 </html>

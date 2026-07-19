@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Security & Account Rules | Global Banking Empowerment</title>
+    <link rel="stylesheet" href="assets/css/bank.css" />
+  </head>
+  <body data-role="user">
+    <div class="shell customer-shell">
+      <aside class="sidebar customer-sidebar">
+        <a class="brand" href="dashboard.html"
+          ><span class="logo">GBE</span><span>Global Banking Empowerment</span></a
+        >
+        <nav class="nav">
+          <a href="dashboard.html">Overview <span>01</span></a
+          ><a href="transfer.html">Move Money <span>02</span></a
+          ><a href="cards.html">Cards <span>03</span></a
+          ><a href="statements.html">Statements <span>04</span></a
+          ><a href="support.html">Support <span>05</span></a
+          ><a class="active" href="security.html">Security <span>06</span></a
+          ><a href="profile.html">Profile <span>07</span></a>
+        </nav>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <strong>Security &amp; account rules</strong
+          ><span
+            ><span data-user-name></span>
+            <button class="btn outline" type="button" onclick="bank.logout()">
+              Sign out
+            </button></span
+          >
+        </header>
+        <section class="page grid">
+          <section class="customer-hero">
+            <div>
+              <p class="kicker">Protect your account</p>
+              <h1>Good banking starts with good safeguards.</h1>
+              <p>
+                Review the customer rules, transfer protections, and support standards that keep
+                your account secure.
+              </p>
+            </div>
+            <span class="badge ok">All protections active</span>
+          </section>
+          <section class="grid cols-3">
+            <article class="card">
+              <h3>Sign-in &amp; access</h3>
+              <ul class="rule-list">
+                <li>Keep your password private and use a unique password.</li>
+                <li>Sign out on shared devices.</li>
+                <li>Report an unfamiliar sign-in straight away.</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Payments &amp; transfers</h3>
+              <ul class="rule-list">
+                <li>Review recipient details before you send money.</li>
+                <li>Some payments may be held for security review.</li>
+                <li>
+                  Contact support quickly for an incorrect transfer or disputed card purchase.
+                </li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Cards &amp; alerts</h3>
+              <ul class="rule-list">
+                <li>Keep card details private and never share a verification code.</li>
+                <li>Use card controls if a card is lost, stolen, or not with you.</li>
+                <li>Review account activity and alerts regularly.</li>
+              </ul>
+            </article>
+          </section>
+          <section class="grid cols-2">
+            <article class="card">
+              <p class="kicker">Support services</p>
+              <h2>Support for the moments that need a person.</h2>
+              <p>
+                Support can explain transactions, guide card and transfer questions, update case
+                details, and arrange a verified callback. They will never ask for your password or
+                one-time security code in a message.
+              </p>
+              <a class="btn primary" href="support.html">Contact support</a>
+            </article>
+            <article class="card">
+              <p class="kicker">Important boundaries</p>
+              <h2>Account protection rules</h2>
+              <p>
+                Account access, identity updates, large transfers, and disputes may require extra
+                verification. Customer accounts cannot approve their own reviews or change controls
+                reserved for internal operations.
+              </p>
+              <span class="badge warn">Verification may be required</span>
+            </article>
+          </section>
+        </section>
+      </main>
+    </div>
+    <script src="assets/js/user.js"></script>
+  </body>
+</html>
