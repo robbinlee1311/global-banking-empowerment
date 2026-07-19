@@ -1,162 +1,91 @@
-const USER_KEY = 'gbe_user';
-const SESSION_KEY = 'gbe_session';
-const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
-const defaultUser = {
-  name: 'Account holder',
-  email: '',
-  phone: '',
-  account: '',
-  checking: 0,
-  savings: 0,
-  card: '',
-  status: 'Active',
-  transactions: [],
-};
-function loadUser() {
-  return JSON.parse(localStorage.getItem(USER_KEY) || 'null') || defaultUser;
-}
-function saveUser(user) {
-  localStorage.setItem(USER_KEY, JSON.stringify(user));
-}
-function setSession(identity) {
-  localStorage.setItem(
-    SESSION_KEY,
-    JSON.stringify({
-      role: 'user',
-      name: identity.name,
-      email: identity.email,
-      signedInAt: new Date().toISOString(),
-    }),
-  );
-}
-function session() {
-  return JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
-}
-function acct() {
-  return Math.floor(1000000000 + Math.random() * 9000000000).toString();
-}
-function qs(id) {
-  return document.getElementById(id);
-}
-function show(id, text) {
-  const el = qs(id);
-  if (!el) return;
-  el.textContent = text;
-  el.classList.add('show');
-}
-function requireUser() {
-  return true;
-}
-function logout() {
-  localStorage.removeItem(SESSION_KEY);
-  location.href = 'index.html';
-}
-function hydrateCustomer() {
-  if (document.body.dataset.role === 'user' && !requireUser()) return;
-  const user = loadUser();
-  document.querySelectorAll('[data-user-name]').forEach((el) => (el.textContent = user.name));
-  document.querySelectorAll('[data-user-email]').forEach((el) => (el.textContent = user.email));
-  document.querySelectorAll('[data-account]').forEach((el) => (el.textContent = user.account));
-  document
-    .querySelectorAll('[data-checking]')
-    .forEach((el) => (el.textContent = money.format(user.checking)));
-  document
-    .querySelectorAll('[data-savings]')
-    .forEach((el) => (el.textContent = money.format(user.savings)));
-  document
-    .querySelectorAll('[data-total]')
-    .forEach((el) => (el.textContent = money.format(user.checking + user.savings)));
-  document.querySelectorAll('[data-card]').forEach((el) => (el.textContent = user.card));
-  const rows = qs('transactions');
-  if (rows)
-    rows.innerHTML = user.transactions.length
-      ? user.transactions
-          .map(
-            (t) =>
-              `<tr><td>${t[0]}</td><td>${t[1]}</td><td>${t[2]}</td><td>${money.format(t[3])}</td><td><span class="badge ok">${t[4]}</span></td></tr>`,
-          )
-          .join('')
-      : `<tr><td colspan="5" class="empty-state">Your completed account activity will appear here.</td></tr>`;
-}
-function register() {
-  const name = qs('name').value.trim();
-  const email = qs('email').value.trim();
-  const phone = qs('phone').value.trim();
-  const password = qs('password').value;
-  if (!name || !email || !phone || password.length < 6)
-    return show('notice', 'Complete all fields. Password needs at least 6 characters.');
-  const user = {
-    ...defaultUser,
-    name,
-    email,
-    phone,
-    account: acct(),
-    status: 'Pending review',
-    transactions: [],
+﻿/* Global Banking Empowerment — Production JavaScript */
+(function () {
+  "use strict";
+  const bank = window.bank = {};
+
+  function requireUser() {
+    const user = localStorage.getItem("bank_user");
+    if (!user) { location.replace("login.html"); return false; }
+    return true;
+  }
+  bank.requireUser = requireUser;
+
+  function isLoggedIn() { return !!localStorage.getItem("bank_user"); }
+  bank.isLoggedIn = isLoggedIn;
+
+  function show(type, message) {
+    const notice = document.getElementById("notice");
+    if (!notice) return;
+    const icon = notice.querySelector(".notice-icon");
+    const title = notice.querySelector("h4");
+    const body = notice.querySelector("p");
+    const icons = {
+      success: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>,
+      error: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>,
+      info: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>,
+    };
+    icon.innerHTML = icons[type] || icons.info;
+    title.textContent = type === "success" ? "Success" : type === "error" ? "Error" : "Notice";
+    body.textContent = message;
+    notice.classList.add("show");
+    setTimeout(() => notice.classList.remove("show"), 4000);
+  }
+  bank.show = show;
+
+  bank.cardAction = function(message) { show("success", message); };
+  bank.serviceAction = function(message) { show("success", message); };
+
+  bank.downloadStatement = function(period) {
+    show("success", "Downloading statement for " + period + "...");
+    setTimeout(() => {
+      const blob = new Blob(["Statement — " + period + "\n\nAccount: ****4521\nPeriod: " + period + "\n\nTransactions will appear here in production."], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = "statement-" + period.replace(/\s/g, "-") + ".txt";
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 800);
   };
-  saveUser(user);
-  setSession(user);
-  location.href = 'dashboard.html';
-}
-function login() {
-  const email = qs('email').value.trim();
-  if (!email) return show('notice', 'Enter your email to continue.');
-  const user = loadUser();
-  if (email && user.email !== email) user.email = email;
-  saveUser(user);
-  setSession(user);
-  location.href = 'dashboard.html';
-}
-function transfer() {
-  const user = loadUser();
-  const amount = Number(qs('amount').value || 0);
-  const recipient = qs('recipient').value.trim();
-  if (!recipient || amount <= 0) return show('notice', 'Enter a recipient and valid amount.');
-  if (amount > user.checking) return show('notice', 'Amount exceeds available checking balance.');
-  user.checking -= amount;
-  user.transactions.unshift([
-    'Today',
-    `Transfer to ${recipient}`,
-    'Checking',
-    -amount,
-    'Completed',
-  ]);
-  saveUser(user);
-  show('notice', 'Transfer scheduled successfully.');
-  hydrateCustomer();
-}
-function sendSupportMessage() {
-  const input = qs('support-message');
-  const thread = qs('support-thread');
-  if (!input || !thread || !input.value.trim())
-    return show('notice', 'Type a message before sending.');
-  const text = input.value.trim();
-  thread.insertAdjacentHTML(
-    'beforeend',
-    `<div class="bubble me"><strong>You</strong><p>${text.replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c])}</p><span>Just now</span></div><div class="bubble agent"><strong>Customer Care</strong><p>Thanks. A specialist is reviewing this and will respond in the secure message center.</p><span>Just now</span></div>`,
-  );
-  input.value = '';
-}
-function cardAction(message) {
-  show('notice', message);
-}
-function downloadStatement(period) {
-  const user = loadUser();
-  const content = `Global Banking Empowerment\nAccount statement\nPeriod: ${period}\nAccount holder: ${user.name}\nGenerated: ${new Date().toLocaleDateString()}`;
-  const file = new Blob([content], { type: 'text/plain' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(file);
-  link.download = `statement-${period.replace(/\s+/g, '-').toLowerCase()}.txt`;
-  link.click();
-  URL.revokeObjectURL(link.href);
-}
-window.bank = {
-  register,
-  login,
-  transfer,
-  logout,
-  sendSupportMessage,
-  cardAction,
-  downloadStatement,
-};
-document.addEventListener('DOMContentLoaded', hydrateCustomer);
+
+  bank.submitTransfer = function(form) {
+    const to = form.querySelector('[name="to"]')?.value;
+    const amount = form.querySelector('[name="amount"]')?.value;
+    if (!to || !amount) { show("error", "Please fill in all required fields."); return false; }
+    show("success", "Transfer of $" + amount + " to " + to + " initiated.");
+    form.reset(); return false;
+  };
+
+  bank.login = function(form) {
+    const email = form.querySelector('[name="email"]')?.value;
+    const password = form.querySelector('[name="password"]')?.value;
+    if (!email || !password) { show("error", "Please enter your email and password."); return false; }
+    localStorage.setItem("bank_user", JSON.stringify({ email, name: email.split("@")[0] }));
+    show("success", "Welcome back! Redirecting...");
+    setTimeout(() => location.replace("dashboard.html"), 1200);
+    return false;
+  };
+
+  bank.logout = function() { localStorage.removeItem("bank_user"); location.replace("login.html"); };
+
+  bank.createAccount = function(form) {
+    const name = form.querySelector('[name="name"]')?.value;
+    const email = form.querySelector('[name="email"]')?.value;
+    const password = form.querySelector('[name="password"]')?.value;
+    if (!name || !email || !password) { show("error", "Please complete all fields."); return false; }
+    localStorage.setItem("bank_user", JSON.stringify({ email, name }));
+    show("success", "Account created! Redirecting...");
+    setTimeout(() => location.replace("dashboard.html"), 1200);
+    return false;
+  };
+
+  function updateNavAuth() {
+    const user = localStorage.getItem("bank_user");
+    const navCta = document.querySelector('.nav-cta');
+    if (navCta && user) { const data = JSON.parse(user); navCta.textContent = data.name || 'Account'; navCta.href = 'dashboard.html'; }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    updateNavAuth();
+    if (document.body.dataset.role === "user" && !requireUser()) return;
+  });
+})();
