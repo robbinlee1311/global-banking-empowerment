@@ -711,3 +711,18 @@ textarea {
     padding: 24px 18px 58px;
   }
 }
+.dashboard-layout .account-card {
+  background:
+    radial-gradient(circle at top right, rgba(201, 151, 43, 0.32), transparent 34%),
+    linear-gradient(135deg, #102238, #0b6b5c 62%, #123d54);
+}
+.customer-hero {
+  border-radius: 12px;
+}
+.card,
+.metric {
+  border-radius: 12px;
+}
+.topbar {
+  backdrop-filter: blur(10px);
+}
