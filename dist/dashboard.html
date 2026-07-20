@@ -1,127 +1,574 @@
-<!doctype html>
+
+import os
+
+output_dir = "/mnt/agents/output/dist_pages"
+os.makedirs(output_dir, exist_ok=True)
+
+# Shared head template
+head = '''<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard | Global Banking Empowerment</title>
-  <link rel="stylesheet" href="assets/css/bank.css">
-</head>
-<body data-role="user">
+  <title>{title} | Global Banking Empowerment</title>
+  <link rel="stylesheet" href="styles.css">
+</head>'''
 
-  <div id="notice" class="notice">
-    <div class="notice-icon"></div>
-    <div class="notice-content"><h4></h4><p></p></div>
-  </div>
+# Shared nav
+nav = '''<nav class="top-nav">
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="transfer.html">Send Money</a>
+    <a href="cards.html">Cards</a>
+    <a href="statements.html">Statements</a>
+  </nav>'''
 
-  <nav class="navbar">
-    <div class="container">
-      <a href="index.html" class="nav-brand">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-        GBE
-      </a>
-      <ul class="nav-links">
-        <li><a href="dashboard.html" class="active">Dashboard</a></li>
-        <li><a href="transfer.html">Send Money</a></li>
-        <li><a href="cards.html">Cards</a></li>
-        <li><a href="statements.html">Statements</a></li>
-        <li><a href="support.html">Support</a></li>
-        <li><a href="#" onclick="bank.logout();return false;">Sign out</a></li>
-      </ul>
+# Shared footer
+footer = '''<footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="transfer.html">Send Money</a></li>
+          <li><a href="cards.html">Cards</a></li>
+          <li><a href="statements.html">Statements</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="help.html">Help center</a></li>
+          <li><a href="security.html">Security</a></li>
+          <li><a href="account.html">Account</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms of service</a></li>
+          <li><a href="cookies.html">Cookie policy</a></li>
+          <li><a href="licenses.html">Licenses</a></li>
+        </ul>
+      </div>
     </div>
-  </nav>
+    <p class="copyright">&copy; 2026 Global Banking Empowerment. All rights reserved.</p>
+  </footer>'''
 
-  <div class="dashboard">
-    <aside class="sidebar">
-      <div class="sidebar-brand">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-        My Account
-      </div>
-      <ul class="sidebar-nav">
-        <li><a href="dashboard.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Overview</a></li>
-        <li><a href="transfer.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>Send Money</a></li>
-        <li><a href="cards.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Cards</a></li>
-        <li><a href="statements.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Statements</a></li>
-        <li><a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a></li>
-        <li><a href="security.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Security</a></li>
-        <li><a href="support.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Support</a></li>
-      </ul>
-      <div class="sidebar-footer">
-        <button class="btn btn-outline btn-sm" style="width:100%" onclick="bank.logout()">Sign out</button>
-      </div>
-    </aside>
-
-    <main class="main-content">
-      <h2 style="margin-bottom:24px;color:var(--color-primary);">Account overview</h2>
-
-      <div class="metric-grid">
-        <div class="metric-card">
-          <div class="metric-card-header"><span>Total balance</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7b8e" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></div>
-          <strong>$93,270.00</strong>
-          <div class="trend up"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>+2.4% this month</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-card-header"><span>Monthly spending</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7b8e" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></div>
-          <strong>$4,128.50</strong>
-          <div class="trend down"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/></svg>-8.2% vs last month</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-card-header"><span>Savings goal</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7b8e" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></div>
-          <strong>$18,500 / $25,000</strong>
-          <div class="trend up"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>74% complete</div>
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;">
-        <div class="card" style="padding:0;overflow:hidden;">
-          <div style="padding:20px 24px;border-bottom:1px solid var(--color-border);display:flex;justify-content:space-between;align-items:center;">
-            <h4 style="color:var(--color-primary);">Recent activity</h4>
-            <a href="statements.html" style="font-size:0.85rem;color:var(--color-accent-dark);text-decoration:none;font-weight:600;">View all</a>
-          </div>
-          <table class="data-table">
-            <thead><tr><th>Date</th><th>Description</th><th>Category</th><th>Amount</th><th>Status</th></tr></thead>
-            <tbody>
-              <tr><td>Jul 18</td><td>Whole Foods Market</td><td>Groceries</td><td class="amount negative">-$142.30</td><td><span class="badge badge-success">Completed</span></td></tr>
-              <tr><td>Jul 17</td><td>Direct Deposit — Payroll</td><td>Income</td><td class="amount positive">+$5,200.00</td><td><span class="badge badge-success">Completed</span></td></tr>
-              <tr><td>Jul 16</td><td>Shell Gas Station</td><td>Transport</td><td class="amount negative">-$58.75</td><td><span class="badge badge-success">Completed</span></td></tr>
-              <tr><td>Jul 15</td><td>Netflix Subscription</td><td>Entertainment</td><td class="amount negative">-$15.99</td><td><span class="badge badge-success">Completed</span></td></tr>
-              <tr><td>Jul 14</td><td>Transfer to Savings</td><td>Transfer</td><td class="amount negative">-$1,000.00</td><td><span class="badge badge-success">Completed</span></td></tr>
-              <tr><td>Jul 13</td><td>Amazon.com</td><td>Shopping</td><td class="amount negative">-$234.56</td><td><span class="badge badge-pending">Pending</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:20px;">
-          <div class="card">
-            <h4 style="color:var(--color-primary);margin-bottom:16px;">Quick actions</h4>
-            <div style="display:flex;flex-direction:column;gap:10px;">
-              <a href="transfer.html" class="btn btn-dark btn-sm" style="justify-content:flex-start;gap:10px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                Send money
-              </a>
-              <a href="cards.html" class="btn btn-outline btn-sm" style="justify-content:flex-start;gap:10px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                Manage cards
-              </a>
-              <a href="statements.html" class="btn btn-outline btn-sm" style="justify-content:flex-start;gap:10px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                Download statement
-              </a>
-              <a href="support.html" class="btn btn-outline btn-sm" style="justify-content:flex-start;gap:10px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                Contact support
-              </a>
-            </div>
-          </div>
-          <div class="card" style="background:linear-gradient(135deg,var(--color-primary),var(--color-primary-light));color:#fff;border:none;">
-            <h4 style="color:#fff;margin-bottom:8px;">Support</h4>
-            <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;margin-bottom:16px;">Need help with payments, cards, or account access?</p>
-            <a href="support.html" class="btn btn-primary btn-sm" style="width:100%;">Start a conversation</a>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
-
-  <script src="assets/js/user.js"></script>
+# Close tags
+close = '''  <script src="app.js"></script>
 </body>
-</html>
+</html>'''
+
+# ===================== DASHBOARD =====================
+dashboard = head.format(title="Dashboard") + '''
+<body>
+''' + nav.replace('href="dashboard.html"', 'href="dashboard.html" class="active"') + '''
+  <main class="container">
+    <h1>Dashboard</h1>
+    
+    <section class="dashboard-summary">
+      <div class="balance-card">
+        <h3>Total balance</h3>
+        <p class="balance-amount">$93,270.00</p>
+        <p class="balance-detail">Across 3 linked accounts</p>
+      </div>
+      <div class="quick-actions">
+        <a href="transfer.html" class="btn-primary">Send money</a>
+        <a href="statements.html" class="btn-secondary">View statements</a>
+      </div>
+    </section>
+
+    <section class="accounts-list">
+      <h2>Your accounts</h2>
+      <div class="account-card">
+        <div class="account-info">
+          <span class="account-type">Checking</span>
+          <span class="account-number">****4521</span>
+        </div>
+        <p class="account-balance">$67,450.00</p>
+      </div>
+      <div class="account-card">
+        <div class="account-info">
+          <span class="account-type">Savings</span>
+          <span class="account-number">****8821</span>
+        </div>
+        <p class="account-balance">$22,340.00</p>
+      </div>
+      <div class="account-card">
+        <div class="account-info">
+          <span class="account-type">Investment</span>
+          <span class="account-number">****1192</span>
+        </div>
+        <p class="account-balance">$3,480.00</p>
+      </div>
+    </section>
+
+    <section class="recent-activity">
+      <h2>Recent activity</h2>
+      <table class="activity-table">
+        <thead>
+          <tr><th>Date</th><th>Description</th><th>Amount</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Jul 18</td><td>Transfer to Sarah Mitchell</td><td class="debit">-$2,500.00</td><td>Completed</td></tr>
+          <tr><td>Jul 17</td><td>Payroll deposit</td><td class="credit">+$8,750.00</td><td>Completed</td></tr>
+          <tr><td>Jul 15</td><td>Amazon purchase</td><td class="debit">-$147.32</td><td>Completed</td></tr>
+          <tr><td>Jul 14</td><td>Transfer from James Kim</td><td class="credit">+$1,200.00</td><td>Completed</td></tr>
+          <tr><td>Jul 12</td><td>Utility bill</td><td class="debit">-$89.50</td><td>Completed</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+''' + footer + close
+
+# ===================== CARDS =====================
+cards = head.format(title="Cards") + '''
+<body>
+''' + nav.replace('href="cards.html"', 'href="cards.html" class="active"') + '''
+  <main class="container">
+    <h1>Cards</h1>
+    
+    <section class="cards-list">
+      <div class="card-item">
+        <div class="card-visual">
+          <span class="card-chip"></span>
+          <p class="card-number">**** **** **** 4521</p>
+          <p class="card-holder">ROBBIN LEE</p>
+          <p class="card-expiry">09/28</p>
+        </div>
+        <div class="card-controls">
+          <h3>Debit card</h3>
+          <div class="toggle-row">
+            <span>Card status</span>
+            <span class="status-badge active">Active</span>
+          </div>
+          <div class="toggle-row">
+            <span>Online purchases</span>
+            <span class="status-badge active">Enabled</span>
+          </div>
+          <div class="toggle-row">
+            <span>ATM withdrawals</span>
+            <span class="status-badge active">Enabled</span>
+          </div>
+          <div class="card-actions">
+            <button class="btn-secondary">Freeze card</button>
+            <button class="btn-secondary">Change PIN</button>
+            <button class="btn-secondary">Request replacement</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-item">
+        <div class="card-visual platinum">
+          <span class="card-chip"></span>
+          <p class="card-number">**** **** **** 8821</p>
+          <p class="card-holder">ROBBIN LEE</p>
+          <p class="card-expiry">12/27</p>
+        </div>
+        <div class="card-controls">
+          <h3>Credit card</h3>
+          <div class="toggle-row">
+            <span>Card status</span>
+            <span class="status-badge active">Active</span>
+          </div>
+          <div class="toggle-row">
+            <span>Credit limit</span>
+            <span>$25,000</span>
+          </div>
+          <div class="toggle-row">
+            <span>Current balance</span>
+            <span>$3,240.00</span>
+          </div>
+          <div class="card-actions">
+            <button class="btn-secondary">Freeze card</button>
+            <button class="btn-secondary">Set limit</button>
+            <button class="btn-secondary">View rewards</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+''' + footer + close
+
+# ===================== HELP CENTER =====================
+help_page = head.format(title="Help Center") + '''
+<body>
+''' + nav + '''
+  <main class="container">
+    <h1>Help center</h1>
+    
+    <section class="search-help">
+      <input type="search" placeholder="Search help articles..." class="search-input">
+    </section>
+
+    <section class="help-categories">
+      <div class="help-card">
+        <h3>Getting started</h3>
+        <ul>
+          <li><a href="#">How to open an account</a></li>
+          <li><a href="#">Verifying your identity</a></li>
+          <li><a href="#">Linking external accounts</a></li>
+          <li><a href="#">Setting up direct deposit</a></li>
+        </ul>
+      </div>
+      <div class="help-card">
+        <h3>Transfers & payments</h3>
+        <ul>
+          <li><a href="#">How to send money</a></li>
+          <li><a href="#">Transfer limits and fees</a></li>
+          <li><a href="#">Wire transfer instructions</a></li>
+          <li><a href="#">International transfers</a></li>
+        </ul>
+      </div>
+      <div class="help-card">
+        <h3>Cards</h3>
+        <ul>
+          <li><a href="#">Activating your card</a></li>
+          <li><a href="#">Reporting a lost card</a></li>
+          <li><a href="#">Disputing a charge</a></li>
+          <li><a href="#">Cashback rewards</a></li>
+        </ul>
+      </div>
+      <div class="help-card">
+        <h3>Security</h3>
+        <ul>
+          <li><a href="#">Two-factor authentication</a></li>
+          <li><a href="#">Recognizing phishing</a></li>
+          <li><a href="#">Biometric login setup</a></li>
+          <li><a href="#">Account recovery</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="contact-cta">
+      <h2>Still need help?</h2>
+      <p>Our support team is available 24/7.</p>
+      <a href="contact.html" class="btn-primary">Contact support</a>
+    </section>
+  </main>
+''' + footer + close
+
+# ===================== ACCOUNT =====================
+account = head.format(title="Account") + '''
+<body>
+''' + nav + '''
+  <main class="container">
+    <h1>Account settings</h1>
+    
+    <section class="settings-section">
+      <h2>Profile</h2>
+      <div class="profile-header">
+        <div class="avatar">RL</div>
+        <div class="profile-info">
+          <p class="profile-name">Robbin Lee</p>
+          <p class="profile-email">robbin.lee@email.com</p>
+          <p class="profile-phone">+1 (555) 123-4567</p>
+        </div>
+      </div>
+      <button class="btn-secondary">Edit profile</button>
+    </section>
+
+    <section class="settings-section">
+      <h2>Notifications</h2>
+      <div class="setting-row">
+        <div>
+          <p class="setting-label">Transaction alerts</p>
+          <p class="setting-desc">Push and email for every transaction</p>
+        </div>
+        <span class="status-badge active">On</span>
+      </div>
+      <div class="setting-row">
+        <div>
+          <p class="setting-label">Weekly summary</p>
+          <p class="setting-desc">Email every Monday with account activity</p>
+        </div>
+        <span class="status-badge active">On</span>
+      </div>
+      <div class="setting-row">
+        <div>
+          <p class="setting-label">Marketing emails</p>
+          <p class="setting-desc">Product updates and offers</p>
+        </div>
+        <span class="status-badge">Off</span>
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <h2>Preferences</h2>
+      <div class="setting-row">
+        <div>
+          <p class="setting-label">Language</p>
+          <p class="setting-desc">English (US)</p>
+        </div>
+        <button class="btn-secondary">Change</button>
+      </div>
+      <div class="setting-row">
+        <div>
+          <p class="setting-label">Time zone</p>
+          <p class="setting-desc">Pacific Time (PT)</p>
+        </div>
+        <button class="btn-secondary">Change</button>
+      </div>
+      <div class="setting-row">
+        <div>
+          <p class="setting-label">Paperless statements</p>
+          <p class="setting-desc">Receive statements via email only</p>
+        </div>
+        <span class="status-badge active">On</span>
+      </div>
+    </section>
+  </main>
+''' + footer + close
+
+# ===================== CONTACT =====================
+contact = head.format(title="Contact") + '''
+<body>
+''' + nav + '''
+  <main class="container">
+    <h1>Contact us</h1>
+    
+    <section class="contact-options">
+      <div class="contact-card">
+        <h3>Phone support</h3>
+        <p class="contact-detail">1-800-GBE-BANK</p>
+        <p class="contact-hours">Available 24/7</p>
+      </div>
+      <div class="contact-card">
+        <h3>Secure messaging</h3>
+        <p class="contact-detail">In-app chat</p>
+        <p class="contact-hours">Response within 5 minutes</p>
+      </div>
+      <div class="contact-card">
+        <h3>Email</h3>
+        <p class="contact-detail">support@globalbankingempowerment.com</p>
+        <p class="contact-hours">Response within 24 hours</p>
+      </div>
+    </section>
+
+    <section class="contact-form-section">
+      <h2>Send us a message</h2>
+      <form id="contact-form">
+        <label for="contact-name">Name</label>
+        <input type="text" id="contact-name" name="name" required>
+
+        <label for="contact-email">Email</label>
+        <input type="email" id="contact-email" name="email" required>
+
+        <label for="contact-topic">Topic</label>
+        <select id="contact-topic" name="topic" required>
+          <option value="">Select a topic</option>
+          <option value="general">General inquiry</option>
+          <option value="transfer">Transfer issue</option>
+          <option value="card">Card issue</option>
+          <option value="security">Security concern</option>
+          <option value="account">Account access</option>
+        </select>
+
+        <label for="contact-message">Message</label>
+        <textarea id="contact-message" name="message" rows="5" placeholder="How can we help you?" required></textarea>
+
+        <button type="submit" class="btn-primary">Send message</button>
+      </form>
+    </section>
+
+    <section class="mailing-address">
+      <h2>Mailing address</h2>
+      <p>Global Banking Empowerment<br>
+      100 Financial Center Drive<br>
+      San Francisco, CA 94111</p>
+    </section>
+  </main>
+''' + footer + close
+
+# ===================== PRIVACY POLICY =====================
+privacy = head.format(title="Privacy Policy") + '''
+<body>
+''' + nav + '''
+  <main class="container legal-page">
+    <h1>Privacy policy</h1>
+    <p class="last-updated">Last updated: July 1, 2026</p>
+
+    <section class="legal-section">
+      <h2>1. Information we collect</h2>
+      <p>We collect information you provide directly, such as your name, email, phone number, address, and financial information when you open an account or use our services.</p>
+      <p>We also collect information automatically, including device information, IP address, browser type, and usage data through cookies and similar technologies.</p>
+    </section>
+
+    <section class="legal-section">
+      <h2>2. How we use your information</h2>
+      <p>We use your information to:</p>
+      <ul>
+        <li>Provide and maintain our banking services</li>
+        <li>Process transactions and send notifications</li>
+        <li>Detect and prevent fraud and security incidents</li>
+        <li>Comply with legal and regulatory requirements</li>
+        <li>Improve our products and services</li>
+      </ul>
+    </section>
+
+    <section class="legal-section">
+      <h2>3. Information sharing</h2>
+      <p>We do not sell your personal information. We may share information with:</p>
+      <ul>
+        <li>Service providers who perform services on our behalf</li>
+        <li>Financial partners for processing transactions</li>
+        <li>Regulatory authorities when required by law</li>
+        <li>Law enforcement in response to valid legal requests</li>
+      </ul>
+    </section>
+
+    <section class="legal-section">
+      <h2>4. Data security</h2>
+      <p>We implement industry-standard security measures including 256-bit AES encryption, multi-factor authentication, and regular security audits to protect your information.</p>
+    </section>
+
+    <section class="legal-section">
+      <h2>5. Your rights</h2>
+      <p>You have the right to access, correct, or delete your personal information. You may also opt out of certain data collection and marketing communications.</p>
+      <p>To exercise these rights, contact us at privacy@globalbankingempowerment.com.</p>
+    </section>
+  </main>
+''' + footer + close
+
+# ===================== TERMS OF SERVICE =====================
+terms = head.format(title="Terms of Service") + '''
+<body>
+''' + nav + '''
+  <main class="container legal-page">
+    <h1>Terms of service</h1>
+    <p class="last-updated">Last updated: July 1, 2026</p>
+
+    <section class="legal-section">
+      <h2>1. Agreement to terms</h2>
+      <p>By accessing or using Global Banking Empowerment services, you agree to be bound by these Terms of Service. If you do not agree, you may not use our services.</p>
+    </section>
+
+    <section class="legal-section">
+      <h2>2. Eligibility</h2>
+      <p>You must be at least 18 years old and a legal resident of the United States to open an account. You must provide accurate and complete information during registration.</p>
+    </section>
+
+    <section class="legal-section">
+      <h2>3. Account responsibilities</h2>
+      <p>You are responsible for maintaining the confidentiality of your account credentials. You agree to notify us immediately of any unauthorized use of your account.</p>
+      <p>You may not use our services for illegal activities, including money laundering, fraud, or sanctions violations.</p>
+    </section>
+
+    <section class="legal-section">
+      <h2>4. Fees and charges</h2>
+      <p>Certain services may incur fees, which will be disclosed before you complete a transaction. We reserve the right to change our fee structure with 30 days notice.</p>
+    </section>
+
+    <section class="legal-section">
+      <h2>5. Limitation of liability</h2>
+      <p>To the fullest extent permitted by law, Global Banking Empowerment shall not be liable for any indirect, incidental, or consequential damages arising from your use of our services.</p>
+    </section>
+
+    <section class="legal-section">
+      <h2>6. Termination</h2>
+      <p>We may suspend or terminate your account for violations of these terms or for security reasons. You may close your account at any time by contacting support.</p>
+    </section>
+  </main>
+''' + footer + close
+
+# ===================== COOKIE POLICY =====================
+cookies = head.format(title="Cookie Policy") + '''
+<body>
+''' + nav + '''
+  <main class="container legal-page">
+    <h1>Cookie policy</h1>
+    <p class="last-updated">Last updated: July 1, 2026</p>
+
+    <section class="legal-section">
+      <h2>What are cookies?</h2>
+      <p>Cookies are small text files stored on your device when you visit a website. They help us recognize your device, remember your preferences, and improve your experience.</p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Types of cookies we use</h2>
+      <h3>Essential cookies</h3>
+      <p>These cookies are necessary for the website to function properly. They enable core features like secure login and account access.</p>
+      
+      <h3>Analytics cookies</h3>
+      <p>These cookies help us understand how visitors interact with our website by collecting anonymous usage data.</p>
+      
+      <h3>Functional cookies</h3>
+      <p>These cookies remember your preferences, such as language settings and display options, to enhance your experience.</p>
+      
+      <h3>Marketing cookies</h3>
+      <p>These cookies track your browsing habits to deliver relevant advertisements. You can opt out of these cookies.</p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Managing cookies</h2>
+      <p>You can manage or disable cookies through your browser settings. Note that disabling essential cookies may affect website functionality.</p>
+      <p>To update your cookie preferences, visit your <a href="account.html">account settings</a>.</p>
+    </section>
+  </main>
+''' + footer + close
+
+# ===================== LICENSES =====================
+licenses = head.format(title="Licenses") + '''
+<body>
+''' + nav + '''
+  <main class="container legal-page">
+    <h1>Licenses</h1>
+    <p class="last-updated">Last updated: July 1, 2026</p>
+
+    <section class="legal-section">
+      <h2>Banking licenses</h2>
+      <p>Global Banking Empowerment operates under the following licenses and regulatory authorizations:</p>
+      <ul>
+        <li><strong>Federal Deposit Insurance Corporation (FDIC)</strong> — Certificate #35241</li>
+        <li><strong>Office of the Comptroller of the Currency (OCC)</strong> — National Bank Charter</li>
+        <li><strong>Consumer Financial Protection Bureau (CFPB)</strong> — Registered lender</li>
+        <li><strong>FinCEN</strong> — Money Services Business registration</li>
+      </ul>
+    </section>
+
+    <section class="legal-section">
+      <h2>State licenses</h2>
+      <p>We are licensed to operate in all 50 states and the District of Columbia. Specific state licenses are available upon request.</p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Third-party software</h2>
+      <p>Our platform incorporates the following open-source and licensed software:</p>
+      <ul>
+        <li>Normalize.css — MIT License</li>
+        <li>Inter font family — SIL Open Font License</li>
+        <li>Chart.js — MIT License</li>
+        <li>Axios — MIT License</li>
+      </ul>
+    </section>
+
+    <section class="legal-section">
+      <h2>Trademarks</h2>
+      <p>Global Banking Empowerment, GBE, and associated logos are registered trademarks of Global Banking Empowerment, Inc. All rights reserved.</p>
+    </section>
+  </main>
+''' + footer + close
+
+# Write all files
+pages = {
+    "dashboard.html": dashboard,
+    "cards.html": cards,
+    "help.html": help_page,
+    "account.html": account,
+    "contact.html": contact,
+    "privacy.html": privacy,
+    "terms.html": terms,
+    "cookies.html": cookies,
+    "licenses.html": licenses,
+}
+
+for filename, content in pages.items():
+    filepath = os.path.join(output_dir, filename)
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.write(content)
+    print(f"✅ Created {filename} ({len(content)} chars)")
+
+print(f"\n📁 All 9 files saved to: {output_dir}")
