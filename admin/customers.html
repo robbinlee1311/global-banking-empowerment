@@ -1,340 +1,55 @@
-﻿
-# Create the enhanced customers.html with working demo features
-
-customers_html = '''<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Customers | Global Banking Empowerment</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
-body{background:#0f172a;color:#e2e8f0;min-height:100vh}
+﻿<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Admin Customers | GBE</title>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}body{background:#0f172a;color:#e2e8f0;min-height:100vh}
 .topbar{background:#1e293b;padding:16px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #334155}
-.topbar h1{font-size:20px;color:#f8fafc}
-.topbar .nav{display:flex;gap:24px;align-items:center}
-.topbar .nav a{color:#94a3b8;text-decoration:none;font-size:14px;transition:.2s}
-.topbar .nav a:hover{color:#f8fafc}
-.topbar .nav a.active{color:#3b82f6}
-.topbar .user{display:flex;align-items:center;gap:12px}
-.topbar .user span{font-size:14px;color:#94a3b8}
-.btn-sm{padding:6px 14px;border-radius:6px;border:none;font-size:13px;cursor:pointer;transition:.2s}
-.btn-primary{background:#3b82f6;color:#fff}
-.btn-primary:hover{background:#2563eb}
-.btn-outline{background:transparent;color:#94a3b8;border:1px solid #475569}
-.btn-outline:hover{color:#f8fafc;border-color:#94a3b8}
+.topbar h1{font-size:20px;color:#f8fafc}.topbar .nav{display:flex;gap:24px}.topbar .nav a{color:#94a3b8;text-decoration:none;font-size:14px}.topbar .nav a.active{color:#3b82f6}
 .container{max-width:1200px;margin:0 auto;padding:32px}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:32px}
-.stat-card{background:#1e293b;border-radius:12px;padding:24px;border:1px solid #334155}
-.stat-card .number{font-size:32px;font-weight:700;color:#f8fafc;margin-bottom:4px}
-.stat-card .label{font-size:14px;color:#94a3b8}
-.search-bar{display:flex;gap:12px;margin-bottom:24px}
-.search-bar input{flex:1;padding:12px 16px;background:#1e293b;border:1px solid #334155;border-radius:8px;color:#e2e8f0;font-size:14px}
-.search-bar input:focus{outline:none;border-color:#3b82f6}
-.search-bar button{padding:12px 20px;background:#3b82f6;color:#fff;border:none;border-radius:8px;font-size:14px;cursor:pointer}
-.table-wrap{overflow-x:auto;background:#1e293b;border-radius:12px;border:1px solid #334155}
-table{width:100%;border-collapse:collapse}
-th,td{padding:14px 20px;text-align:left;font-size:13px}
-th{background:#0f172a;color:#94a3b8;font-weight:500;text-transform:uppercase;font-size:11px;letter-spacing:.5px}
-td{color:#e2e8f0;border-top:1px solid #334155}
-tr:hover td{background:#1e293b}
-.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500}
-.badge-active{background:rgba(16,185,129,.15);color:#10b981}
-.badge-pending{background:rgba(245,158,11,.15);color:#f59e0b}
-.badge-suspended{background:rgba(239,68,68,.15);color:#ef4444}
-.badge-low{background:rgba(16,185,129,.15);color:#10b981}
-.badge-medium{background:rgba(245,158,11,.15);color:#f59e0b}
-.badge-high{background:rgba(239,68,68,.15);color:#ef4448}
-.btn-action{padding:6px 14px;border-radius:6px;border:none;font-size:12px;cursor:pointer;margin-right:6px;transition:.2s}
-.btn-view{background:#334155;color:#e2e8f0}
-.btn-view:hover{background:#475569}
-.btn-suspend{background:#ef4444;color:#fff}
-.btn-suspend:hover{background:#dc2626}
-.btn-activate{background:#10b981;color:#fff}
-.btn-activate:hover{background:#059669}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;display:none;align-items:center;justify-content:center}
-.modal.show{display:flex}
-.modal-content{background:#1e293b;border-radius:12px;padding:28px;width:480px;max-width:90%;border:1px solid #334155}
-.modal-content h3{font-size:18px;color:#f8fafc;margin-bottom:16px}
-.modal-content .detail-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #334155;font-size:14px}
-.modal-content .detail-row:last-child{border-bottom:none}
-.modal-content .detail-row .label{color:#94a3b8}
-.modal-content .detail-row .value{color:#f8fafc;font-weight:500}
-.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
-.toast{position:fixed;top:20px;right:20px;padding:14px 20px;border-radius:8px;color:#fff;font-size:14px;z-index:1000;transform:translateX(150%);transition:transform .3s;max-width:320px}
-.toast.show{transform:translateX(0)}
-.toast-success{background:#10b981}
-.toast-error{background:#ef4444}
-.toast-info{background:#3b82f6}
-.chat-panel{position:fixed;right:0;top:0;width:360px;height:100vh;background:#1e293b;border-left:1px solid #334155;transform:translateX(100%);transition:transform .3s;z-index:100;display:flex;flex-direction:column}
-.chat-panel.open{transform:translateX(0)}
-.chat-header{padding:16px 20px;border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center}
-.chat-header h3{font-size:15px;color:#f8fafc}
-.chat-close{background:none;border:none;color:#94a3b8;font-size:20px;cursor:pointer}
-.chat-messages{flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:12px}
-.chat-msg{max-width:85%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.5}
-.chat-msg.admin{align-self:flex-end;background:#3b82f6;color:#fff;border-bottom-right-radius:4px}
-.chat-msg.user{align-self:flex-start;background:#334155;color:#e2e8f0;border-bottom-left-radius:4px}
-.chat-msg .time{font-size:11px;opacity:.7;margin-top:4px}
-.chat-input{padding:16px 20px;border-top:1px solid #334155;display:flex;gap:10px}
-.chat-input input{flex:1;padding:10px 14px;background:#0f172a;border:1px solid #334155;border-radius:8px;color:#e2e8f0;font-size:13px}
-.chat-input input:focus{outline:none;border-color:#3b82f6}
-.chat-input button{padding:10px 16px;background:#3b82f6;color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer}
-.chat-toggle{position:fixed;bottom:24px;right:24px;width:52px;height:52px;background:#3b82f6;color:#fff;border:none;border-radius:50%;font-size:20px;cursor:pointer;box-shadow:0 4px 12px rgba(59,130,246,.3);z-index:50}
-.chat-toggle:hover{background:#2563eb}
-.chat-toggle .badge-count{position:absolute;top:-4px;right:-4px;background:#ef4444;color:#fff;font-size:11px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:90;display:none}
-.overlay.show{display:block}
-</style>
-</head>
-<body>
-<div class="topbar">
-  <h1>Customer Management</h1>
-  <div class="nav">
-    <a href="dashboard.html">Dashboard</a>
-    <a href="approvals.html">Approvals</a>
-    <a href="transfers.html">Transfers</a>
-    <a href="customers.html" class="active">Customers</a>
-    <a href="rules.html">Rules</a>
-  </div>
-  <div class="user">
-    <span>Admin: Robbin Lee</span>
-    <button class="btn-sm btn-outline" onclick="location.href='../index.html'">Back to Site</button>
-    <button class="btn-sm btn-primary" onclick="signOut()">Sign Out</button>
-  </div>
-</div>
-
+.stat-card{background:#1e293b;border-radius:12px;padding:24px;border:1px solid #334155}.stat-card .n{font-size:28px;font-weight:700;color:#f8fafc}.stat-card .l{font-size:14px;color:#94a3b8}
+.search{display:flex;gap:12px;margin-bottom:24px}.search input{flex:1;padding:12px;background:#1e293b;border:1px solid #334155;border-radius:8px;color:#f8fafc;font-size:14px}
+table{width:100%;border-collapse:collapse;background:#1e293b;border-radius:12px;overflow:hidden;border:1px solid #334155}
+th,td{padding:12px 16px;text-align:left;font-size:13px}th{background:#0f172a;color:#94a3b8;font-size:11px;text-transform:uppercase}td{color:#e2e8f0;border-top:1px solid #334155}tr:hover td{background:#1e293b}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px}.badge-a{background:rgba(16,185,129,.15);color:#10b981}.badge-p{background:rgba(245,158,11,.15);color:#f59e0b}.badge-s{background:rgba(239,68,68,.15);color:#ef4444}
+.btn-sm{padding:6px 12px;border-radius:6px;border:none;font-size:12px;cursor:pointer;color:#fff;margin-right:4px}.btn-b{background:#3b82f6}.btn-r{background:#ef4444}.btn-g{background:#10b981}.btn-y{background:#f59e0b}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:100}.modal.show{display:flex}
+.modal-content{background:#1e293b;border-radius:12px;padding:28px;width:700px;max-width:95%;border:1px solid #334155;max-height:90vh;overflow-y:auto}
+.modal-content h3{color:#f8fafc;margin-bottom:16px}.modal-content h4{color:#94a3b8;font-size:14px;margin:16px 0 8px}
+.form-group{margin-bottom:14px}.form-group label{display:block;font-size:13px;color:#94a3b8;margin-bottom:6px}
+.form-group input,.form-group select{width:100%;padding:10px;background:#0f172a;border:1px solid #334155;border-radius:8px;color:#f8fafc;font-size:14px}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}.btn-o{background:transparent;color:#94a3b8;border:1px solid #475569}
+.toast{position:fixed;top:20px;right:20px;padding:14px 20px;border-radius:8px;color:#fff;font-size:14px;z-index:1000;transform:translateX(150%);transition:.3s}.toast.show{transform:translateX(0)}.toast-s{background:#10b981}.toast-e{background:#ef4444}
+.statement-table{width:100%;border-collapse:collapse;margin-top:12px}.statement-table th,.statement-table td{padding:10px 14px;font-size:12px}.statement-table th{background:#0f172a;color:#94a3b8}.statement-table td{border-top:1px solid #334155}.statement-table .credit{color:#10b981;font-weight:600}.statement-table .debit{color:#ef4444;font-weight:600}
+.transfer-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}.transfer-arrow{color:#3b82f6;font-size:16px}.transfer-from{color:#94a3b8}.transfer-to{color:#f8fafc}
+</style></head><body>
+<div class="topbar"><h1>Customer Management</h1><div class="nav"><a href="dashboard.html">Dashboard</a><a href="approvals.html">Approvals</a><a href="transfers.html">Transfers</a><a href="customers.html" class="active">Customers</a><a href="rules.html">Rules</a></div><div><button class="btn-sm btn-o" onclick="location.href='index.html'">Sign Out</button></div></div>
 <div class="container">
-  <div class="stats">
-    <div class="stat-card">
-      <div class="number" id="totalCount">4</div>
-      <div class="label">Total Customers</div>
-    </div>
-    <div class="stat-card">
-      <div class="number" id="activeCount">3</div>
-      <div class="label">Active</div>
-    </div>
-    <div class="stat-card">
-      <div class="number" id="pendingCount">1</div>
-      <div class="label">Pending KYC</div>
-    </div>
-    <div class="stat-card">
-      <div class="number" id="suspendedCount">0</div>
-      <div class="label">Suspended</div>
-    </div>
-  </div>
+<div class="stats"><div class="stat-card"><div class="n" id="tc">4</div><div class="l">Total</div></div><div class="stat-card"><div class="n" id="ac">3</div><div class="l">Active</div></div><div class="stat-card"><div class="n" id="pc">1</div><div class="l">Pending</div></div><div class="stat-card"><div class="n" id="sc">0</div><div class="l">Suspended</div></div></div>
+<div class="search"><input type="text" id="si" placeholder="Search customers..." oninput="render()"><button class="btn-sm btn-b" onclick="openAdd()">+ Add</button></div>
+<table><thead><tr><th>Customer</th><th>Accounts</th><th>Balance</th><th>Status</th><th>Risk</th><th>Actions</th></tr></thead><tbody id="ct"></tbody></table></div>
 
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search customers by name, email, or account..." oninput="filterCustomers()">
-    <button onclick="filterCustomers()">Search</button>
-  </div>
+<div class="modal" id="em"><div class="modal-content"><h3 id="et">Edit</h3><div class="form-group"><label>Name</label><input id="en" type="text"></div><div class="form-group"><label>Email</label><input id="ee" type="email"></div><div class="form-group"><label>Accounts</label><input id="ea" type="text"></div><div class="form-group"><label>Balance ($)</label><input id="eb" type="number"></div><div class="form-group"><label>Status</label><select id="es"><option value="active">Active</option><option value="pending">Pending KYC</option><option value="suspended">Suspended</option></select></div><div class="form-group"><label>Risk</label><select id="er"><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select></div><div class="modal-actions"><button class="btn-sm btn-o" onclick="closeEm()">Cancel</button><button class="btn-sm btn-b" onclick="save()">Save</button></div></div></div>
 
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>Customer</th><th>Accounts</th><th>Balance</th><th>Status</th><th>Risk</th><th>Last Activity</th><th>Actions</th></tr>
-      </thead>
-      <tbody id="customerTable"></tbody>
-    </table>
-  </div>
-</div>
+<div class="modal" id="am"><div class="modal-content"><h3>Add Customer</h3><div class="form-group"><label>Name</label><input id="an" type="text" placeholder="Full name"></div><div class="form-group"><label>Email</label><input id="ae" type="email" placeholder="email@example.com"></div><div class="form-group"><label>Accounts</label><input id="aa" type="text" value="Checking"></div><div class="form-group"><label>Balance ($)</label><input id="ab" type="number" value="0"></div><div class="form-group"><label>Status</label><select id="as"><option value="active">Active</option><option value="pending" selected>Pending KYC</option><option value="suspended">Suspended</option></select></div><div class="form-group"><label>Risk</label><select id="ar"><option value="low" selected>Low</option><option value="medium">Medium</option><option value="high">High</option></select></div><div class="modal-actions"><button class="btn-sm btn-o" onclick="closeAm()">Cancel</button><button class="btn-sm btn-b" onclick="add()">Create</button></div></div></div>
 
-<!-- Customer Detail Modal -->
-<div class="modal" id="customerModal">
-  <div class="modal-content" id="modalContent"></div>
-</div>
+<div class="modal" id="sm"><div class="modal-content"><h3 id="st">Account Statement</h3><h4>Account Summary</h4><p id="ss" style="color:#94a3b8;font-size:14px;line-height:1.6"></p><h4>Transaction History</h4><table class="statement-table"><thead><tr><th>Date/Time</th><th>Transaction</th><th>From → To</th><th>Amount</th><th>Status</th></tr></thead><tbody id="sb"></tbody></table><div class="modal-actions"><button class="btn-sm btn-o" onclick="closeSm()">Close</button></div></div></div>
 
-<!-- Chat Panel -->
-<div class="overlay" id="overlay" onclick="toggleChat()"></div>
-<div class="chat-panel" id="chatPanel">
-  <div class="chat-header">
-    <h3>💬 User Messages</h3>
-    <button class="chat-close" onclick="toggleChat()">&times;</button>
-  </div>
-  <div class="chat-messages" id="chatMessages"></div>
-  <div class="chat-input">
-    <input type="text" id="chatInput" placeholder="Reply to user..." onkeypress="if(event.key==='Enter')sendReply()">
-    <button onclick="sendReply()">Send</button>
-  </div>
-</div>
-<button class="chat-toggle" id="chatToggle" onclick="toggleChat()">
-  💬
-  <span class="badge-count" id="msgBadge" style="display:none">0</span>
-</button>
-
-<div class="toast" id="toast"></div>
-
+<div class="toast" id="t"></div>
 <script>
-const defaultCustomers = [
-  {id:1,name:'Robbin Lee',email:'robbin.lee@email.com',accounts:3,accountTypes:'Checking, Savings, Investment',balance:93270,status:'active',risk:'low',lastActivity:'Jul 18, 17:11',phone:'+1 (555) 123-4567',address:'123 Market St, San Francisco, CA',joined:'Jan 15, 2024'},
-  {id:2,name:'James Kim',email:'james.kim@email.com',accounts:2,accountTypes:'Checking, Investment',balance:128500,status:'active',risk:'low',lastActivity:'Jul 17, 09:00',phone:'+1 (555) 234-5678',address:'456 Oak Ave, Austin, TX',joined:'Mar 22, 2024'},
-  {id:3,name:'Sarah Mitchell',email:'sarah.m@email.com',accounts:2,accountTypes:'Checking, Savings',balance:45120,status:'active',risk:'low',lastActivity:'Jul 18, 14:30',phone:'+1 (555) 345-6789',address:'789 Pine Rd, Seattle, WA',joined:'Feb 10, 2024'},
-  {id:4,name:'Elena Rodriguez',email:'elena.r@email.com',accounts:1,accountTypes:'Checking',balance:12340,status:'pending',risk:'medium',lastActivity:'Jul 15, 11:20',phone:'+1 (555) 456-7890',address:'321 Elm St, Miami, FL',joined:'Jul 15, 2026'}
-];
-
-const defaultMessages = [
-  {from:'user',name:'Elena Rodriguez',text:'Hi, I uploaded my ID documents yesterday. Can you check if they were received?',time:'Jul 19, 10:30'},
-  {from:'user',name:'James Kim',text:'My transfer to Robbin is still showing as pending. Is there an issue?',time:'Jul 18, 16:00'},
-  {from:'user',name:'Sarah Mitchell',text:'I received a notification about a large deposit. Can you confirm this is legitimate?',time:'Jul 18, 15:45'}
-];
-
-function getData(key, def) { try { return JSON.parse(localStorage.getItem('gbe_'+key)) || def; } catch { return def; } }
-function setData(key, val) { localStorage.setItem('gbe_'+key, JSON.stringify(val)); }
-
-let customers = getData('customers', defaultCustomers);
-let messages = getData('messages', defaultMessages);
-let currentCustomer = null;
-
-function render() {
-  const tbody = document.getElementById('customerTable');
-  const search = document.getElementById('searchInput').value.toLowerCase();
-  let active=0, pending=0, suspended=0;
-
-  tbody.innerHTML = customers.filter(c =>
-    c.name.toLowerCase().includes(search) ||
-    c.email.toLowerCase().includes(search) ||
-    c.status.includes(search)
-  ).map(c => {
-    if(c.status==='active') active++;
-    if(c.status==='pending') pending++;
-    if(c.status==='suspended') suspended++;
-    const statusBadge = c.status==='active'?'badge-active':c.status==='pending'?'badge-pending':'badge-suspended';
-    const riskBadge = c.risk==='low'?'badge-low':c.risk==='medium'?'badge-medium':'badge-high';
-    const actionBtn = c.status==='active'
-      ? `<button class="btn-action btn-suspend" onclick="suspendCustomer(${c.id})">Suspend</button>`
-      : c.status==='pending'
-      ? `<button class="btn-action btn-activate" onclick="activateCustomer(${c.id})">Activate</button>`
-      : `<button class="btn-action btn-activate" onclick="activateCustomer(${c.id})">Reactivate</button>`;
-    return `<tr>
-      <td><b>${c.name}</b><br><span style="color:#64748b;font-size:12px">${c.email}</span></td>
-      <td>${c.accounts} (${c.accountTypes})</td>
-      <td>$${c.balance.toLocaleString()}</td>
-      <td><span class="badge ${statusBadge}">${c.status}</span></td>
-      <td><span class="badge ${riskBadge}">${c.risk}</span></td>
-      <td>${c.lastActivity}</td>
-      <td>
-        <button class="btn-action btn-view" onclick="viewCustomer(${c.id})">View</button>
-        ${actionBtn}
-        <button class="btn-action btn-view" onclick="messageCustomer(${c.id})">💬</button>
-      </td>
-    </tr>`;
-  }).join('');
-
-  document.getElementById('totalCount').textContent = customers.length;
-  document.getElementById('activeCount').textContent = active;
-  document.getElementById('pendingCount').textContent = pending;
-  document.getElementById('suspendedCount').textContent = suspended;
-  setData('customers', customers);
-  updateBadge();
-}
-
-function filterCustomers() { render(); }
-
-function viewCustomer(id) {
-  const c = customers.find(x=>x.id===id);
-  if(!c) return;
-  currentCustomer = c;
-  document.getElementById('modalContent').innerHTML = `
-    <h3>👤 ${c.name}</h3>
-    <div class="detail-row"><span class="label">Email</span><span class="value">${c.email}</span></div>
-    <div class="detail-row"><span class="label">Phone</span><span class="value">${c.phone}</span></div>
-    <div class="detail-row"><span class="label">Address</span><span class="value">${c.address}</span></div>
-    <div class="detail-row"><span class="label">Member Since</span><span class="value">${c.joined}</span></div>
-    <div class="detail-row"><span class="label">Accounts</span><span class="value">${c.accounts} (${c.accountTypes})</span></div>
-    <div class="detail-row"><span class="label">Total Balance</span><span class="value">$${c.balance.toLocaleString()}</span></div>
-    <div class="detail-row"><span class="label">Status</span><span class="value">${c.status}</span></div>
-    <div class="detail-row"><span class="label">Risk Level</span><span class="value">${c.risk}</span></div>
-    <div class="detail-row"><span class="label">Last Activity</span><span class="value">${c.lastActivity}</span></div>
-    <div class="modal-actions">
-      <button class="btn-sm btn-outline" onclick="closeModal()">Close</button>
-      <button class="btn-sm btn-primary" onclick="messageCustomer(${c.id});closeModal()">💬 Message</button>
-    </div>
-  `;
-  document.getElementById('customerModal').classList.add('show');
-}
-function closeModal() { document.getElementById('customerModal').classList.remove('show'); }
-
-function suspendCustomer(id) {
-  const c = customers.find(x=>x.id===id);
-  if(!c) return;
-  c.status = 'suspended';
-  c.lastActivity = new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
-  showToast(`🚫 ${c.name} has been suspended`, 'error');
-  render();
-}
-function activateCustomer(id) {
-  const c = customers.find(x=>x.id===id);
-  if(!c) return;
-  c.status = 'active';
-  c.lastActivity = new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
-  showToast(`✅ ${c.name} has been activated`, 'success');
-  render();
-}
-function messageCustomer(id) {
-  const c = customers.find(x=>x.id===id);
-  if(!c) return;
-  const text = prompt(`Send message to ${c.name}:`);
-  if(!text) return;
-  messages.push({from:'admin',name:'Robbin Lee (Admin)',text:`To ${c.name}: ${text}`,time:new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})});
-  setData('messages', messages);
-  showToast(`💬 Message sent to ${c.name}`, 'success');
-  updateBadge();
-}
-
-// ===== CHAT =====
-function toggleChat() {
-  document.getElementById('chatPanel').classList.toggle('open');
-  document.getElementById('overlay').classList.toggle('show');
-  if(document.getElementById('chatPanel').classList.contains('open')) {
-    renderChat();
-    document.getElementById('msgBadge').style.display = 'none';
-  }
-}
-function renderChat() {
-  const box = document.getElementById('chatMessages');
-  box.innerHTML = messages.map(m => {
-    const cls = m.from==='admin'?'admin':'user';
-    const name = m.from==='admin'?`<b>${m.name}</b>`:`<b>${m.name}</b> <span style="opacity:.6">(Customer)</span>`;
-    return `<div class="chat-msg ${cls}">${name}<br>${m.text}<div class="time">${m.time}</div></div>`;
-  }).join('');
-  box.scrollTop = box.scrollHeight;
-}
-function sendReply() {
-  const input = document.getElementById('chatInput');
-  const text = input.value.trim();
-  if(!text) return;
-  messages.push({from:'admin',name:'Robbin Lee (Admin)',text:text,time:new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})});
-  setData('messages', messages);
-  input.value = '';
-  renderChat();
-  showToast('💬 Reply sent', 'success');
-}
-function updateBadge() {
-  const unread = messages.filter(m=>m.from==='user').length;
-  const badge = document.getElementById('msgBadge');
-  if(unread>0) { badge.textContent = unread; badge.style.display = 'flex'; }
-  else badge.style.display = 'none';
-}
-
-function showToast(msg, type) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast toast-'+type+' show';
-  setTimeout(()=>t.classList.remove('show'), 3000);
-}
-function signOut() {
-  localStorage.removeItem('gbe_adminSession');
-  showToast('Signed out successfully', 'success');
-  setTimeout(()=>location.href='index.html', 800);
-}
-
+var D=[{id:1,n:'Robbin Lee',e:'robbin.lee@email.com',a:'3 (Checking, Savings, Investment)',at:'Checking, Savings, Investment',b:93270,s:'active',r:'low',la:'Jul 18, 17:11'},{id:2,n:'James Kim',e:'james.kim@email.com',a:'2 (Checking, Investment)',at:'Checking, Investment',b:128500,s:'active',r:'low',la:'Jul 17, 09:00'},{id:3,n:'Sarah Mitchell',e:'sarah.m@email.com',a:'2 (Checking, Savings)',at:'Checking, Savings',b:45120,s:'active',r:'low',la:'Jul 18, 14:30'},{id:4,n:'Elena Rodriguez',e:'elena.r@email.com',a:'1 (Checking)',at:'Checking',b:12340,s:'pending',r:'medium',la:'Jul 15, 11:20'}];
+var TX=[{id:'t1',date:'Jul 20, 2026 09:15',from:'James Kim',to:'External Account',desc:'International wire transfer',amount:-5000,type:'debit',status:'flagged'},{id:'t2',date:'Jul 20, 2026 10:30',from:'Elena Rodriguez',to:'External Account',desc:'Large wire transfer',amount:-15000,type:'debit',status:'pending'},{id:'t3',date:'Jul 18, 2026 14:30',from:'Robbin Lee',to:'Sarah Mitchell',desc:'Transfer to Sarah',amount:-2500,type:'debit',status:'completed'},{id:'t4',date:'Jul 18, 2026 14:30',from:'Robbin Lee',to:'Sarah Mitchell',desc:'Transfer received',amount:2500,type:'credit',status:'completed'},{id:'t5',date:'Jul 17, 2026 09:00',from:'Employer Inc',to:'Robbin Lee',desc:'Payroll deposit',amount:8750,type:'credit',status:'completed'},{id:'t6',date:'Jul 15, 2026 11:20',from:'Robbin Lee',to:'Amazon.com',desc:'Online purchase',amount:-147.32,type:'debit',status:'completed'},{id:'t7',date:'Jul 14, 2026 16:45',from:'James Kim',to:'Robbin Lee',desc:'Transfer to Robbin',amount:-1200,type:'debit',status:'completed'},{id:'t8',date:'Jul 14, 2026 16:45',from:'James Kim',to:'Robbin Lee',desc:'Transfer received',amount:1200,type:'credit',status:'completed'},{id:'t9',date:'Jul 12, 2026 08:15',from:'Robbin Lee',to:'City Utilities',desc:'Bill payment',amount:-89.50,type:'debit',status:'completed'},{id:'t10',date:'Jul 10, 2026 11:00',from:'Investment Co',to:'James Kim',desc:'Dividend payment',amount:2500,type:'credit',status:'completed'},{id:'t11',date:'Jul 8, 2026 15:30',from:'Sarah Mitchell',to:'Robbin Lee',desc:'Rent payment',amount:-1800,type:'debit',status:'completed'},{id:'t12',date:'Jul 8, 2026 15:30',from:'Sarah Mitchell',to:'Robbin Lee',desc:'Rent received',amount:1800,type:'credit',status:'completed'},{id:'t13',date:'Jul 5, 2026 09:00',from:'Elena Rodriguez',to:'Grocery Store',desc:'Grocery shopping',amount:-156.40,type:'debit',status:'completed'},{id:'t14',date:'Jul 1, 2026 00:00',from:'Bank',to:'Robbin Lee',desc:'Monthly interest',amount:45.20,type:'credit',status:'completed'},{id:'t15',date:'Jun 28, 2026 14:20',from:'James Kim',to:'Sarah Mitchell',desc:'Dinner split',amount:-85,type:'debit',status:'completed'},{id:'t16',date:'Jun 28, 2026 14:20',from:'James Kim',to:'Sarah Mitchell',desc:'Dinner split received',amount:85,type:'credit',status:'completed'}];
+function g(k,d){try{return JSON.parse(localStorage.getItem('gbe_'+k))||d}catch{return d}}
+function s(k,v){localStorage.setItem('gbe_'+k,JSON.stringify(v))}
+var C=g('c',D),E=null;
+function render(){var se=document.getElementById('si').value.toLowerCase();var a=0,p=0,su=0;document.getElementById('ct').innerHTML=C.filter(c=>c.n.toLowerCase().includes(se)||c.e.toLowerCase().includes(se)).map(c=>{if(c.s=='active')a++;if(c.s=='pending')p++;if(c.s=='suspended')su++;var sb=c.s=='active'?'badge-a':c.s=='pending'?'badge-p':'badge-s';var rb=c.r=='low'?'badge-a':c.r=='medium'?'badge-p':'badge-s';return'<tr><td><b>'+c.n+'</b><br><span style="color:#64748b;font-size:12px">'+c.e+'</span></td><td>'+c.a+'</td><td>$'+c.b.toLocaleString()+'</td><td><span class="badge '+sb+'">'+c.s+'</span></td><td><span class="badge '+rb+'">'+c.r+'</span></td><td><button class="btn-sm btn-b" onclick="edit('+c.id+')">Edit</button><button class="btn-sm btn-y" onclick="viewStmt('+c.id+')">Statement</button><button class="btn-sm btn-r" onclick="del('+c.id+')">Del</button></td></tr>'}).join('');document.getElementById('tc').textContent=C.length;document.getElementById('ac').textContent=a;document.getElementById('pc').textContent=p;document.getElementById('sc').textContent=su;s('c',C)}
+function viewStmt(id){var c=C.find(x=>x.id==id);if(!c)return;document.getElementById('st').textContent='Statement: '+c.n;var userTx=TX.filter(t=>t.from==c.n||t.to==c.n);var totalIn=userTx.filter(t=>t.type=='credit').reduce((a,t)=>a+t.amount,0);var totalOut=userTx.filter(t=>t.type=='debit').reduce((a,t)=>a+t.amount,0);document.getElementById('ss').innerHTML='<b>Account:</b> '+c.e+'<br><b>Current Balance:</b> $'+c.b.toLocaleString()+'<br><b>Total In:</b> <span style="color:#10b981">+$'+totalIn.toLocaleString()+'</span><br><b>Total Out:</b> <span style="color:#ef4444">-$'+Math.abs(totalOut).toLocaleString()+'</span><br><b>Net:</b> $'+(totalIn+totalOut).toLocaleString()+'<br><b>Transactions:</b> '+userTx.length;document.getElementById('sb').innerHTML=userTx.map(t=>{var amtClass=t.type=='credit'?'credit':'debit';var amtSign=t.type=='credit'?'+':'-';var badge=t.status=='completed'?'badge-a':t.status=='pending'?'badge-p':'badge-s';return'<tr><td>'+t.date+'</td><td>'+t.desc+'</td><td><div class="transfer-row"><span class="transfer-from">'+t.from+'</span><span class="transfer-arrow">→</span><span class="transfer-to">'+t.to+'</span></div></td><td class="'+amtClass+'">'+amtSign+'$'+Math.abs(t.amount).toLocaleString()+'</td><td><span class="badge '+badge+'">'+t.status+'</span></td></tr>'}).join('');document.getElementById('sm').classList.add('show')}
+function closeSm(){document.getElementById('sm').classList.remove('show')}
+function edit(id){var c=C.find(x=>x.id==id);if(!c)return;E=id;document.getElementById('et').textContent='Edit: '+c.n;document.getElementById('en').value=c.n;document.getElementById('ee').value=c.e;document.getElementById('ea').value=c.at;document.getElementById('eb').value=c.b;document.getElementById('es').value=c.s;document.getElementById('er').value=c.r;document.getElementById('em').classList.add('show')}
+function closeEm(){document.getElementById('em').classList.remove('show');E=null}
+function save(){var c=C.find(x=>x.id==E);if(!c)return;c.n=document.getElementById('en').value;c.e=document.getElementById('ee').value;c.at=document.getElementById('ea').value;c.a=c.at.split(',').length+' ('+c.at+')';c.b=parseFloat(document.getElementById('eb').value)||0;c.s=document.getElementById('es').value;c.r=document.getElementById('er').value;c.la=new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});toast('Saved! Balance: $'+c.b.toLocaleString(),'s');closeEm();render()}
+function openAdd(){document.getElementById('am').classList.add('show')}
+function closeAm(){document.getElementById('am').classList.remove('show')}
+function add(){var n=document.getElementById('an').value.trim(),e=document.getElementById('ae').value.trim();if(!n||!e){toast('Name and email required','e');return}var at=document.getElementById('aa').value||'Checking',id=Math.max(...C.map(c=>c.id),0)+1;C.push({id:id,n:n,e:e,a:(at.split(',').length)+' ('+at+')',at:at,b:parseFloat(document.getElementById('ab').value)||0,s:document.getElementById('as').value,r:document.getElementById('ar').value,la:new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})});toast('Created: '+n,'s');closeAm();render()}
+function del(id){var c=C.find(x=>x.id==id);if(!c||!confirm('Delete '+c.n+'?'))return;C=C.filter(x=>x.id!=id);toast('Deleted','e');render()}
+function toast(m,t){var x=document.getElementById('t');x.textContent=m;x.className='toast toast-'+t+' show';setTimeout(function(){x.classList.remove('show')},3000)}
 render();
-</script>
-</body>
-</html>'''
-
-with open('/mnt/agents/output/customers.html', 'w', encoding='utf-8') as f:
-    f.write(customers_html)
-
-print("customers.html created successfully!")
-
+</script></body></html>
