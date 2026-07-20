@@ -1,0 +1,219 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard | Global Banking Empowerment</title>
+  <link rel="stylesheet" href="../assets/css/bank.css">
+  <style>
+    .admin-shell { display: flex; min-height: 100vh; background: #0f172a; }
+    .admin-sidebar { width: 260px; background: #1e293b; border-right: 1px solid #334155; padding: 0; position: fixed; height: 100vh; overflow-y: auto; }
+    .admin-sidebar .brand { display: flex; align-items: center; gap: 12px; padding: 20px 24px; border-bottom: 1px solid #334155; text-decoration: none; }
+    .admin-sidebar .brand .logo { width: 36px; height: 36px; background: linear-gradient(135deg, #e94560, #ff6b6b); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; }
+    .admin-sidebar .brand span { color: #f8fafc; font-weight: 600; font-size: 15px; }
+    .admin-sidebar .nav { padding: 16px 12px; }
+    .admin-sidebar .nav a { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; color: #94a3b8; text-decoration: none; border-radius: 8px; margin-bottom: 4px; font-size: 14px; transition: all 0.2s; }
+    .admin-sidebar .nav a:hover, .admin-sidebar .nav a.active { background: #e94560; color: white; }
+    .admin-sidebar .nav a span { background: #334155; color: #94a3b8; padding: 2px 8px; border-radius: 12px; font-size: 11px; }
+    .admin-sidebar .nav a.active span { background: rgba(255,255,255,0.2); color: white; }
+    .admin-main { margin-left: 260px; flex: 1; padding: 24px 32px; background: #0f172a; min-height: 100vh; }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+    .admin-header h1 { color: #f8fafc; font-size: 24px; font-weight: 700; }
+    .admin-header .user { color: #94a3b8; font-size: 14px; }
+    .admin-header .user a { color: #e94560; margin-left: 16px; text-decoration: none; }
+    .kicker { color: #e94560; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 28px; }
+    .metric-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 24px; }
+    .metric-card .icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+    .metric-card .icon.blue { background: rgba(59,130,246,0.15); }
+    .metric-card .icon.green { background: rgba(34,197,94,0.15); }
+    .metric-card .icon.orange { background: rgba(249,115,22,0.15); }
+    .metric-card .icon.red { background: rgba(239,68,68,0.15); }
+    .metric-card .value { color: #f8fafc; font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+    .metric-card .label { color: #94a3b8; font-size: 13px; }
+    .metric-card .change { font-size: 12px; margin-top: 8px; }
+    .change.up { color: #22c55e; }
+    .change.down { color: #ef4444; }
+    .chart-container { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+    .chart-container h3 { color: #f8fafc; font-size: 16px; margin-bottom: 20px; }
+    .bar-chart { display: flex; align-items: flex-end; gap: 16px; height: 160px; padding: 20px 0; }
+    .bar-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .bar { width: 100%; border-radius: 6px 6px 0 0; min-height: 4px; transition: all 0.3s; }
+    .bar-label { color: #94a3b8; font-size: 12px; }
+    .bar-value { color: #f8fafc; font-size: 11px; font-weight: 600; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+    .data-table { width: 100%; border-collapse: collapse; }
+    .data-table th { text-align: left; padding: 12px 16px; color: #94a3b8; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #334155; }
+    .data-table td { padding: 14px 16px; color: #e2e8f0; font-size: 14px; border-bottom: 1px solid #1e293b; }
+    .data-table tr:hover td { background: #1e293b; }
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+    .badge-success { background: rgba(34,197,94,0.15); color: #22c55e; }
+    .badge-warning { background: rgba(249,115,22,0.15); color: #f97316; }
+    .donut-chart { width: 120px; height: 120px; border-radius: 50%; background: conic-gradient(#22c55e 0% 75%, #f97316 75% 100%); position: relative; }
+    .donut-chart::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; background: #1e293b; border-radius: 50%; }
+    .donut-label { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #f8fafc; font-size: 20px; font-weight: 700; z-index: 1; }
+    .chart-legend { display: flex; gap: 20px; margin-top: 16px; }
+    .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #94a3b8; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .flex-chart { display: flex; align-items: center; gap: 32px; }
+  </style>
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <a class="brand" href="dashboard.html">
+        <div class="logo">GBE</div>
+        <span>Admin Portal</span>
+      </a>
+      <nav class="nav">
+        <a class="active" href="dashboard.html">Overview</a>
+        <a href="customers.html">Customers <span>4</span></a>
+        <a href="approvals.html">Approvals <span>3</span></a>
+        <a href="transfers.html">Transfers <span>5</span></a>
+        <a href="rules.html">Rules & Audit</a>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-header">
+        <div>
+          <div class="kicker">Operations Command Center</div>
+          <h1>Admin Dashboard</h1>
+        </div>
+        <div class="user">
+          Admin: Robbin Lee
+          <a href="../index.html">Back to Site</a>
+          <button style="background:#334155;color:#e2e8f0;padding:6px 14px;border:none;border-radius:6px;font-size:12px;cursor:pointer;" onclick="adminBank.logout()">Sign Out</button>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="icon blue">👥</div>
+          <div class="value">4</div>
+          <div class="label">Total Customers</div>
+          <div class="change up">↑ 1 new this week</div>
+        </div>
+        <div class="metric-card">
+          <div class="icon orange">⏳</div>
+          <div class="value">1</div>
+          <div class="label">Pending KYC</div>
+          <div class="change down">Elena Rodriguez</div>
+        </div>
+        <div class="metric-card">
+          <div class="icon green">💰</div>
+          <div class="value">$93,270</div>
+          <div class="label">Top Customer Balance</div>
+          <div class="change up">Robbin Lee</div>
+        </div>
+        <div class="metric-card">
+          <div class="icon red">🏦</div>
+          <div class="value">$4.2B</div>
+          <div class="label">Total Assets Managed</div>
+          <div class="change up">↑ 5.3% this quarter</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="chart-container">
+          <h3>Customer Account Distribution</h3>
+          <div class="flex-chart">
+            <div style="position:relative;">
+              <div class="donut-chart"></div>
+              <div class="donut-label">4</div>
+            </div>
+            <div class="chart-legend">
+              <div class="legend-item"><div class="legend-dot" style="background:#22c55e;"></div>Active (3)</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#f97316;"></div>Pending KYC (1)</div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-container">
+          <h3>Weekly Transfer Volume</h3>
+          <div class="bar-chart">
+            <div class="bar-item">
+              <div class="bar-value">$2.5K</div>
+              <div class="bar" style="height:45%;background:linear-gradient(180deg,#3b82f6,#1d4ed8);"></div>
+              <div class="bar-label">Mon</div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-value">$8.7K</div>
+              <div class="bar" style="height:85%;background:linear-gradient(180deg,#22c55e,#15803d);"></div>
+              <div class="bar-label">Tue</div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-value">$147</div>
+              <div class="bar" style="height:15%;background:linear-gradient(180deg,#f97316,#c2410c);"></div>
+              <div class="bar-label">Wed</div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-value">$1.2K</div>
+              <div class="bar" style="height:35%;background:linear-gradient(180deg,#3b82f6,#1d4ed8);"></div>
+              <div class="bar-label">Thu</div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-value">$89</div>
+              <div class="bar" style="height:10%;background:linear-gradient(180deg,#ef4444,#b91c1c);"></div>
+              <div class="bar-label">Fri</div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-value">$0</div>
+              <div class="bar" style="height:4%;background:#334155;"></div>
+              <div class="bar-label">Sat</div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-value">$0</div>
+              <div class="bar" style="height:4%;background:#334155;"></div>
+              <div class="bar-label">Sun</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-container">
+        <h3>Recent Customer Activity</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>Customer</th><th>Accounts</th><th>Total Balance</th><th>Status</th><th>Risk</th><th>Last Activity</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Robbin Lee</strong><br><span style="color:#64748b;font-size:12px;">robbin.lee@email.com</span></td>
+              <td>3 (Checking, Savings, Investment)</td>
+              <td>$93,270.00</td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td><span class="badge badge-success">Low</span></td>
+              <td>Jul 18, 17:11</td>
+            </tr>
+            <tr>
+              <td><strong>James Kim</strong><br><span style="color:#64748b;font-size:12px;">james.kim@email.com</span></td>
+              <td>2 (Checking, Investment)</td>
+              <td>$128,500.00</td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td><span class="badge badge-success">Low</span></td>
+              <td>Jul 17, 09:00</td>
+            </tr>
+            <tr>
+              <td><strong>Sarah Mitchell</strong><br><span style="color:#64748b;font-size:12px;">sarah.m@email.com</span></td>
+              <td>2 (Checking, Savings)</td>
+              <td>$45,120.00</td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td><span class="badge badge-success">Low</span></td>
+              <td>Jul 18, 14:30</td>
+            </tr>
+            <tr>
+              <td><strong>Elena Rodriguez</strong><br><span style="color:#64748b;font-size:12px;">elena.r@email.com</span></td>
+              <td>1 (Checking)</td>
+              <td>$12,340.00</td>
+              <td><span class="badge badge-warning">Pending KYC</span></td>
+              <td><span class="badge badge-warning">Medium</span></td>
+              <td>Jul 15, 11:20</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+  <script src="../assets/js/admin.js"></script>
+</body>
+</html>

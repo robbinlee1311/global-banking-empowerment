@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Approvals | Global Banking Empowerment</title>
+  <link rel="stylesheet" href="../assets/css/bank.css">
+  <style>
+    .admin-shell { display: flex; min-height: 100vh; background: #0f172a; }
+    .admin-sidebar { width: 260px; background: #1e293b; border-right: 1px solid #334155; padding: 0; position: fixed; height: 100vh; overflow-y: auto; }
+    .admin-sidebar .brand { display: flex; align-items: center; gap: 12px; padding: 20px 24px; border-bottom: 1px solid #334155; text-decoration: none; }
+    .admin-sidebar .brand .logo { width: 36px; height: 36px; background: linear-gradient(135deg, #e94560, #ff6b6b); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; }
+    .admin-sidebar .brand span { color: #f8fafc; font-weight: 600; font-size: 15px; }
+    .admin-sidebar .nav { padding: 16px 12px; }
+    .admin-sidebar .nav a { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; color: #94a3b8; text-decoration: none; border-radius: 8px; margin-bottom: 4px; font-size: 14px; transition: all 0.2s; }
+    .admin-sidebar .nav a:hover, .admin-sidebar .nav a.active { background: #e94560; color: white; }
+    .admin-sidebar .nav a span { background: #334155; color: #94a3b8; padding: 2px 8px; border-radius: 12px; font-size: 11px; }
+    .admin-sidebar .nav a.active span { background: rgba(255,255,255,0.2); color: white; }
+    .admin-main { margin-left: 260px; flex: 1; padding: 24px 32px; background: #0f172a; min-height: 100vh; }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+    .admin-header h1 { color: #f8fafc; font-size: 24px; font-weight: 700; }
+    .admin-header .user { color: #94a3b8; font-size: 14px; }
+    .admin-header .user a { color: #e94560; margin-left: 16px; text-decoration: none; }
+    .kicker { color: #e94560; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .approval-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 28px; }
+    .approval-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 24px; }
+    .approval-card h3 { color: #f8fafc; font-size: 16px; margin-bottom: 8px; }
+    .approval-card p { color: #94a3b8; font-size: 14px; margin-bottom: 16px; line-height: 1.5; }
+    .approval-card .meta { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .approval-card .meta span { font-size: 12px; color: #64748b; }
+    .approval-card .actions { display: flex; gap: 8px; }
+    .btn { padding: 10px 18px; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; flex: 1; }
+    .btn-approve { background: #22c55e; color: white; }
+    .btn-reject { background: #ef4444; color: white; }
+    .btn-review { background: #f97316; color: white; }
+    .btn-hold { background: #334155; color: #e2e8f0; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .status-bar { display: flex; gap: 20px; margin-bottom: 24px; }
+    .status-item { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px 24px; display: flex; align-items: center; gap: 12px; }
+    .status-item .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .status-item .count { color: #f8fafc; font-size: 20px; font-weight: 700; }
+    .status-item .label { color: #94a3b8; font-size: 13px; }
+    .data-table { width: 100%; border-collapse: collapse; background: #1e293b; border: 1px solid #334155; border-radius: 12px; overflow: hidden; }
+    .data-table th { text-align: left; padding: 14px 16px; color: #94a3b8; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #334155; }
+    .data-table td { padding: 14px 16px; color: #e2e8f0; font-size: 14px; border-bottom: 1px solid #334155; }
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+    .badge-success { background: rgba(34,197,94,0.15); color: #22c55e; }
+    .badge-warning { background: rgba(249,115,22,0.15); color: #f97316; }
+    .badge-danger { background: rgba(239,68,68,0.15); color: #ef4444; }
+    .badge-info { background: rgba(59,130,246,0.15); color: #3b82f6; }
+  </style>
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <a class="brand" href="dashboard.html">
+        <div class="logo">GBE</div>
+        <span>Admin Portal</span>
+      </a>
+      <nav class="nav">
+        <a href="dashboard.html">Overview</a>
+        <a href="customers.html">Customers <span>4</span></a>
+        <a class="active" href="approvals.html">Approvals <span>3</span></a>
+        <a href="transfers.html">Transfers <span>5</span></a>
+        <a href="rules.html">Rules & Audit</a>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-header">
+        <div>
+          <div class="kicker">Approval Queue</div>
+          <h1>Approvals</h1>
+        </div>
+        <div class="user">
+          Admin: Robbin Lee
+          <a href="../index.html">Back to Site</a>
+          <button style="background:#334155;color:#e2e8f0;padding:6px 14px;border:none;border-radius:6px;font-size:12px;cursor:pointer;" onclick="adminBank.logout()">Sign Out</button>
+        </div>
+      </div>
+
+      <div class="status-bar">
+        <div class="status-item">
+          <div class="dot" style="background:#f97316;"></div>
+          <div><div class="count">1</div><div class="label">Pending KYC</div></div>
+        </div>
+        <div class="status-item">
+          <div class="dot" style="background:#3b82f6;"></div>
+          <div><div class="count">1</div><div class="label">Transfer Review</div></div>
+        </div>
+        <div class="status-item">
+          <div class="dot" style="background:#22c55e;"></div>
+          <div><div class="count">1</div><div class="label">Auto-Approved</div></div>
+        </div>
+      </div>
+
+      <div class="approval-grid">
+        <div class="approval-card" id="kyc-card">
+          <h3>KYC Verification</h3>
+          <p>Elena Rodriguez requires ID verification before full account activation. Account opened Jul 15, 2026 with $12,340 deposit.</p>
+          <div class="meta">
+            <span>Jul 15, 2026</span>
+            <span>Elena Rodriguez</span>
+            <span class="badge badge-warning">Pending</span>
+          </div>
+          <div class="actions">
+            <button class="btn btn-approve" onclick="approveKYC()">Approve KYC</button>
+            <button class="btn btn-reject" onclick="rejectKYC()">Reject</button>
+          </div>
+        </div>
+
+        <div class="approval-card" id="transfer-card">
+          <h3>Transfer Review</h3>
+          <p>Robbin Lee sent $2,500 to Sarah Mitchell on Jul 18. Transfer within normal limits. No risk flags triggered.</p>
+          <div class="meta">
+            <span>Jul 18, 2026</span>
+            <span>Robbin Lee to Sarah Mitchell</span>
+            <span class="badge badge-info">Review</span>
+          </div>
+          <div class="actions">
+            <button class="btn btn-approve" onclick="approveTransfer()">Approve</button>
+            <button class="btn btn-hold" onclick="holdTransfer()">Hold</button>
+            <button class="btn btn-reject" onclick="rejectTransfer()">Reject</button>
+          </div>
+        </div>
+
+        <div class="approval-card" id="auto-card">
+          <h3>Auto-Approved</h3>
+          <p>James Kim's $1,200 transfer to Robbin Lee on Jul 14 was auto-approved. Both accounts verified, within daily limits.</p>
+          <div class="meta">
+            <span>Jul 14, 2026</span>
+            <span>James Kim to Robbin Lee</span>
+            <span class="badge badge-success">Completed</span>
+          </div>
+          <div class="actions">
+            <button class="btn btn-hold" onclick="viewDetails()">View Details</button>
+            <button class="btn btn-reject" disabled>Already Processed</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#1e293b;border:1px solid #334155;border-radius:12px;padding:24px;">
+        <h3 style="color:#f8fafc;margin-bottom:16px;">Approval History</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>Date</th><th>Type</th><th>Customer</th><th>Amount/Action</th><th>Admin</th><th>Result</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Jul 18, 14:30</td><td>Transfer</td><td>Robbin Lee</td><td>$2,500 to Sarah Mitchell</td><td>Auto</td><td><span class="badge badge-success">Approved</span></td></tr>
+            <tr><td>Jul 17, 09:00</td><td>Account</td><td>James Kim</td><td>Password change</td><td>System</td><td><span class="badge badge-success">Approved</span></td></tr>
+            <tr><td>Jul 15, 11:20</td><td>KYC</td><td>Elena Rodriguez</td><td>ID verification pending</td><td>--</td><td><span class="badge badge-warning">Pending</span></td></tr>
+            <tr><td>Jul 14, 16:45</td><td>Transfer</td><td>James Kim</td><td>$1,200 to Robbin Lee</td><td>Auto</td><td><span class="badge badge-success">Approved</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/admin.js"></script>
+  <script>
+    function approveKYC() {
+      if(confirm('Approve KYC verification for Elena Rodriguez? Account will be activated.')) {
+        document.getElementById('kyc-card').style.opacity = '0.5';
+        alert('KYC approved for Elena Rodriguez. Account activated.');
+      }
+    }
+    function rejectKYC() {
+      if(confirm('Reject KYC verification for Elena Rodriguez? Account will be suspended.')) {
+        document.getElementById('kyc-card').style.opacity = '0.5';
+        alert('KYC rejected for Elena Rodriguez. Account suspended.');
+      }
+    }
+    function approveTransfer() {
+      if(confirm('Approve $2,500 transfer from Robbin Lee to Sarah Mitchell?')) {
+        document.getElementById('transfer-card').style.opacity = '0.5';
+        alert('Transfer approved. Funds released.');
+      }
+    }
+    function holdTransfer() {
+      if(confirm('Place hold on $2,500 transfer? Funds will be frozen pending review.')) {
+        document.getElementById('transfer-card').style.borderColor = '#f97316';
+        alert('Transfer placed on hold. Funds frozen.');
+      }
+    }
+    function rejectTransfer() {
+      if(confirm('Reject $2,500 transfer? Funds will be returned to sender.')) {
+        document.getElementById('transfer-card').style.opacity = '0.5';
+        alert('Transfer rejected. Funds returned to Robbin Lee.');
+      }
+    }
+    function viewDetails() {
+      alert('Transfer Details:\nFrom: James Kim (****3345)\nTo: Robbin Lee (****4521)\nAmount: $1,200.00\nDate: Jul 14, 2026\nStatus: Completed\nRule: Normal activity');
+    }
+  </script>
+</body>
+</html>
