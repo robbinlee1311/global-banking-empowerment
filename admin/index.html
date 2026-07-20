@@ -1,66 +1,20 @@
-﻿<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Sign In | Global Banking Empowerment</title>
-  <link rel="stylesheet" href="../assets/css/bank.css">
-  <style>
-    body { background: #0f172a; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
-    .auth-page { display: flex; min-height: 100vh; }
-    .auth-visual { flex: 1; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); display: flex; flex-direction: column; justify-content: space-between; padding: 48px; }
-    .auth-visual .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .auth-visual .brand .logo { width: 40px; height: 40px; background: linear-gradient(135deg, #e94560, #ff6b6b); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 16px; }
-    .auth-visual .brand span { color: #f8fafc; font-weight: 600; font-size: 18px; }
-    .auth-visual h1 { color: #f8fafc; font-size: 42px; font-weight: 700; margin-bottom: 16px; }
-    .auth-visual p { color: #94a3b8; font-size: 18px; line-height: 1.6; }
-    .auth-panel { width: 420px; background: #0f172a; display: flex; align-items: center; justify-content: center; padding: 48px; }
-    .auth-card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 40px; width: 100%; }
-    .auth-card h2 { color: #f8fafc; font-size: 24px; margin-bottom: 24px; }
-    .field { margin-bottom: 20px; }
-    .field label { display: block; color: #94a3b8; font-size: 13px; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
-    .field input { width: 100%; background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 12px 14px; color: #e2e8f0; font-size: 15px; box-sizing: border-box; }
-    .field input:focus { outline: none; border-color: #e94560; }
-    .btn-primary { width: 100%; background: linear-gradient(135deg, #e94560, #ff6b6b); color: white; border: none; border-radius: 8px; padding: 14px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; }
-    .btn-primary:hover { opacity: 0.9; }
-    .notice { padding: 12px; border-radius: 8px; margin-bottom: 16px; font-size: 14px; display: none; }
-    .notice.error { background: rgba(239,68,68,0.15); color: #ef4444; display: block; }
-    .notice.success { background: rgba(34,197,94,0.15); color: #22c55e; display: block; }
-  </style>
-</head>
-<body>
-  <div class="auth-page">
-    <section class="auth-visual">
-      <a class="brand" href="../index.html">
-        <div class="logo">GBE</div>
-        <span>Global Banking Empowerment</span>
-      </a>
-      <div>
-        <p style="color:#e94560;font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;">Administration</p>
-        <h1>Staff operations portal.</h1>
-        <p>Admin access is separated from customer banking and reserved for onboarding, risk, approvals, and audit work.</p>
-      </div>
-      <div style="color:#64748b;font-size:13px;">Global Banking Empowerment Admin Portal</div>
-    </section>
-    <section class="auth-panel">
-      <div class="auth-card">
-        <h2>Admin sign in</h2>
-        <div id="notice" class="notice"></div>
-        <div class="field">
-          <label for="email">Admin email</label>
-          <input id="email" type="email" value="admin@gbe.example" autocomplete="email">
-        </div>
-        <div class="field">
-          <label for="password">Password</label>
-          <input id="password" type="password" value="admin123" autocomplete="current-password">
-        </div>
-        <button class="btn-primary" type="button" onclick="adminBank.adminLogin()">Open admin dashboard</button>
-      </div>
-    </section>
-  </div>
-  <script src="../assets/js/admin.js"></script>
-</body>
-</html>
-
-<!-- built: 2026-07-20 01:25:42 -->
-
+﻿<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Admin Login | GBE</title>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}body{background:#0f172a;color:#e2e8f0;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.card{background:#1e293b;border-radius:16px;padding:48px;width:400px;max-width:90%;border:1px solid #334155;text-align:center}
+.card .logo{font-size:32px;margin-bottom:8px}.card h1{font-size:24px;color:#f8fafc;margin-bottom:8px}.card p{color:#94a3b8;font-size:14px;margin-bottom:32px}
+.input{margin-bottom:20px;text-align:left}.input label{display:block;font-size:13px;color:#94a3b8;margin-bottom:6px}
+.input input{width:100%;padding:12px;background:#0f172a;border:1px solid #334155;border-radius:8px;color:#f8fafc;font-size:14px}
+.btn{width:100%;padding:14px;background:#3b82f6;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;margin-bottom:12px}.btn:hover{background:#2563eb}.btn-g{background:#10b981}.btn-g:hover{background:#059669}
+.hint{background:#0f172a;border-radius:8px;padding:16px;margin-top:20px;border:1px solid #334155;text-align:left}
+.hint h4{font-size:13px;color:#f8fafc;margin-bottom:8px}.hint p{font-size:12px;color:#64748b;line-height:1.6}
+.toast{position:fixed;top:20px;right:20px;padding:14px 20px;border-radius:8px;color:#fff;font-size:14px;z-index:1000;transform:translateX(150%);transition:.3s}.toast.show{transform:translateX(0)}.toast-s{background:#10b981}.toast-e{background:#ef4444}
+</style></head><body>
+<div class="card"><div class="logo">🏦</div><h1>Admin Portal</h1><p>Global Banking Empowerment</p><div class="input"><label>Admin Email</label><input type="email" id="e" value="admin@globalbanking.com"></div><div class="input"><label>Password</label><input type="password" id="p" value="admin123"></div><button class="btn" onclick="login()">Sign In</button><button class="btn btn-g" onclick="demo()">🚀 Demo Login</button><div class="hint"><h4>👤 Demo Credentials</h4><p>Email: <b>admin@globalbanking.com</b><br>Password: <b>admin123</b></p></div></div>
+<div class="toast" id="t"></div>
+<script>
+function toast(m,c){var x=document.getElementById('t');x.textContent=m;x.className='toast toast-'+c+' show';setTimeout(function(){x.classList.remove('show')},3000)}
+function login(){var e=document.getElementById('e').value,p=document.getElementById('p').value;if(e=='admin@globalbanking.com'&&p=='admin123'){localStorage.setItem('gbe_session',JSON.stringify({user:'Robbin Lee'}));toast('Welcome!','s');setTimeout(function(){location.href='dashboard.html'},800)}else{toast('Invalid credentials','e')}}
+function demo(){localStorage.setItem('gbe_session',JSON.stringify({user:'Robbin Lee'}));toast('Demo mode!','s');setTimeout(function(){location.href='dashboard.html'},800)}
+if(localStorage.getItem('gbe_session'))location.href='dashboard.html';
+</script></body></html>
