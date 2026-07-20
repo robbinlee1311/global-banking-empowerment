@@ -1,353 +1,40 @@
-﻿
-# Create the enhanced rules.html with working toggle switches and audit log
-
-rules_html = '''<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rules & Audit | Global Banking Empowerment</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
-body{background:#0f172a;color:#e2e8f0;min-height:100vh}
+﻿<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Rules & Audit | GBE</title>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}body{background:#0f172a;color:#e2e8f0;min-height:100vh}
 .topbar{background:#1e293b;padding:16px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #334155}
-.topbar h1{font-size:20px;color:#f8fafc}
-.topbar .nav{display:flex;gap:24px;align-items:center}
-.topbar .nav a{color:#94a3b8;text-decoration:none;font-size:14px;transition:.2s}
-.topbar .nav a:hover{color:#f8fafc}
-.topbar .nav a.active{color:#3b82f6}
-.topbar .user{display:flex;align-items:center;gap:12px}
-.topbar .user span{font-size:14px;color:#94a3b8}
-.btn-sm{padding:6px 14px;border-radius:6px;border:none;font-size:13px;cursor:pointer;transition:.2s}
-.btn-primary{background:#3b82f6;color:#fff}
-.btn-primary:hover{background:#2563eb}
-.btn-outline{background:transparent;color:#94a3b8;border:1px solid #475569}
-.btn-outline:hover{color:#f8fafc;border-color:#94a3b8}
+.topbar h1{font-size:20px;color:#f8fafc}.topbar .nav{display:flex;gap:24px}.topbar .nav a{color:#94a3b8;text-decoration:none;font-size:14px}.topbar .nav a.active{color:#3b82f6}
 .container{max-width:1200px;margin:0 auto;padding:32px}
-.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px}
-.rule-card{background:#1e293b;border-radius:12px;padding:24px;border:1px solid #334155}
-.rule-card h3{font-size:15px;color:#f8fafc;margin-bottom:16px}
-.rule-item{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #334155}
-.rule-item:last-child{border-bottom:none}
-.rule-item .info{flex:1}
-.rule-item .info .title{font-size:14px;color:#f8fafc;margin-bottom:2px}
-.rule-item .info .desc{font-size:12px;color:#64748b}
-.toggle{width:44px;height:24px;background:#334155;border-radius:12px;position:relative;cursor:pointer;transition:.2s;flex-shrink:0}
-.toggle::after{content:'';position:absolute;width:20px;height:20px;background:#94a3b8;border-radius:50%;top:2px;left:2px;transition:.2s}
-.toggle.on{background:#3b82f6}
-.toggle.on::after{background:#fff;left:22px}
-.role-section{background:#1e293b;border-radius:12px;padding:24px;margin-bottom:20px;border:1px solid #334155}
-.role-section h3{font-size:15px;color:#f8fafc;margin-bottom:16px}
-.role-section ul{list-style:none}
-.role-section li{padding:8px 0;color:#94a3b8;font-size:14px;display:flex;align-items:flex-start;gap:10px}
-.role-section li::before{content:'•';color:#3b82f6;font-weight:bold}
-.history{margin-top:32px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px}
+.card{background:#1e293b;border-radius:12px;padding:24px;border:1px solid #334155}.card h3{font-size:15px;color:#f8fafc;margin-bottom:16px}
+.item{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #334155}.item:last-child{border-bottom:none}
+.item .t{font-size:14px;color:#f8fafc}.item .d{font-size:12px;color:#64748b}
+.toggle{width:44px;height:24px;background:#334155;border-radius:12px;position:relative;cursor:pointer;transition:.2s}.toggle::after{content:'';position:absolute;width:20px;height:20px;background:#94a3b8;border-radius:50%;top:2px;left:2px;transition:.2s}.toggle.on{background:#3b82f6}.toggle.on::after{background:#fff;left:22px}
+.role{background:#1e293b;border-radius:12px;padding:24px;margin-bottom:20px;border:1px solid #334155}.role h3{font-size:15px;color:#f8fafc;margin-bottom:16px}
+.role ul{list-style:none}.role li{padding:8px 0;color:#94a3b8;font-size:14px}.role li::before{content:'•';color:#3b82f6;margin-right:8px}
 .history h2{font-size:18px;color:#f8fafc;margin-bottom:20px}
-.table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;background:#1e293b;border-radius:12px;overflow:hidden;border:1px solid #334155}
-th,td{padding:14px 20px;text-align:left;font-size:13px}
-th{background:#0f172a;color:#94a3b8;font-weight:500;text-transform:uppercase;font-size:11px;letter-spacing:.5px}
-td{color:#e2e8f0;border-top:1px solid #334155}
-tr:hover td{background:#1e293b}
-.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500}
-.badge-allowed{background:rgba(16,185,129,.15);color:#10b981}
-.badge-denied{background:rgba(239,68,68,.15);color:#ef4444}
-.badge-pending{background:rgba(245,158,11,.15);color:#f59e0b}
-.toast{position:fixed;top:20px;right:20px;padding:14px 20px;border-radius:8px;color:#fff;font-size:14px;z-index:1000;transform:translateX(150%);transition:transform .3s;max-width:320px}
-.toast.show{transform:translateX(0)}
-.toast-success{background:#10b981}
-.toast-info{background:#3b82f6}
-.chat-panel{position:fixed;right:0;top:0;width:360px;height:100vh;background:#1e293b;border-left:1px solid #334155;transform:translateX(100%);transition:transform .3s;z-index:100;display:flex;flex-direction:column}
-.chat-panel.open{transform:translateX(0)}
-.chat-header{padding:16px 20px;border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center}
-.chat-header h3{font-size:15px;color:#f8fafc}
-.chat-close{background:none;border:none;color:#94a3b8;font-size:20px;cursor:pointer}
-.chat-messages{flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:12px}
-.chat-msg{max-width:85%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.5}
-.chat-msg.admin{align-self:flex-end;background:#3b82f6;color:#fff;border-bottom-right-radius:4px}
-.chat-msg.user{align-self:flex-start;background:#334155;color:#e2e8f0;border-bottom-left-radius:4px}
-.chat-msg .time{font-size:11px;opacity:.7;margin-top:4px}
-.chat-input{padding:16px 20px;border-top:1px solid #334155;display:flex;gap:10px}
-.chat-input input{flex:1;padding:10px 14px;background:#0f172a;border:1px solid #334155;border-radius:8px;color:#e2e8f0;font-size:13px}
-.chat-input input:focus{outline:none;border-color:#3b82f6}
-.chat-input button{padding:10px 16px;background:#3b82f6;color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer}
-.chat-toggle{position:fixed;bottom:24px;right:24px;width:52px;height:52px;background:#3b82f6;color:#fff;border:none;border-radius:50%;font-size:20px;cursor:pointer;box-shadow:0 4px 12px rgba(59,130,246,.3);z-index:50}
-.chat-toggle:hover{background:#2563eb}
-.chat-toggle .badge-count{position:absolute;top:-4px;right:-4px;background:#ef4444;color:#fff;font-size:11px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:90;display:none}
-.overlay.show{display:block}
-</style>
-</head>
-<body>
-<div class="topbar">
-  <h1>Rules & Audit</h1>
-  <div class="nav">
-    <a href="dashboard.html">Dashboard</a>
-    <a href="approvals.html">Approvals</a>
-    <a href="transfers.html">Transfers</a>
-    <a href="customers.html">Customers</a>
-    <a href="rules.html" class="active">Rules</a>
-  </div>
-  <div class="user">
-    <span>Admin: Robbin Lee</span>
-    <button class="btn-sm btn-outline" onclick="location.href='../index.html'">Back to Site</button>
-    <button class="btn-sm btn-primary" onclick="signOut()">Sign Out</button>
-  </div>
-</div>
-
+th,td{padding:14px 20px;text-align:left;font-size:13px}th{background:#0f172a;color:#94a3b8;font-size:11px;text-transform:uppercase}td{color:#e2e8f0;border-top:1px solid #334155}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px}.badge-a{background:rgba(16,185,129,.15);color:#10b981}.badge-d{background:rgba(239,68,68,.15);color:#ef4444}.badge-p{background:rgba(245,158,11,.15);color:#f59e0b}
+.toast{position:fixed;top:20px;right:20px;padding:14px 20px;border-radius:8px;color:#fff;font-size:14px;z-index:1000;transform:translateX(150%);transition:.3s}.toast.show{transform:translateX(0)}.toast-s{background:#10b981}.toast-i{background:#3b82f6}
+</style></head><body>
+<div class="topbar"><h1>Rules & Audit</h1><div class="nav"><a href="dashboard.html">Dashboard</a><a href="approvals.html">Approvals</a><a href="transfers.html">Transfers</a><a href="customers.html">Customers</a><a href="rules.html" class="active">Rules</a></div><div><button style="background:transparent;color:#94a3b8;border:1px solid #475569;padding:6px 14px;border-radius:6px;cursor:pointer" onclick="location.href='index.html'">Sign Out</button></div></div>
 <div class="container">
-  <div class="rules-grid">
-    <div class="rule-card">
-      <h3>🔒 System Controls</h3>
-      <div class="rule-item">
-        <div class="info">
-          <div class="title">Maintenance Mode</div>
-          <div class="desc">Temporarily disable user access</div>
-        </div>
-        <div class="toggle" id="toggle-maint" onclick="toggleRule('maint')"></div>
-      </div>
-      <div class="rule-item">
-        <div class="info">
-          <div class="title">Fraud Detection AI</div>
-          <div class="desc">Real-time transaction monitoring</div>
-        </div>
-        <div class="toggle on" id="toggle-fraud" onclick="toggleRule('fraud')"></div>
-      </div>
-      <div class="rule-item">
-        <div class="info">
-          <div class="title">KYC Enforcement</div>
-          <div class="desc">Required for transfers over $10K</div>
-        </div>
-        <div class="toggle on" id="toggle-kyc" onclick="toggleRule('kyc')"></div>
-      </div>
-      <div class="rule-item">
-        <div class="info">
-          <div class="title">Auto-Approve Transfers</div>
-          <div class="desc">Under $5K with verified accounts</div>
-        </div>
-        <div class="toggle on" id="toggle-auto" onclick="toggleRule('auto')"></div>
-      </div>
-    </div>
-
-    <div class="rule-card">
-      <h3>⚠️ Risk Thresholds</h3>
-      <div class="rule-item">
-        <div class="info">
-          <div class="title">Daily Transfer Limit</div>
-          <div class="desc">$50,000 per customer per day</div>
-        </div>
-        <div class="toggle on" id="toggle-limit" onclick="toggleRule('limit')"></div>
-      </div>
-      <div class="rule-item">
-        <div class="info">
-          <div class="title">International Block</div>
-          <div class="desc">Block transfers to high-risk countries</div>
-        </div>
-        <div class="toggle" id="toggle-intl" onclick="toggleRule('intl')"></div>
-      </div>
-      <div class="rule-item">
-        <div class="info">
-          <div class="title">New Device Alerts</div>
-          <div class="desc">Notify on unrecognized login</div>
-        </div>
-        <div class="toggle on" id="toggle-device" onclick="toggleRule('device')"></div>
-      </div>
-      <div class="rule-item">
-        <div class="info">
-          <div class="title">Two-Factor Auth</div>
-          <div class="desc">Required for admin actions</div>
-        </div>
-        <div class="toggle on" id="toggle-2fa" onclick="toggleRule('2fa')"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="role-section">
-    <h3>👤 User Role Permissions</h3>
-    <ul>
-      <li>Can create account and sign in as customer</li>
-      <li>Can view own balances, cards, transfers, statements</li>
-      <li>Can initiate transfers from checking balance</li>
-      <li>Cannot approve accounts or view other customers</li>
-      <li>Cannot override holds or change risk rules</li>
-    </ul>
-  </div>
-
-  <div class="role-section">
-    <h3>🛡️ Admin Role Permissions</h3>
-    <ul>
-      <li>Can review customers, KYC, risk status, approvals</li>
-      <li>Can monitor transfers and flag suspicious activity</li>
-      <li>Can place holds and manage account statuses</li>
-      <li>Can see operational dashboards and audit controls</li>
-      <li>Cannot move money as customer from admin portal</li>
-    </ul>
-  </div>
-
-  <div class="history">
-    <h2>Audit Log</h2>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr><th>Time</th><th>Actor</th><th>Action</th><th>Details</th><th>Result</th></tr>
-        </thead>
-        <tbody id="auditTable"></tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<!-- Chat Panel -->
-<div class="overlay" id="overlay" onclick="toggleChat()"></div>
-<div class="chat-panel" id="chatPanel">
-  <div class="chat-header">
-    <h3>💬 User Messages</h3>
-    <button class="chat-close" onclick="toggleChat()">&times;</button>
-  </div>
-  <div class="chat-messages" id="chatMessages"></div>
-  <div class="chat-input">
-    <input type="text" id="chatInput" placeholder="Reply to user..." onkeypress="if(event.key==='Enter')sendReply()">
-    <button onclick="sendReply()">Send</button>
-  </div>
-</div>
-<button class="chat-toggle" id="chatToggle" onclick="toggleChat()">
-  💬
-  <span class="badge-count" id="msgBadge" style="display:none">0</span>
-</button>
-
-<div class="toast" id="toast"></div>
-
+<div class="grid">
+<div class="card"><h3>System Controls</h3><div class="item"><div><div class="t">Maintenance Mode</div><div class="d">Disable user access</div></div><div class="toggle" id="r1" onclick="tog('r1')"></div></div><div class="item"><div><div class="t">Fraud Detection AI</div><div class="d">Real-time monitoring</div></div><div class="toggle on" id="r2" onclick="tog('r2')"></div></div><div class="item"><div><div class="t">KYC Enforcement</div><div class="d">Required for $10K+</div></div><div class="toggle on" id="r3" onclick="tog('r3')"></div></div><div class="item"><div><div class="t">Auto-Approve</div><div class="d">Under $5K verified</div></div><div class="toggle on" id="r4" onclick="tog('r4')"></div></div></div>
+<div class="card"><h3>Risk Thresholds</h3><div class="item"><div><div class="t">Daily Limit</div><div class="d">$50K per customer</div></div><div class="toggle on" id="r5" onclick="tog('r5')"></div></div><div class="item"><div><div class="t">International Block</div><div class="d">High-risk countries</div></div><div class="toggle" id="r6" onclick="tog('r6')"></div></div><div class="item"><div><div class="t">New Device Alerts</div><div class="d">Unrecognized login</div></div><div class="toggle on" id="r7" onclick="tog('r7')"></div></div><div class="item"><div><div class="t">Two-Factor Auth</div><div class="d">Required for admin</div></div><div class="toggle on" id="r8" onclick="tog('r8')"></div></div></div></div>
+<div class="role"><h3>User Role</h3><ul><li>Can create account and sign in as customer</li><li>Can view own balances, cards, transfers</li><li>Can initiate transfers from checking</li><li>Cannot approve accounts or view others</li><li>Cannot override holds or change rules</li></ul></div>
+<div class="role"><h3>Admin Role</h3><ul><li>Can review customers, KYC, risk, approvals</li><li>Can monitor transfers and flag suspicious</li><li>Can place holds and manage statuses</li><li>Can see dashboards and audit controls</li><li>Cannot move money from admin portal</li></ul></div>
+<div class="history"><h2>Audit Log</h2><table><thead><tr><th>Time</th><th>Actor</th><th>Action</th><th>Details</th><th>Result</th></tr></thead><tbody id="at"></tbody></table></div></div>
+<div class="toast" id="t"></div>
 <script>
-const defaultRules = {
-  maint: false,
-  fraud: true,
-  kyc: true,
-  auto: true,
-  limit: true,
-  intl: false,
-  device: true,
-  '2fa': true
-};
-
-const defaultAudit = [
-  {time:'Jul 18, 17:11',actor:'Robbin Lee',action:'Login',details:'Chrome on macOS, San Francisco',result:'Allowed'},
-  {time:'Jul 18, 14:30',actor:'Robbin Lee',action:'Transfer',details:'$2,500 to Sarah Mitchell',result:'Approved'},
-  {time:'Jul 17, 09:00',actor:'James Kim',action:'Password Change',details:'Chrome on Windows, Austin',result:'Allowed'},
-  {time:'Jul 15, 11:20',actor:'Elena Rodriguez',action:'Account Created',details:'KYC verification pending',result:'Pending'},
-  {time:'Jul 14, 16:45',actor:'James Kim',action:'Transfer',details:'$1,200 to Robbin Lee',result:'Approved'},
-  {time:'Jul 12, 08:15',actor:'Robbin Lee',action:'Bill Pay',details:'$89.50 to City Utilities',result:'Completed'}
-];
-
-const defaultMessages = [
-  {from:'user',name:'Elena Rodriguez',text:'Hi, I uploaded my ID documents yesterday. Can you check if they were received?',time:'Jul 19, 10:30'},
-  {from:'user',name:'James Kim',text:'My transfer to Robbin is still showing as pending. Is there an issue?',time:'Jul 18, 16:00'},
-  {from:'user',name:'Sarah Mitchell',text:'I received a notification about a large deposit. Can you confirm this is legitimate?',time:'Jul 18, 15:45'}
-];
-
-function getData(key, def) { try { return JSON.parse(localStorage.getItem('gbe_'+key)) || def; } catch { return def; } }
-function setData(key, val) { localStorage.setItem('gbe_'+key, JSON.stringify(val)); }
-
-let rules = getData('rules', defaultRules);
-let audit = getData('audit', defaultAudit);
-let messages = getData('messages', defaultMessages);
-
-function render() {
-  // Render toggles
-  Object.keys(rules).forEach(key => {
-    const el = document.getElementById('toggle-'+key);
-    if(el) el.classList.toggle('on', rules[key]);
-  });
-
-  // Render audit
-  const tbody = document.getElementById('auditTable');
-  tbody.innerHTML = audit.map(a => {
-    const badge = a.result==='Allowed'||a.result==='Approved'||a.result==='Completed'?'badge-allowed':a.result==='Denied'?'badge-denied':'badge-pending';
-    return `<tr><td>${a.time}</td><td>${a.actor}</td><td>${a.action}</td><td>${a.details}</td><td><span class="badge ${badge}">${a.result}</span></td></tr>`;
-  }).join('');
-
-  setData('rules', rules);
-  setData('audit', audit);
-  updateBadge();
-}
-
-function toggleRule(key) {
-  rules[key] = !rules[key];
-  const names = {maint:'Maintenance Mode',fraud:'Fraud Detection AI',kyc:'KYC Enforcement',auto:'Auto-Approve Transfers',limit:'Daily Transfer Limit',intl:'International Block',device:'New Device Alerts','2fa':'Two-Factor Auth'};
-  const status = rules[key]?'enabled':'disabled';
-  audit.unshift({
-    time: new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}),
-    actor: 'Robbin Lee',
-    action: 'Rule Change',
-    details: `${names[key]} ${status}`,
-    result: 'Allowed'
-  });
-  showToast(`${names[key]} ${status}`, rules[key]?'success':'info');
-  render();
-}
-
-// ===== CHAT =====
-function toggleChat() {
-  document.getElementById('chatPanel').classList.toggle('open');
-  document.getElementById('overlay').classList.toggle('show');
-  if(document.getElementById('chatPanel').classList.contains('open')) {
-    renderChat();
-    document.getElementById('msgBadge').style.display = 'none';
-  }
-}
-function renderChat() {
-  const box = document.getElementById('chatMessages');
-  box.innerHTML = messages.map(m => {
-    const cls = m.from==='admin'?'admin':'user';
-    const name = m.from==='admin'?`<b>${m.name}</b>`:`<b>${m.name}</b> <span style="opacity:.6">(Customer)</span>`;
-    return `<div class="chat-msg ${cls}">${name}<br>${m.text}<div class="time">${m.time}</div></div>`;
-  }).join('');
-  box.scrollTop = box.scrollHeight;
-}
-function sendReply() {
-  const input = document.getElementById('chatInput');
-  const text = input.value.trim();
-  if(!text) return;
-  messages.push({from:'admin',name:'Robbin Lee (Admin)',text:text,time:new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})});
-  setData('messages', messages);
-  input.value = '';
-  renderChat();
-  showToast('💬 Reply sent', 'success');
-}
-function updateBadge() {
-  const unread = messages.filter(m=>m.from==='user').length;
-  const badge = document.getElementById('msgBadge');
-  if(unread>0) { badge.textContent = unread; badge.style.display = 'flex'; }
-  else badge.style.display = 'none';
-}
-
-function showToast(msg, type) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast toast-'+type+' show';
-  setTimeout(()=>t.classList.remove('show'), 3000);
-}
-function signOut() {
-  localStorage.removeItem('gbe_adminSession');
-  showToast('Signed out successfully', 'success');
-  setTimeout(()=>location.href='index.html', 800);
-}
-
+var R={r1:false,r2:true,r3:true,r4:true,r5:true,r6:false,r7:true,r8:true};
+var A=[{time:'Jul 18, 17:11',actor:'Robbin Lee',action:'Login',details:'Chrome on macOS',result:'Allowed'},{time:'Jul 18, 14:30',actor:'Robbin Lee',action:'Transfer',details:'$2,500 to Sarah',result:'Approved'},{time:'Jul 15, 11:20',actor:'Elena Rodriguez',action:'Account Created',details:'KYC pending',result:'Pending'}];
+var N={'r1':'Maintenance Mode','r2':'Fraud Detection AI','r3':'KYC Enforcement','r4':'Auto-Approve','r5':'Daily Limit','r6':'International Block','r7':'New Device Alerts','r8':'Two-Factor Auth'};
+function g(k,d){try{return JSON.parse(localStorage.getItem('gbe_'+k))||d}catch{return d}}
+function s(k,v){localStorage.setItem('gbe_'+k,JSON.stringify(v))}
+var r=g('rules',R),a=g('audit',A);
+function render(){Object.keys(r).forEach(k=>{var el=document.getElementById(k);if(el)el.classList.toggle('on',r[k])});document.getElementById('at').innerHTML=a.map(x=>{var b=x.result=='Allowed'||x.result=='Approved'?'badge-a':x.result=='Denied'?'badge-d':'badge-p';return'<tr><td>'+x.time+'</td><td>'+x.actor+'</td><td>'+x.action+'</td><td>'+x.details+'</td><td><span class="badge '+b+'">'+x.result+'</span></td></tr>'}).join('');s('rules',r);s('audit',a)}
+function tog(k){r[k]=!r[k];var st=r[k]?'enabled':'disabled';a.unshift({time:new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}),actor:'Robbin Lee',action:'Rule Change',details:N[k]+' '+st,result:'Allowed'});toast(N[k]+' '+st,r[k]?'s':'i');render()}
+function toast(m,c){var x=document.getElementById('t');x.textContent=m;x.className='toast toast-'+c+' show';setTimeout(function(){x.classList.remove('show')},3000)}
 render();
-</script>
-</body>
-</html>'''
-
-with open('/mnt/agents/output/rules.html', 'w', encoding='utf-8') as f:
-    f.write(rules_html)
-
-print("rules.html created successfully!")
-print("\n=== ALL ENHANCED ADMIN FILES CREATED ===")
-print("Files saved to /mnt/agents/output/")
-print("\nFiles created:")
-print("  - index.html (admin login with demo mode)")
-print("  - dashboard.html (live stats + chat)")
-print("  - approvals.html (working approve/reject/hold + messaging)")
-print("  - transfers.html (working transfer controls + detail panel)")
-print("  - customers.html (suspend/activate + search + messaging)")
-print("  - rules.html (working toggles + audit log)")
-
+</script></body></html>
