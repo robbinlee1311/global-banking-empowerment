@@ -1,0 +1,43 @@
+      </div>
+    </main>
+  </div>
+
+  <script src="../assets/js/admin.js"></script>
+  <script>
+    const txData = {
+      tx1: { id: 'TXN-78421', from: 'Robbin Lee (****4521)', to: 'Sarah Mitchell (****8821)', amount: '-$2,500.00', date: 'Jul 18, 2026 14:30', status: 'Completed' },
+      tx2: { id: 'TXN-78420', from: 'Employer Direct Deposit', to: 'Robbin Lee (****4521)', amount: '+$8,750.00', date: 'Jul 17, 2026 09:00', status: 'Completed' },
+      tx3: { id: 'TXN-78419', from: 'Robbin Lee (****4521)', to: 'Amazon.com', amount: '-$147.32', date: 'Jul 15, 2026 11:20', status: 'Completed' },
+      tx4: { id: 'TXN-78418', from: 'James Kim (****3345)', to: 'Robbin Lee (****4521)', amount: '-$1,200.00', date: 'Jul 14, 2026 16:45', status: 'Completed' },
+      tx5: { id: 'TXN-78417', from: 'Robbin Lee (****4521)', to: 'City Utilities', amount: '-$89.50', date: 'Jul 12, 2026 08:15', status: 'Completed' }
+    };
+
+    function showDetail(txId) {
+      const d = txData[txId];
+      document.getElementById('d-id').textContent = d.id;
+      document.getElementById('d-from').textContent = d.from;
+      document.getElementById('d-to').textContent = d.to;
+      document.getElementById('d-amount').textContent = d.amount;
+      document.getElementById('d-date').textContent = d.date;
+      document.getElementById('d-status').textContent = d.status;
+      document.getElementById('detail-panel').classList.add('active');
+    }
+
+    function filterTransfers(type) {
+      document.querySelectorAll('.filter-bar button').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      document.querySelectorAll('tbody tr').forEach(row => {
+        if (type === 'all') { row.style.display = ''; }
+        else { row.style.display = row.dataset.status === type ? '' : 'none'; }
+      });
+    }
+
+    function adminAction(action) {
+      const actions = { approve: 'Transfer approved. Funds released.', hold: 'Transfer placed on hold. Funds frozen.', reject: 'Transfer rejected. Funds returned.' };
+      if(confirm(actions[action] + ' Proceed?')) {
+        alert(actions[action]);
+      }
+    }
+  </script>
+</body>
+</html>
