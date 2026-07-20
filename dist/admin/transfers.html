@@ -1,3 +1,176 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Transfers | Global Banking Empowerment</title>
+  <link rel="stylesheet" href="../assets/css/bank.css">
+  <style>
+    .admin-shell { display: flex; min-height: 100vh; background: #0f172a; }
+    .admin-sidebar { width: 260px; background: #1e293b; border-right: 1px solid #334155; padding: 0; position: fixed; height: 100vh; overflow-y: auto; }
+    .admin-sidebar .brand { display: flex; align-items: center; gap: 12px; padding: 20px 24px; border-bottom: 1px solid #334155; text-decoration: none; }
+    .admin-sidebar .brand .logo { width: 36px; height: 36px; background: linear-gradient(135deg, #e94560, #ff6b6b); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; }
+    .admin-sidebar .brand span { color: #f8fafc; font-weight: 600; font-size: 15px; }
+    .admin-sidebar .nav { padding: 16px 12px; }
+    .admin-sidebar .nav a { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; color: #94a3b8; text-decoration: none; border-radius: 8px; margin-bottom: 4px; font-size: 14px; transition: all 0.2s; }
+    .admin-sidebar .nav a:hover, .admin-sidebar .nav a.active { background: #e94560; color: white; }
+    .admin-sidebar .nav a span { background: #334155; color: #94a3b8; padding: 2px 8px; border-radius: 12px; font-size: 11px; }
+    .admin-sidebar .nav a.active span { background: rgba(255,255,255,0.2); color: white; }
+    .admin-main { margin-left: 260px; flex: 1; padding: 24px 32px; background: #0f172a; min-height: 100vh; }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+    .admin-header h1 { color: #f8fafc; font-size: 24px; font-weight: 700; }
+    .admin-header .user { color: #94a3b8; font-size: 14px; }
+    .admin-header .user a { color: #e94560; margin-left: 16px; text-decoration: none; }
+    .kicker { color: #e94560; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+    .stat-box { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 18px; text-align: center; }
+    .stat-box .num { color: #f8fafc; font-size: 24px; font-weight: 700; }
+    .stat-box .lbl { color: #94a3b8; font-size: 12px; margin-top: 4px; }
+    .data-table { width: 100%; border-collapse: collapse; background: #1e293b; border: 1px solid #334155; border-radius: 12px; overflow: hidden; }
+    .data-table th { text-align: left; padding: 14px 16px; color: #94a3b8; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #334155; }
+    .data-table td { padding: 14px 16px; color: #e2e8f0; font-size: 14px; border-bottom: 1px solid #334155; }
+    .data-table tr:hover td { background: #252f47; }
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+    .badge-success { background: rgba(34,197,94,0.15); color: #22c55e; }
+    .badge-warning { background: rgba(249,115,22,0.15); color: #f97316; }
+    .badge-danger { background: rgba(239,68,68,0.15); color: #ef4444; }
+    .btn-sm { padding: 6px 14px; border-radius: 6px; border: none; font-size: 12px; font-weight: 600; cursor: pointer; margin-right: 6px; }
+    .btn-approve { background: #22c55e; color: white; }
+    .btn-hold { background: #f97316; color: white; }
+    .btn-reject { background: #ef4444; color: white; }
+    .btn-view { background: #334155; color: #e2e8f0; }
+    .amount-positive { color: #22c55e; font-weight: 600; }
+    .amount-negative { color: #ef4444; font-weight: 600; }
+    .filter-bar { display: flex; gap: 12px; margin-bottom: 20px; }
+    .filter-bar button { background: #1e293b; border: 1px solid #334155; color: #94a3b8; padding: 8px 16px; border-radius: 8px; font-size: 13px; cursor: pointer; }
+    .filter-bar button.active { background: #e94560; color: white; border-color: #e94560; }
+    .transfer-detail { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; margin-top: 20px; display: none; }
+    .transfer-detail.active { display: block; }
+    .transfer-detail h4 { color: #f8fafc; margin-bottom: 12px; }
+    .detail-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #334155; }
+    .detail-row span:first-child { color: #94a3b8; }
+    .detail-row span:last-child { color: #e2e8f0; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <a class="brand" href="dashboard.html">
+        <div class="logo">GBE</div>
+        <span>Admin Portal</span>
+      </a>
+      <nav class="nav">
+        <a href="dashboard.html">Overview</a>
+        <a href="customers.html">Customers <span>4</span></a>
+        <a href="approvals.html">Approvals <span>3</span></a>
+        <a class="active" href="transfers.html">Transfers <span>5</span></a>
+        <a href="rules.html">Rules & Audit</a>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-header">
+        <div>
+          <div class="kicker">Transaction Monitoring</div>
+          <h1>Transfer Review</h1>
+        </div>
+        <div class="user">
+          Admin: Robbin Lee
+          <a href="../index.html">Back to Site</a>
+          <button style="background:#334155;color:#e2e8f0;padding:6px 14px;border:none;border-radius:6px;font-size:12px;cursor:pointer;" onclick="adminBank.logout()">Sign Out</button>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-box"><div class="num">5</div><div class="lbl">Total Today</div></div>
+        <div class="stat-box"><div class="num">$12,686</div><div class="lbl">Volume</div></div>
+        <div class="stat-box"><div class="num">0</div><div class="lbl">Flagged</div></div>
+        <div class="stat-box"><div class="num">5</div><div class="lbl">Completed</div></div>
+      </div>
+
+      <div class="filter-bar">
+        <button class="active" onclick="filterTransfers('all')">All Transfers</button>
+        <button onclick="filterTransfers('completed')">Completed</button>
+        <button onclick="filterTransfers('pending')">Pending</button>
+        <button onclick="filterTransfers('flagged')">Flagged</button>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr><th>Date</th><th>Customer</th><th>Description</th><th>Amount</th><th>Rule</th><th>Status</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+          <tr data-status="completed">
+            <td>Jul 18, 14:30</td>
+            <td><strong>Robbin Lee</strong><br><span style="color:#64748b;font-size:12px;">****4521</span></td>
+            <td>Transfer to Sarah Mitchell</td>
+            <td class="amount-negative">-$2,500.00</td>
+            <td>Normal activity</td>
+            <td><span class="badge badge-success">Completed</span></td>
+            <td>
+              <button class="btn-sm btn-view" onclick="showDetail('tx1')">Details</button>
+            </td>
+          </tr>
+          <tr data-status="completed">
+            <td>Jul 17, 09:00</td>
+            <td><strong>Robbin Lee</strong><br><span style="color:#64748b;font-size:12px;">****4521</span></td>
+            <td>Payroll deposit</td>
+            <td class="amount-positive">+$8,750.00</td>
+            <td>Normal activity</td>
+            <td><span class="badge badge-success">Completed</span></td>
+            <td>
+              <button class="btn-sm btn-view" onclick="showDetail('tx2')">Details</button>
+            </td>
+          </tr>
+          <tr data-status="completed">
+            <td>Jul 15, 11:20</td>
+            <td><strong>Robbin Lee</strong><br><span style="color:#64748b;font-size:12px;">****4521</span></td>
+            <td>Amazon purchase</td>
+            <td class="amount-negative">-$147.32</td>
+            <td>Normal activity</td>
+            <td><span class="badge badge-success">Completed</span></td>
+            <td>
+              <button class="btn-sm btn-view" onclick="showDetail('tx3')">Details</button>
+            </td>
+          </tr>
+          <tr data-status="completed">
+            <td>Jul 14, 16:45</td>
+            <td><strong>James Kim</strong><br><span style="color:#64748b;font-size:12px;">****3345</span></td>
+            <td>Transfer to Robbin Lee</td>
+            <td class="amount-negative">-$1,200.00</td>
+            <td>Normal activity</td>
+            <td><span class="badge badge-success">Completed</span></td>
+            <td>
+              <button class="btn-sm btn-view" onclick="showDetail('tx4')">Details</button>
+            </td>
+          </tr>
+          <tr data-status="completed">
+            <td>Jul 12, 08:15</td>
+            <td><strong>Robbin Lee</strong><br><span style="color:#64748b;font-size:12px;">****4521</span></td>
+            <td>Utility bill payment</td>
+            <td class="amount-negative">-$89.50</td>
+            <td>Normal activity</td>
+            <td><span class="badge badge-success">Completed</span></td>
+            <td>
+              <button class="btn-sm btn-view" onclick="showDetail('tx5')">Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="transfer-detail" id="detail-panel">
+        <h4>Transfer Details</h4>
+        <div class="detail-row"><span>Transaction ID</span><span id="d-id">--</span></div>
+        <div class="detail-row"><span>From</span><span id="d-from">--</span></div>
+        <div class="detail-row"><span>To</span><span id="d-to">--</span></div>
+        <div class="detail-row"><span>Amount</span><span id="d-amount">--</span></div>
+        <div class="detail-row"><span>Date</span><span id="d-date">--</span></div>
+        <div class="detail-row"><span>Status</span><span id="d-status">--</span></div>
+        <div style="margin-top:16px;display:flex;gap:8px;">
+          <button class="btn-sm btn-approve" onclick="adminAction('approve')">Approve</button>
+          <button class="btn-sm btn-hold" onclick="adminAction('hold')">Hold</button>
+          <button class="btn-sm btn-reject" onclick="adminAction('reject')">Reject</button>
+        </div>
       </div>
     </main>
   </div>
