@@ -1,4 +1,3 @@
-import { onDOMContentLoaded } from './util/index.js'
 import Layout from './layout.js'
 import CardWidget from './card-widget.js'
 import Treeview from './treeview.js'
@@ -11,26 +10,9 @@ import { initAccessibility } from './accessibility.js'
 /**
  * Global Banking Empowerment.1.0
  * Author: Global Banking Empowerment
- * Website: c-globalbankingempowerment.online <https://c-globalbankingempowerment.online>
+ * Website: https://robbinlee1311.github.io/global-banking-empowerment/
  * License: Open source - MIT <https://opensource.org/licenses/MIT>
  */
-
-onDOMContentLoaded(() => {
-  /**
-   * Initialize Accessibility Features - WCAG 2.1 AA Compliance
-   * --------------------------------------------------------
-   */
-  const accessibilityManager = initAccessibility({
-    announcements: true,
-    skipLinks: true,
-    focusManagement: true,
-    keyboardNavigation: true,
-    reducedMotion: true
-  })
-
-  // Add semantic landmarks
-  accessibilityManager.addLandmarks()
-})
 
 export {
   Layout,
@@ -42,4 +24,3 @@ export {
   ColorMode,
   initAccessibility
 }
-
