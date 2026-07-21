@@ -1,0 +1,3 @@
+export interface User {id: string; email: string; role: 'admin' | 'user'; created_at: string;}
+export interface Account {id: string; user_id: string; account_number: string; account_type: string; balance: number; currency: string; created_at: string;}
+export interface Transaction {id: string; account_id: string; type: string; amount: number; description: string; status: string; created_at: string;}
